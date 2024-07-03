@@ -23,12 +23,12 @@ Gem::~Gem()
 void Gem::Init()
 {
     /*シングルトンクラスのインスタンスの取得*/
-    auto& json = JsonManager::GetInstance();
-    int jsonIndex = json.GetFileNameType(JsonManager::FileNameType::GEM);
-    this->transform.pos.Convert(json.GetJson(jsonIndex)["INIT_POS"]);
-    this->transform.scale.Convert(json.GetJson(jsonIndex)["INIT_SCALE"]);
-    this->transform.rotate.Convert(json.GetJson(jsonIndex)["INIT_ROTATE"]);
-    this->transform.rotate.DegToRad(this->transform.rotate);
+    auto&   json        = JsonManager::GetInstance();
+    int     jsonIndex   = json.GetFileNameType(JsonManager::FileNameType::GEM);
+    this->transform.pos     .Convert(json.GetJson(jsonIndex)["INIT_POS"]);
+    this->transform.scale   .Convert(json.GetJson(jsonIndex)["INIT_SCALE"]);
+    this->transform.rotate  .Convert(json.GetJson(jsonIndex)["INIT_ROTATE"]);
+    this->transform.rotate  .DegToRad(this->transform.rotate);
 }
 
 /// <summary>
