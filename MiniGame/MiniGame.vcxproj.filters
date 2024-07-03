@@ -1,0 +1,527 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="FPSController.cpp">
+      <Filter>FPSController</Filter>
+    </ClCompile>
+    <ClCompile Include="Common.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Scene\SceneType\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStage.cpp">
+      <Filter>Object\Stage\GameStage</Filter>
+    </ClCompile>
+    <ClCompile Include="GameCamera.cpp">
+      <Filter>Object\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadScene.cpp">
+      <Filter>LoadScene</Filter>
+    </ClCompile>
+    <ClCompile Include="GamePlayer.cpp">
+      <Filter>Object\Charactar\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Animaiton</Filter>
+    </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>Object\Charactar</Filter>
+    </ClCompile>
+    <ClCompile Include="Shadow.cpp">
+      <Filter>Shadow</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="WrapVECTOR.cpp">
+      <Filter>WrapVECTOR</Filter>
+    </ClCompile>
+    <ClCompile Include="Adapter.cpp">
+      <Filter>Adapter</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="SetUpScreen.cpp">
+      <Filter>SetUpScreen</Filter>
+    </ClCompile>
+    <ClCompile Include="JsonManager.cpp">
+      <Filter>Json\JsonManager</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>InputManager</Filter>
+    </ClCompile>
+    <ClCompile Include="JsonLoader.cpp">
+      <Filter>Json\JsonLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadingAsset.cpp">
+      <Filter>LoadingAsset</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneBase.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneChanger.cpp">
+      <Filter>Scene\SceneChanger</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Scene\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Tutorial.cpp">
+      <Filter>Scene\SceneType\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Result.cpp">
+      <Filter>Scene\SceneType\Result</Filter>
+    </ClCompile>
+    <ClCompile Include="Title.cpp">
+      <Filter>Scene\SceneType\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraManager.cpp">
+      <Filter>Object\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="StageManager.cpp">
+      <Filter>Object\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Skydome.cpp">
+      <Filter>Object\Stage\Skydome</Filter>
+    </ClCompile>
+    <ClCompile Include="CharacterManager.cpp">
+      <Filter>Object\Charactar</Filter>
+    </ClCompile>
+    <ClCompile Include="GameTimer.cpp">
+      <Filter>Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="BackGround.cpp">
+      <Filter>BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Object\Charactar\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Normal.cpp">
+      <Filter>Object\Charactar\Enemy\Normal</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss.cpp">
+      <Filter>Object\Charactar\Enemy\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>Object\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Bazooka.cpp">
+      <Filter>Object\Weapon\Bazooka</Filter>
+    </ClCompile>
+    <ClCompile Include="Cannon.cpp">
+      <Filter>Object\Weapon\Cannon</Filter>
+    </ClCompile>
+    <ClCompile Include="WeaponManager.cpp">
+      <Filter>Object\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Amo.cpp">
+      <Filter>Object\Amo</Filter>
+    </ClCompile>
+    <ClCompile Include="Fish1.cpp">
+      <Filter>Object\Amo\Fish1</Filter>
+    </ClCompile>
+    <ClCompile Include="Fish2.cpp">
+      <Filter>Object\Amo\Fish2</Filter>
+    </ClCompile>
+    <ClCompile Include="Fish3.cpp">
+      <Filter>Object\Amo\Fish3</Filter>
+    </ClCompile>
+    <ClCompile Include="Fish4.cpp">
+      <Filter>Object\Amo\Fish4</Filter>
+    </ClCompile>
+    <ClCompile Include="Shark.cpp">
+      <Filter>Object\Amo\Shark</Filter>
+    </ClCompile>
+    <ClCompile Include="AmoManager.cpp">
+      <Filter>Object\Amo</Filter>
+    </ClCompile>
+    <ClCompile Include="HitResult.cpp">
+      <Filter>Collision\HitResult</Filter>
+    </ClCompile>
+    <ClCompile Include="Price.cpp">
+      <Filter>UI\Price</Filter>
+    </ClCompile>
+    <ClCompile Include="UI.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIManager.cpp">
+      <Filter>UI\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="UnderBar.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="FPSController">
+      <UniqueIdentifier>{ff0fab03-df11-4040-bcb8-29c7667cdef8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{b3a917fb-ab31-4214-a966-5ce6241b0283}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LoadScene">
+      <UniqueIdentifier>{72297405-fe71-4ed0-b027-766b4849d092}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Animaiton">
+      <UniqueIdentifier>{84eab7fc-6987-4fc7-8a8d-1897f2fae91b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shadow">
+      <UniqueIdentifier>{49ba7d62-6992-4901-8196-0cc6945e11df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Collision">
+      <UniqueIdentifier>{f9f6616d-d63b-400b-bc7e-ed3d09856bd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WrapVECTOR">
+      <UniqueIdentifier>{46ec7944-ec82-4a42-8de2-5ec24f9631b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Transform">
+      <UniqueIdentifier>{baaeebd7-3830-4753-8498-4b27f578e215}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{950e2c08-c624-4a53-8975-66bc90bd827a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Adapter">
+      <UniqueIdentifier>{97a61540-d325-44b9-9d85-5402ee41cdae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SetUpScreen">
+      <UniqueIdentifier>{c4846e88-b5fe-4017-bff8-c6020e8de8c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="InputManager">
+      <UniqueIdentifier>{839b9c47-2232-443e-82a2-55cd25496233}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Json">
+      <UniqueIdentifier>{8fea60c4-ea29-46a8-8467-bcd3d3a6dd11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Json\JsonManager">
+      <UniqueIdentifier>{9c3ec8dc-6ab2-4b21-ad75-c8571094a756}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Json\JsonLoader">
+      <UniqueIdentifier>{9d58a360-f6f0-48cf-ba24-62f1c2433beb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Json\JsonFile">
+      <UniqueIdentifier>{84f6508f-addd-472d-bfa5-ea9a18de73e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LoadingAsset">
+      <UniqueIdentifier>{12aa1985-769a-4ba9-81a2-1ab1e1a2e6a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{dd55a2d9-9069-4a3c-98b6-e28d48751b3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\SceneManager">
+      <UniqueIdentifier>{bb4ee363-dc27-4b12-9253-fb6cb7c3053e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\SceneType">
+      <UniqueIdentifier>{fd9ea924-538f-470e-a1c4-8b2bc4d45c64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\SceneChanger">
+      <UniqueIdentifier>{42400daf-36c5-401e-b201-8032099d8afa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\SceneType\Game">
+      <UniqueIdentifier>{4e015a0e-1b32-489a-aa08-9aabdfa1b2c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\SceneType\Title">
+      <UniqueIdentifier>{f7c135b5-90bd-4ad0-82cd-8bb7767f8eea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\SceneType\Result">
+      <UniqueIdentifier>{0c649cfb-b916-40e9-a6bf-cd468d54b846}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\SceneType\Tutorial">
+      <UniqueIdentifier>{20d74b1d-a709-4c1f-a8f2-00d403a55eac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Camera">
+      <UniqueIdentifier>{4899ebb2-2850-49e8-8b65-757c05471ab3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Charactar">
+      <UniqueIdentifier>{af2b5543-8572-472c-b275-31884937d7f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Charactar\Player">
+      <UniqueIdentifier>{faa82b27-f2da-40aa-943f-65604c68e1d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Stage">
+      <UniqueIdentifier>{639e28f4-a63d-43c2-8831-d2373b9b2819}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Stage\GameStage">
+      <UniqueIdentifier>{4eed6230-32da-4a90-8d93-e45464231b62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Stage\Skydome">
+      <UniqueIdentifier>{4dc95105-74ba-4019-914c-7d04802d40e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Timer">
+      <UniqueIdentifier>{5b7b9a63-fd77-48cc-97c0-6a97a5adc809}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BackGround">
+      <UniqueIdentifier>{a9a19cbc-10b7-46ec-a313-6cb5c94e920e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Charactar\Enemy">
+      <UniqueIdentifier>{1b836e4c-023f-46e4-8793-2623f5f770c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Charactar\Enemy\Normal">
+      <UniqueIdentifier>{742ca632-9af6-4781-8f45-58f24f64ed1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Charactar\Enemy\Boss">
+      <UniqueIdentifier>{f3db50fd-a246-4955-8b32-660c25e21acf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Weapon">
+      <UniqueIdentifier>{bd6cdd1e-977a-459f-bd70-136310f54df6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Weapon\Cannon">
+      <UniqueIdentifier>{360cdd2a-81ea-4ffe-a789-6b6dba7972ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Weapon\Bazooka">
+      <UniqueIdentifier>{6e824cc5-54dd-44e2-a518-157cb84cb9e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Amo">
+      <UniqueIdentifier>{71704605-ef97-46ec-8fd5-903106491a34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Amo\Fish1">
+      <UniqueIdentifier>{1616f535-eb05-424f-8205-5d12cbf86861}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Amo\Fish2">
+      <UniqueIdentifier>{1281f68e-23b6-479b-bdad-380691ebf9d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Amo\Fish3">
+      <UniqueIdentifier>{e27de87c-d29a-463a-b914-51c456376f23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Amo\Fish4">
+      <UniqueIdentifier>{d851996e-7f4f-4ec9-ab01-c4cedacefb09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Amo\Shark">
+      <UniqueIdentifier>{ea6236a1-a1a8-4a09-bed0-91cd2a3a856d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{d0066507-5672-4d63-9a7f-f0330fbda625}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Collision\HitResult">
+      <UniqueIdentifier>{f79f544e-91b4-45b4-aa72-f4d8db4306d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Price">
+      <UniqueIdentifier>{40728073-9ca6-45d1-b152-9fc41cf310d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Manager">
+      <UniqueIdentifier>{7d24a149-3442-4671-8e10-d850166f5a8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\UnderBar">
+      <UniqueIdentifier>{1b9eefc6-e02c-4661-a684-bddd0d4a5641}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="FPSController.h">
+      <Filter>FPSController</Filter>
+    </ClInclude>
+    <ClInclude Include="Common.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Scene\SceneType\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStage.h">
+      <Filter>Object\Stage\GameStage</Filter>
+    </ClInclude>
+    <ClInclude Include="GameCamera.h">
+      <Filter>Object\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadScene.h">
+      <Filter>LoadScene</Filter>
+    </ClInclude>
+    <ClInclude Include="GamePlayer.h">
+      <Filter>Object\Charactar\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Animaiton</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>Object\Charactar</Filter>
+    </ClInclude>
+    <ClInclude Include="Shadow.h">
+      <Filter>Shadow</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="WrapVECTOR.h">
+      <Filter>WrapVECTOR</Filter>
+    </ClInclude>
+    <ClInclude Include="Adapter.h">
+      <Filter>Adapter</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="SetUpScreen.h">
+      <Filter>SetUpScreen</Filter>
+    </ClInclude>
+    <ClInclude Include="JsonManager.h">
+      <Filter>Json\JsonManager</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>InputManager</Filter>
+    </ClInclude>
+    <ClInclude Include="JsonLoader.h">
+      <Filter>Json\JsonLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadingAsset.h">
+      <Filter>LoadingAsset</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneBase.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneChanger.h">
+      <Filter>Scene\SceneChanger</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Scene\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Tutorial.h">
+      <Filter>Scene\SceneType\Tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="Result.h">
+      <Filter>Scene\SceneType\Result</Filter>
+    </ClInclude>
+    <ClInclude Include="Title.h">
+      <Filter>Scene\SceneType\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraManager.h">
+      <Filter>Object\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="StageManager.h">
+      <Filter>Object\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Skydome.h">
+      <Filter>Object\Stage\Skydome</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterManager.h">
+      <Filter>Object\Charactar</Filter>
+    </ClInclude>
+    <ClInclude Include="GameTimer.h">
+      <Filter>Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="BackGround.h">
+      <Filter>BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Object\Charactar\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Normal.h">
+      <Filter>Object\Charactar\Enemy\Normal</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss.h">
+      <Filter>Object\Charactar\Enemy\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>Object\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Bazooka.h">
+      <Filter>Object\Weapon\Bazooka</Filter>
+    </ClInclude>
+    <ClInclude Include="Cannon.h">
+      <Filter>Object\Weapon\Cannon</Filter>
+    </ClInclude>
+    <ClInclude Include="WeaponManager.h">
+      <Filter>Object\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Amo.h">
+      <Filter>Object\Amo</Filter>
+    </ClInclude>
+    <ClInclude Include="Fish1.h">
+      <Filter>Object\Amo\Fish1</Filter>
+    </ClInclude>
+    <ClInclude Include="Fish2.h">
+      <Filter>Object\Amo\Fish2</Filter>
+    </ClInclude>
+    <ClInclude Include="Fish3.h">
+      <Filter>Object\Amo\Fish3</Filter>
+    </ClInclude>
+    <ClInclude Include="Fish4.h">
+      <Filter>Object\Amo\Fish4</Filter>
+    </ClInclude>
+    <ClInclude Include="Shark.h">
+      <Filter>Object\Amo\Shark</Filter>
+    </ClInclude>
+    <ClInclude Include="AmoManager.h">
+      <Filter>Object\Amo</Filter>
+    </ClInclude>
+    <ClInclude Include="HitResult.h">
+      <Filter>Collision\HitResult</Filter>
+    </ClInclude>
+    <ClInclude Include="Price.h">
+      <Filter>UI\Price</Filter>
+    </ClInclude>
+    <ClInclude Include="UI.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIManager.h">
+      <Filter>UI\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="UnderBar.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Data\Json\Common.json">
+      <Filter>Json\JsonFile</Filter>
+    </None>
+    <None Include="Data\Json\DashEffect.json">
+      <Filter>Json\JsonFile</Filter>
+    </None>
+    <None Include="Data\Json\FontPath.json">
+      <Filter>Json\JsonFile</Filter>
+    </None>
+    <None Include="Data\Json\FPSController.json">
+      <Filter>Json\JsonFile</Filter>
+    </None>
+    <None Include="Data\Json\ImagePath.json">
+      <Filter>Json\JsonFile</Filter>
+    </None>
+    <None Include="Data\Json\LoadJsonFile.json">
+      <Filter>Json\JsonFile</Filter>
+    </None>
+    <None Include="Data\Json\LoadScene.json">
+      <Filter>Json\JsonFile</Filter>
+    </None>
+    <None Include="Data\Json\ModelPath.json">
+      <Filter>Json\JsonFile</Filter>
+    </None>
+    <None Include="Data\Json\Player.json">
+      <Filter>Json\JsonFile</Filter>
+    </None>
+    <None Include="Data\Json\SceneChanger.json">
+      <Filter>Json\JsonFile</Filter>
+    </None>
+    <None Include="Data\Json\SetUpScreen.json">
+      <Filter>Json\JsonFile</Filter>
+    </None>
+    <None Include="Data\Json\Camera.json">
+      <Filter>Json\JsonFile</Filter>
+    </None>
+    <None Include="Data\Json\IronBar.json">
+      <Filter>Json\JsonFile</Filter>
+    </None>
+    <None Include="Data\Json\Skydome.json">
+      <Filter>Json\JsonFile</Filter>
+    </None>
+    <None Include="Data\Json\Timer.json">
+      <Filter>Json\JsonFile</Filter>
+    </None>
+    <None Include="Data\Json\BackGround.json">
+      <Filter>Json\JsonFile</Filter>
+    </None>
+    <None Include="Data\Json\Enemy.json">
+      <Filter>Json\JsonFile</Filter>
+    </None>
+    <None Include="Data\Json\Amo.json">
+      <Filter>Json\JsonFile</Filter>
+    </None>
+    <None Include="Data\Json\Weapon.json">
+      <Filter>Json\JsonFile</Filter>
+    </None>
+    <None Include="Data\Json\Stage.json">
+      <Filter>Json\JsonFile</Filter>
+    </None>
+    <None Include="Data\Json\UI.json">
+      <Filter>Json\JsonFile</Filter>
+    </None>
+  </ItemGroup>
+</Project>
