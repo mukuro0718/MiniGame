@@ -58,6 +58,7 @@ public:
 		WEAPON			= 15,	//•Ší
 		AMO				= 16,	//’e
 		UI				= 17,	//UI
+		GEM				= 18,	//•óÎ
 	};
 
 	/*jsonƒf[ƒ^‚Ìgetter*/

@@ -13,8 +13,9 @@ public:
 	void			MoveOffScreen	();								//画面外へ移動
 	void			OnIsHit			() { this->isHit = true; }		//isHitフラグを立てる
 	const bool		GetIsHit		()const { return this->isHit; }	//isHitフラグを取得
-	const bool GetIsSet()const { return this->isSet; }
-	const bool GetIsRebel()const { return this->isRebel; }
+	const bool		GetIsSet		()const { return this->isSet; }	//セットフラグのgetter
+	const bool		GetIsRebel		()const { return this->isRebel;}//反逆フラグのgetter
+	const int		GetPrice		()const { return this->price; }	//値段のgetter
 protected:
 	/*内部処理関数*/
 	void		SetTransform(vector<float> _pos, vector<float> _rotate, vector<float> _scale);//トランスフォームの設定

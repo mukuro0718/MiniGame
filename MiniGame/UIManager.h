@@ -5,6 +5,7 @@
 #include<cassert>
 
 class Price;
+class UnderBar;
 class UIManager
 {
 public:
@@ -42,5 +43,6 @@ private:
 	/*メンバ変数*/
 	static UIManager* instance;//唯一のインスタンス
 	Price* price;//値段UI
+	UnderBar* bar;//バーUI
 };
 

@@ -36,6 +36,7 @@ using namespace std;
 #include "Shadow.h"
 #include "Skydome.h"
 #include "HitResult.h"
+#include "Gem.h"
 
 #include "BackGround.h"
 
@@ -71,5 +72,6 @@ using namespace std;
 
 #include "UI.h"
 #include "Price.h"
+#include "UnderBar.h"
 
 #include "UIManager.h"

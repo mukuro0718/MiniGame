@@ -58,6 +58,7 @@ private:
 	vector<vector<Amo*>>amo;		//’e
 	vector<int>			useCurrentlyNum;//¡vector“à‚Ì‰½”Ô–Ú‚Ü‚Å‚ªg—p‚³‚ê‚Ä‚¢‚é‚©
 	int					prevTime;//ˆÈ‘O‚ÌŠÔ
+	vector<int>			currentlyAmoPrice;
 };
 
 

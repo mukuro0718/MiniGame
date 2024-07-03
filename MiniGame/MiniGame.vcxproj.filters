@@ -152,7 +152,12 @@
     <ClCompile Include="UIManager.cpp">
       <Filter>UI\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="UnderBar.cpp" />
+    <ClCompile Include="UnderBar.cpp">
+      <Filter>UI\UnderBar</Filter>
+    </ClCompile>
+    <ClCompile Include="Gem.cpp">
+      <Filter>Object\Gem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="FPSController">
@@ -304,6 +309,9 @@
     </Filter>
     <Filter Include="UI\UnderBar">
       <UniqueIdentifier>{1b9eefc6-e02c-4661-a684-bddd0d4a5641}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Gem">
+      <UniqueIdentifier>{63648420-89c2-44e9-b4a9-ff29ace2b54f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -457,7 +465,12 @@
     <ClInclude Include="UIManager.h">
       <Filter>UI\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="UnderBar.h" />
+    <ClInclude Include="UnderBar.h">
+      <Filter>UI\UnderBar</Filter>
+    </ClInclude>
+    <ClInclude Include="Gem.h">
+      <Filter>Object\Gem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\Json\Common.json">
@@ -521,6 +534,9 @@
       <Filter>Json\JsonFile</Filter>
     </None>
     <None Include="Data\Json\UI.json">
+      <Filter>Json\JsonFile</Filter>
+    </None>
+    <None Include="Data\Json\Gem.json">
       <Filter>Json\JsonFile</Filter>
     </None>
   </ItemGroup>

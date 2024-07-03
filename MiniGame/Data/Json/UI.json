@@ -1,5 +1,7 @@
 {
-  "PRICE_MAIN_POS": [ 10, 10 ],
-  "PRICE_COLOR": [ 255, 255, 255 ]
-
+    "PRICE_MAIN_POS": [ 10, 10 ],
+    "PRICE_COLOR": [ 255, 255, 255 ],
+    "UNDER_BAR_POS": [ 500, 1000, 1300, 1050 ],
+    "HOUCE_POS": [ 1225, 975, 1325, 1075 ],
+    "CAR_POS": [ 475, 975, 575, 1075 ]
 }

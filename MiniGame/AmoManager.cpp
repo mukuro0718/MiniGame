@@ -36,6 +36,7 @@ AmoManager::AmoManager()
 	for (int i = 0; i < amo.size(); i++)
 	{
 		useCurrentlyNum.emplace_back(0);
+		currentlyAmoPrice.emplace_back(0);
 	}
 
 	InitUseCurrentlyNum();
@@ -62,6 +63,7 @@ void AmoManager::Update()
 	int time = timer.GetElapsetTime();
 
 	int weaponNum = 0;
+	int priceNum = 0;
 	/*使用するインデックスを決める*/
 	if (time % 5 == 0 && timer.GetElapsetFrame() == 0)
 	{
@@ -70,14 +72,16 @@ void AmoManager::Update()
 		{
 			weaponNum = static_cast<int>(AmoType::SHARK);
 		}
-		for (int i = 0; i < useCurrentlyNum.size(); i++)
+		for (int i = 0; i < this->useCurrentlyNum.size(); i++)
 		{
-			for (int j = 0; j < useCurrentlyNum[i]; j++)
+			for (int j = 0; j < this->useCurrentlyNum[i]; j++)
 			{
-				if (!amo[i][j]->GetIsHit() && character.GetIsStop(weaponNum) && !amo[i][j]->GetIsRebel())
+				if (!this->amo[i][j]->GetIsHit() && character.GetIsStop(weaponNum) && !this->amo[i][j]->GetIsRebel())
 				{
-					amo[i][j]->Init();
-					amo[i][j]->SetPos(weapon.GetWeaponPos(weaponNum));
+					this->amo[i][j]->Init();
+					this->amo[i][j]->SetPos(weapon.GetWeaponPos(weaponNum));
+					this->currentlyAmoPrice[priceNum] = this->amo[i][j]->GetPrice();
+					priceNum++;
 					weaponNum++;
 				}
 			}

@@ -13,6 +13,7 @@ UIManager::UIManager()
 	
 
 	price = new Price(asset.GetFont(asset.GetFontType(LoadingAsset::FontType::MUKASI)));
+	bar = new UnderBar();
 }
 
 /// <summary>
@@ -29,4 +30,5 @@ UIManager::~UIManager()
 void UIManager::Update()
 {
 	price->Update();
+	bar->Update();
 }

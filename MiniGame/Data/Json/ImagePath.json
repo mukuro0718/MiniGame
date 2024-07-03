@@ -1,17 +1,21 @@
 {
-  "PATH": [
-    "Data/Image/BackGround/1.png",
-    "Data/Image/BackGround/2.png",
-    "Data/Image/BackGround/3.png",
-    "Data/Image/BackGround/4.png",
-    "Data/Image/BackGround/5.png",
-    "Data/Image/BackGround/6.png",
-    "Data/Image/BackGround/7.png",
-    "Data/Image/BackGround/8.png",
-    "Data/Image/BackGround/9.png",
-    "Data/Image/BackGround/10.png",
-    "Data/Image/BackGround/11.png",
-    "Data/Image/BackGround/12.png",
-    "Data/Image/BackGround/13.png"
-  ]
+    "PATH": [
+        "Data/Image/BackGround/1.png",
+        "Data/Image/BackGround/2.png",
+        "Data/Image/BackGround/3.png",
+        "Data/Image/BackGround/4.png",
+        "Data/Image/BackGround/5.png",
+        "Data/Image/BackGround/6.png",
+        "Data/Image/BackGround/7.png",
+        "Data/Image/BackGround/8.png",
+        "Data/Image/BackGround/9.png",
+        "Data/Image/BackGround/10.png",
+        "Data/Image/BackGround/11.png",
+        "Data/Image/BackGround/12.png",
+        "Data/Image/BackGround/13.png",
+        "Data/Image/car.png",
+        "Data/Image/house.png",
+        "Data/Image/UI-06.png",
+        "Data/Image/UI-9.png"
+    ]
 }

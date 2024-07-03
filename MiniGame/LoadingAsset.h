@@ -55,6 +55,8 @@ public:
 		BOSS_FISH	= 13,
 		SKYDOME		= 14,
 		ROAD		= 15,
+		GEM_1		= 16,
+		GEM_2		= 17,
 	};
 
 	/*‰æ‘œ‚ÌŽí—Þ*/
@@ -73,6 +75,10 @@ public:
 		BACKGROUND_11	= 10,
 		BACKGROUND_12	= 11,
 		BACKGROUND_13	= 12,
+		CAR				= 13,
+		HOUSE			= 14,
+		NOW_BAR			= 15,
+		PREV_BAR		= 16,
 	};
 
 	enum class FontType
