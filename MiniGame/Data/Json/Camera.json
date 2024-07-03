@@ -1,0 +1,8 @@
+{
+  "ORIGIN": [ 0.0, 0.0, 0.0 ],
+  "TARGET_POS_OFFSET": [ 0.0, 0.0, 0.0 ],
+  "CAMERA_NEAR": 0.1,
+  "CAMERA_FAR": 600.0,
+  "CAMERA_UP_VEC": [ 0.0, 1.0, 0.0 ],
+  "CAMERA_OFF_SET": [ 0.0, 0.0, -100.0 ]
+}

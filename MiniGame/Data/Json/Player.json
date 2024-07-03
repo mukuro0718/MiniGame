@@ -1,0 +1,26 @@
+{
+  "ORIGIN": [ 0.0, 0.0, 0.0 ],
+  "INIT_POS": [ -50.0, 0.0, 0.0 ],
+  "INIT_SCALE": [ 0.03, 0.03, 0.03 ],
+  "INIT_ROTATE": [ 0.0, -90.0, 0.0 ],
+  "FIRST_LOOK_VEC": [ 0.0, 0.0, -1.0 ],
+  "STUN_MOVE_VEC": [ 0.0, 0.0, -2.0 ],
+  "INIT_JUMP_POWER": 20.0,
+  "RADISU": 5.0,
+  "ANIM_INDEX": [ 1, 3, 7 ],
+  "MAX_STUN_FRAME": 40,
+  "STAND_HEIGHT": 130.0,
+  "SIT_HEIGHT": 60.0,
+
+  "MAX_Y": 55.0,
+  "MIN_Y": -50.0,
+
+  "ADD_JUMP_POWER": 0.03,
+  "MAX_JUMP_POWER": 1.5,
+  "DECREASE_JUMP_POWER": 0.03,
+  "MIN_JUMP_POWER": -1.5,
+  "ADD_ANGLE": 1.0,
+  "MAX_ANGLE": 60.0,
+  "DECREASE_ANGLE": 1.0,
+  "MIN_ANGLE": -60.0
+}

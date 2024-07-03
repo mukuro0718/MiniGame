@@ -1,0 +1,18 @@
+{
+  "ORIGIN": [ 0.0, 0.0, 0.0 ],
+  "INIT_POS": [ -200.0, -50.0, 50.0 ],
+  "NORMAL_INIT_SCALE": [ 0.03, 0.03, 0.03 ],
+  "NORMAL_INIT_ROTATE": [ 0.0, -90.0, 0.0 ],
+  "BOSS_INIT_SCALE": [ 0.05, 0.05, 0.05 ],
+  "BOSS_INIT_ROTATE": [ 0.0, -90.0, 0.0 ],
+  "RANDOM_Y_RANGE": 100,
+  "VELOCITY": 2.0,
+  "CAR_MOVE_POS1": [ 35.0, -50.0, 50.0 ],
+  "CAR_MOVE_POS2": [ 60.0, -50.0, 50.0 ],
+  "CAR_MOVE_POS3": [ -35.0, -50.0, 50.0 ],
+  "CAR_MOVE_POS4": [ -60.0, -50.0, 50.0 ],
+  "BOSS_MOVE_POS": [ 0.0, -50.0, 50.0 ],
+  "OFF_SCREEN_TARGET_POS": [ 200.0, -50.0, 50.0 ],
+  "EASE_PERCENT": [ 0.01, 0.01, 0.01 ]
+
+}

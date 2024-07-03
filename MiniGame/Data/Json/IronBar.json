@@ -1,0 +1,16 @@
+{
+  "ORIGIN_POS": [ 0.0, 0.0, 0.0 ],
+  "INIT_POS": [ 0.0, 100.0, 500.0 ],
+  "INIT_SCALE": [ 0.5, 0.5, 0.5 ],
+  "INIT_ROTATE": [ 0.0, 0.0, -90.0 ],
+  "IRON_BAR_NUM": 3,
+  "RADIUS": 30.0,
+  "Z_POS_OFFSET": 500.0,
+  "INIT_VELOCITY": 5.0,
+  "MAX_VELOCITY": 10.0,
+  "ACCEL": 0.001,
+  "Z_POS_ENDLINE": -600.0,
+  "TOP_Y_POS": 150.0,
+  "BOTTOM_Y_POS": 100.0,
+  "RESET_Z_POS": 1000.0
+}

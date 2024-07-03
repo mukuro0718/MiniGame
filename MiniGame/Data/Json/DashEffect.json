@@ -1,0 +1,10 @@
+{
+  "CX": 0.5,
+  "CY": 0.5,
+  "MAX_SIZE": 10.0,
+  "ANGLE": 0.0,
+  "MIN_ALPHA": 0,
+  "MAX_ALPHA": 200,
+  "ADD_ALPHA": 15,
+  "EFFECT_NUM": 20
+}

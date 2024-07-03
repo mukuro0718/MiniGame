@@ -1,0 +1,10 @@
+{
+  "FRONT_ROAD_NUM": 7,
+  "BACK_ROAD_NUM": 9,
+  "ORIGIN_POS": [ 0.0, 0.0, 0.0 ],
+  "FIRST_FRONT_ROAD_POS": [ -110.0, -50.0, 0.0 ],
+  "FIRST_BACK_ROAD_POS": [ -160.0, -50.0, 50.0 ],
+  "ROAD_SCALE": [ 0.2, 0.2, 0.2 ],
+  "ROAD_ROTATE": [ 0.0, 90.0, 0.0 ],
+  "ROAD_POS_OFFSET": [ 40.0, 0.0, 0.0 ]
+}

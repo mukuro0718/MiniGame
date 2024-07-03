@@ -1,0 +1,22 @@
+{
+  "FILE_NAME": [
+    "Data/Json/Stage.json",
+    "Data/Json/FontPath.json",
+    "Data/Json/FPSController.json",
+    "Data/Json/LoadScene.json",
+    "Data/Json/ModelPath.json",
+    "Data/Json/Player.json",
+    "Data/Json/SceneChanger.json",
+    "Data/Json/SetUpScreen.json",
+    "Data/Json/Camera.json",
+    "Data/Json/IronBar.json",
+    "Data/Json/ImagePath.json",
+    "Data/Json/Skydome.json",
+    "Data/Json/Timer.json",
+    "Data/Json/BackGround.json",
+    "Data/Json/Enemy.json",
+    "Data/Json/Weapon.json",
+    "Data/Json/Amo.json",
+    "Data/Json/UI.json"
+  ]
+}
