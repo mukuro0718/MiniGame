@@ -58,6 +58,7 @@ using namespace std;
 #include "AmoManager.h"
 #include "GameStage.h"
 #include "StageManager.h"
+#include "GemManager.h"
 
 #include "Collision.h"
 #include "SceneBase.h"

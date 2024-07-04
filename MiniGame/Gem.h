@@ -16,7 +16,8 @@ public:
     const void SetPos(const WrapVECTOR& _in);
 private:
     /*内部処理関数*/
-    const void Draw()const;//描画
+    const void Draw()const; //描画
+    void Move();            //移動
 
     /*メンバ変数*/
     int modelHandle;//モデルハンドル

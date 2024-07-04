@@ -22,15 +22,16 @@ void Game::Update()
 	printfDx("GAME");
 
 	/*シングルトンクラスのインスタンスの取得*/
-	auto& stage = StageManager::GetInstance();
-	auto& camera = CameraManager::GetInstance();
-	auto& weapon = WeaponManager::GetInstance();
-	auto& amo = AmoManager::GetInstance();
-	auto& character = CharacterManager::GetInstance();
-	auto& input = InputManager::GetInstance();
-	auto& timer = GameTimer::GetInstance();
-	auto& backGround = BackGround::GetInstance();
-	auto& ui = UIManager::GetInstance();
+	auto& stage			= StageManager::GetInstance();
+	auto& camera		= CameraManager::GetInstance();
+	auto& weapon		= WeaponManager::GetInstance();
+	auto& amo			= AmoManager::GetInstance();
+	auto& gem			= GemManager::GetInstance();
+	auto& character		= CharacterManager::GetInstance();
+	auto& input			= InputManager::GetInstance();
+	auto& timer			= GameTimer::GetInstance();
+	auto& backGround	= BackGround::GetInstance();
+	auto& ui			= UIManager::GetInstance();
 
 	timer.Update();
 	backGround.Update();
@@ -39,6 +40,7 @@ void Game::Update()
 	character.Update();
 	weapon.Update();
 	amo.Update();
+	gem.Update();
 	ui.Update();
 	/*終了処理*/
 	EndProcess();

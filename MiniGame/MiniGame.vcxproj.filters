@@ -158,6 +158,9 @@
     <ClCompile Include="Gem.cpp">
       <Filter>Object\Gem</Filter>
     </ClCompile>
+    <ClCompile Include="GemManager.cpp">
+      <Filter>Object\Gem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="FPSController">
@@ -469,6 +472,9 @@
       <Filter>UI\UnderBar</Filter>
     </ClInclude>
     <ClInclude Include="Gem.h">
+      <Filter>Object\Gem</Filter>
+    </ClInclude>
+    <ClInclude Include="GemManager.h">
       <Filter>Object\Gem</Filter>
     </ClInclude>
   </ItemGroup>

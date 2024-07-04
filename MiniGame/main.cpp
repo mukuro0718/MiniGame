@@ -21,6 +21,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     CharacterManager::CreateInstance();
     WeaponManager::CreateInstance();
     AmoManager::CreateInstance();
+    GemManager::CreateInstance();
     StageManager::CreateInstance();
     GameTimer::CreateInstance();
     BackGround::CreateInstance();
@@ -37,6 +38,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     GameTimer::DeleteInstance();
     BackGround::DeleteInstance();
     CameraManager::DeleteInstance();
+    GemManager::DeleteInstance();
     AmoManager::DeleteInstance();
     WeaponManager::DeleteInstance();
     CharacterManager::DeleteInstance();

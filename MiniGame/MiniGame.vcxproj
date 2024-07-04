@@ -153,6 +153,7 @@
     <ClCompile Include="Fish3.cpp" />
     <ClCompile Include="Fish4.cpp" />
     <ClCompile Include="Gem.cpp" />
+    <ClCompile Include="GemManager.cpp" />
     <ClCompile Include="HitResult.cpp" />
     <ClCompile Include="Normal.cpp" />
     <ClCompile Include="Collision.cpp" />
@@ -208,6 +209,7 @@
     <ClInclude Include="Fish3.h" />
     <ClInclude Include="Fish4.h" />
     <ClInclude Include="Gem.h" />
+    <ClInclude Include="GemManager.h" />
     <ClInclude Include="HitResult.h" />
     <ClInclude Include="Normal.h" />
     <ClInclude Include="Collision.h" />

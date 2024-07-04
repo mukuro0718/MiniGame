@@ -1,24 +1,23 @@
 //================================================================
-// @brief ステージ管理クラス
+// @brief 宝石管理クラス
 //================================================================
 #pragma once
 #include <cassert>
 
-class GameStage;
-class Skydome;
-class StageManager
+class Gem;
+class GemManager
 {
 public:
-	virtual ~StageManager();//デストラクタ
+	virtual ~GemManager();//デストラクタ
 
 	/*インスタンスの作成*/
 	static void CreateInstance()
 	{
-		instance = new StageManager();
+		instance = new GemManager();
 	}
 
 	/*インスタンスの取得*/
-	static StageManager& GetInstance()
+	static GemManager& GetInstance()
 	{
 		//インスタンスがnullだったら例外を発生させる
 		assert(instance != nullptr);
@@ -38,12 +37,11 @@ public:
 	void Update();//更新
 private:
 	/*内部処理関数*/
-	StageManager(); //コンストラクタ
+	GemManager(); //コンストラクタ
 
 	/*メンバ変数*/
-	static StageManager*	instance;	//唯一のインスタンス
-	vector<GameStage*>		frontRoad;	//前の道
-	vector<GameStage*>		backRoad;	//後ろの道
-	Skydome*				skydome;	//スカイドーム
+	static GemManager*	instance;	//唯一のインスタンス
+	vector<Gem*>		gem;		//宝石
 };
+
 
