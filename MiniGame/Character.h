@@ -8,7 +8,6 @@
 
 class WrapVECTOR;
 class Transform;
-class HitResult;
 class Character abstract : public Object
 {
 public:
@@ -27,7 +26,6 @@ protected:
 	WrapVECTOR	initPos;	//初期座標
 	WrapVECTOR	moveVec;	//移動ベクトル
 	WrapVECTOR	fixVec;		//補正ベクトル
-	HitResult*	hitResult;	//当たり判定結果
 	int			modelHandle;//モデルハンドル
 	float		radius;		//モデルの半径
 };

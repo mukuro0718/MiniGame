@@ -16,11 +16,9 @@ GamePlayer::GamePlayer(int _modelHandle)
 	, aliveTime		(0)
 	, stunFrameCount(0)
 {	
+	this->hitResult = new HitResult();
 	/*初期化*/
 	Init();
-
-	/*アニメーションの追加*/
-	AddAnim();
 }
 /// <summary>
 /// デストラクタ
@@ -53,45 +51,13 @@ void GamePlayer::Init()
 	this->height			= json.GetJson(jsonIndex)["STAND_HEIGHT"];
 	this->radius			= json.GetJson(jsonIndex)["RADISU"];
 	this->floatPower		= 0.0f;
+	this->price				= 10000;
 
 	/*モデルの設定*/
 	MV1SetScale			(this->modelHandle, this->transform.scale.value);
 	MV1SetRotationXYZ	(this->modelHandle, this->transform.rotate.value);
 	MV1SetPosition		(this->modelHandle, this->transform.pos.value);
 
-}
-/// <summary>
-/// アニメーションの追加
-/// </summary>
-void GamePlayer::AddAnim()
-{
-	/*シングルトンクラスのインスタンスの取得*/
-	auto& json = JsonManager::GetInstance();
-	int jsonIndex = json.GetFileNameType(JsonManager::FileNameType::PLAYER);
-
-	vector<int> animIndex = json.GetJson(jsonIndex)["ANIM_INDEX"];
-	for (int i = 0; i < animIndex.size(); i++)
-	{
-		this->anim->Add(-1, animIndex[i]);
-	}
-}
-/// <summary>
-/// アニメーションの変更
-/// </summary>
-void GamePlayer::ChangeAnim()
-{
-	if (this->isJump)
-	{
-		this->anim->Play(&this->modelHandle, static_cast<int>(AnimType::JUMP), 0.2f);
-	}
-	else if (this->isSit)
-	{
-		this->anim->Play(&this->modelHandle, static_cast<int>(AnimType::SIT), 1.0f);
-	}
-	else
-	{
-		this->anim->Play(&this->modelHandle, static_cast<int>(AnimType::IDLE), 0.5f);
-	}
 }
 /// <summary>
 /// 更新
@@ -101,6 +67,9 @@ void GamePlayer::Update()
 	/*移動*/
 	Move();
 
+	/*当たり判定*/
+	HitCheck();
+
 	/*モデルの設定*/
 	MV1SetPosition		(this->modelHandle, this->transform.pos.value);
 	MV1SetRotationXYZ	(this->modelHandle, this->transform.rotate.value);
@@ -108,22 +77,33 @@ void GamePlayer::Update()
 	/*描画*/
 	Draw();
 }
+
 /// <summary>
-/// 移動ベクトルの補正(床や壁,ギミック)
+/// 当たり判定
 /// </summary>
-void GamePlayer::FixMoveVec()
+void GamePlayer::HitCheck()
 {
-	//this->fixVec = _info.fixVec;
-	//if (!this->isStun)
-	//{
-	//	this->isStun = _info.isHitAttack;
-	//	if (this->isStun)
-	//	{
-	//		this->hitCount++;
-	//	}
-	//}
-	//this->moveVec = VAdd(this->moveVec, this->fixVec);
+	/*シングルトンクラスのインスタンスの取得*/
+	auto& collision = Collision::GetInstance();
+	auto& amo = AmoManager::GetInstance();
+
+	vector<int> useAmoNum = amo.GetNowUseNum();
+	for (int i = 0; i < useAmoNum.size(); i++)
+	{
+		for (int j = 0; j < useAmoNum[i]; j++)
+		{
+			if (!amo.GetAmoInstance(i, j).GetIsHit() && amo.GetAmoInstance(i, j).GetIsOut())
+			{
+				this->hitResult = collision.SphereAndSphereCollision(*this, amo.GetAmoInstance(i, j));
+				if (this->hitResult->isHit)
+				{
+					this->price -= amo.GetAmoInstance(i, j).GetPrice();
+				}
+			}
+		}
+	}
 }
+
 /// <summary>
 /// 移動
 /// </summary>

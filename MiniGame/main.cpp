@@ -24,6 +24,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     GemManager::CreateInstance();
     StageManager::CreateInstance();
     GameTimer::CreateInstance();
+    Collision::CreateInstance();
     BackGround::CreateInstance();
     UIManager::CreateInstance();
 
@@ -35,6 +36,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     }
 
     /*インスタンスの開放*/
+    Collision::DeleteInstance();
     GameTimer::DeleteInstance();
     BackGround::DeleteInstance();
     CameraManager::DeleteInstance();

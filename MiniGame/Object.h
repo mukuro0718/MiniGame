@@ -6,6 +6,7 @@
 
 class WrapVECTOR;
 class Transform;
+class HitResult;
 class Object abstract
 {
 public:
@@ -23,6 +24,7 @@ public:
 	const float GetHeight()const { return this->height; }
 protected:
 	/*メンバ変数*/
+	HitResult*	hitResult;		//当たり判定結果
 	Transform	transform;		//座標・拡大率・回転率
 	WrapVECTOR	hitPosOffset;	//当たり判定座標
 	float		radius;			//半径

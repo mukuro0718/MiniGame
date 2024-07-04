@@ -35,7 +35,9 @@ public:
 	}
 
 	void Update();//XV
-
+	const int GetAmoTypeNum()const;
+	const vector<int> GetNowUseNum()const;
+	const Amo& GetAmoInstance(const int _type, const int _use)const;
 private:
 	/*—ñ‹“‘Ì*/
 	enum class AmoType

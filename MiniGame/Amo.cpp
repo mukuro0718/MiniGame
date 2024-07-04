@@ -119,3 +119,15 @@ const float Amo::GetRandom(const int _range)const
 	}
 	return out - 10.0f;
 }
+
+/// <summary>
+/// 当たり判定
+/// </summary>
+void Amo::HitCheck()
+{
+	/*シングルトンクラスのインスタンスの取得*/
+	auto& collision = Collision::GetInstance();
+	auto& character = CharacterManager::GetInstance();
+
+	this->isHit = collision.SphereAndSphereCollision(*this, character.GetPlayerInstance())->isHit;
+}

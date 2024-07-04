@@ -152,3 +152,17 @@ void AmoManager::InitUseCurrentlyNum()
 		}
 	}
 }
+
+const int AmoManager::GetAmoTypeNum()const
+{
+	return static_cast<int>(this->amo.size());
+}
+
+const vector<int> AmoManager::GetNowUseNum()const
+{
+	return this->useCurrentlyNum;
+}
+const Amo& AmoManager::GetAmoInstance(const int _type,const int _use)const
+{
+	return *this->amo[_type][_use];
+}

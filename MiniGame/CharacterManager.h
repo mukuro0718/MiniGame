@@ -43,6 +43,8 @@ public:
 	const int			GetNowMoveEnemyNum()const;			//現在移動している敵の数のgetter
 	const bool GetIsShowBoss()const;
 	const bool GetIsStop(const int _index)const;
+	const int GetPlayerPrice()const;
+	const GamePlayer& GetPlayerInstance();
 private:
 	/*内部処理関数*/
 	CharacterManager();			//コンストラクタ

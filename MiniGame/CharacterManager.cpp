@@ -131,3 +131,14 @@ const bool CharacterManager::GetIsStop(const int _index)const
 {
 	return this->enemy[_index]->GetIsStop();
 }
+
+
+const int CharacterManager::GetPlayerPrice()const
+{
+	return this->player->GetPrice();
+}
+
+const GamePlayer& CharacterManager::GetPlayerInstance()
+{
+	return *this->player;
+}

@@ -34,7 +34,7 @@ void Fish4::Init()
 	this->velocity = json.GetJson(jsonIndex)["FISH4_VELOCITY"];
 	this->radius = json.GetJson(jsonIndex)["FISH4_RADIUS"];
 	this->hitPosOffset.Convert(json.GetJson(jsonIndex)["FISH4_HIT_POS_OFFSET"]);
-
+	this->price = json.GetJson(jsonIndex)["FISH4_PRICE"];
 
 	SetTransform(json.GetJson(jsonIndex)["INIT_POS"], json.GetJson(jsonIndex)["INIT_ROTATE"], json.GetJson(jsonIndex)["INIT_SCALE"]);
 
@@ -49,17 +49,22 @@ void Fish4::Init()
 /// </summary>
 void Fish4::Update()
 {
-	Move();
+	if (!this->isHit)
+	{
+		HitCheck();
 
-	ChangeRotate();
-	ChangeScale();
+		Move();
 
-	/*ƒ‚ƒfƒ‹‚ÌÝ’è*/
-	MV1SetScale(this->modelHandle, this->transform.scale.value);
-	MV1SetRotationXYZ(this->modelHandle, this->transform.rotate.value);
-	MV1SetPosition(this->modelHandle, this->transform.pos.value);
-	/*•`‰æ*/
-	Draw();
+		ChangeRotate();
+		ChangeScale();
+
+		/*ƒ‚ƒfƒ‹‚ÌÝ’è*/
+		MV1SetScale(this->modelHandle, this->transform.scale.value);
+		MV1SetRotationXYZ(this->modelHandle, this->transform.rotate.value);
+		MV1SetPosition(this->modelHandle, this->transform.pos.value);
+		/*•`‰æ*/
+		Draw();
+	}
 }
 
 /// <summary>

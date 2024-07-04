@@ -7,6 +7,7 @@ Object::Object()
 	: radius(0.0f)
 	, height(0.0f)
 	, hitPosOffset(0.0f)
+	, hitResult(nullptr)
 {
 }
 

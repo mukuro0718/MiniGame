@@ -46,5 +46,7 @@ void Price::Update()
 /// </summary>
 const void Price::Draw()const
 {
-	DrawFormatStringToHandle(this->pos[0], this->pos[1], this->color, this->fontHandle, "しょじきん ￥%d円", 10000);
+	/*シングルトンクラスのインスタンスの取得*/
+	auto& character = CharacterManager::GetInstance();
+	DrawFormatStringToHandle(this->pos[0], this->pos[1], this->color, this->fontHandle, "しょじきん ￥%d円", character.GetPlayerPrice());
 }

@@ -35,6 +35,7 @@ void Shark::Init()
 	this->velocity	= json.GetJson(jsonIndex)["SHARK_VELOCITY"];
 	this->radius = json.GetJson(jsonIndex)["SHARK_RADIUS"];
 	this->hitPosOffset.Convert(json.GetJson(jsonIndex)["SHARK_HIT_POS_OFFSET"]);
+	this->price = json.GetJson(jsonIndex)["SHARK_PRICE"];
 
 	/*トランスフォームの設定*/
 	SetTransform(json.GetJson(jsonIndex)["INIT_POS"], json.GetJson(jsonIndex)["INIT_ROTATE"], json.GetJson(jsonIndex)["INIT_SCALE"]);
@@ -50,15 +51,20 @@ void Shark::Init()
 /// </summary>
 void Shark::Update()
 {
-	Move();
+	if (!this->isHit)
+	{
+		HitCheck();
 
-	/*モデルの設定*/
-	MV1SetScale(this->modelHandle, this->transform.scale.value);
-	MV1SetRotationXYZ(this->modelHandle, this->transform.rotate.value);
-	MV1SetPosition(this->modelHandle, this->transform.pos.value);
+		Move();
 
-	/*描画*/
-	Draw();
+		/*モデルの設定*/
+		MV1SetScale(this->modelHandle, this->transform.scale.value);
+		MV1SetRotationXYZ(this->modelHandle, this->transform.rotate.value);
+		MV1SetPosition(this->modelHandle, this->transform.pos.value);
+
+		/*描画*/
+		Draw();
+	}
 }
 
 /// <summary>

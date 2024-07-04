@@ -1,5 +1,7 @@
 #include "Common.h"
 
+Collision* Collision::instance = nullptr;
+
 /// <summary>
 /// コンストラクタ
 /// </summary>
@@ -18,10 +20,10 @@ Collision::~Collision()
 /// <summary>
 /// 球と球の当たり判定
 /// </summary>
-HitResult Collision::SphereAndSphereCollision(const Object& _in1, const Object& _in2)
+HitResult* Collision::SphereAndSphereCollision(const Object& _in1, const Object& _in2)
 {
 	/*返す値*/
-	HitResult out;
+	HitResult* out = new HitResult();
 
 	/*中心ベクトルを出す*/
 	WrapVECTOR center1 = _in1.GetHitPosition();
@@ -50,10 +52,9 @@ HitResult Collision::SphereAndSphereCollision(const Object& _in1, const Object& 
 		//正規化
 		WrapVECTOR pushBackVecNorm = pushBackVec.Norm();
 		//めり込み量でスケーリング
-		out.fixVec = pushBackVec.Scale(pushBackValue);
-		out.isHit = true;
+		out->fixVec = pushBackVec.Scale(pushBackValue);
+		out->isHit = true;
 	}
-
 
 	return out;
 }

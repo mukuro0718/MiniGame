@@ -17,17 +17,17 @@ public:
 	/*継承もとの純粋仮想関数に実態を持たせる*/
 	void Init()				override;//初期化
 	void Update()			override;//更新
-	void FixMoveVec()		;//移動ベクトルの補正
+	void HitCheck()			;//当たり判定
 	void Move()				;//移動
 	void ChangeFlagsState()	;//フラグの状態を変更
 
 	void CountTime();//時間の計測
 	
 	/*getter*/
-	bool	GetIsStan()		const { return this->isStun; }		//気絶フラグのgetter
-	float	GetHeight()		const { return this->height; }		//高さのgetter
-	int		GetAliveTime()	const { return this->aliveTime; }	//生存時間のgetter
-
+	const bool	GetIsStan()		const { return this->isStun; }		//気絶フラグのgetter
+	const float	GetHeight()		const { return this->height; }		//高さのgetter
+	const int	GetAliveTime()	const { return this->aliveTime; }	//生存時間のgetter
+	const int	GetPrice()		const { return this->price; }		//価格のgetter
 	/*フラグを立てる*/
 	const void OnIsStun() { isStun = true; }//気絶フラグを立てる
 private:
@@ -39,10 +39,6 @@ private:
 		IDLE,
 		JUMP,
 	};
-
-	/*内部処理関数*/
-	void AddAnim();		//アニメーションの追加
-	void ChangeAnim();	//アニメーションの変更
 
 	/*メンバ変数*/
 	float jumpPower;	//ジャンプ力
@@ -58,5 +54,6 @@ private:
 	int countStartTime;	//計測開始時間
 	int aliveTime;		//生存時間
 	int stunFrameCount;	//気絶を解除するまでのフレーム数
+	int price;
 };
 

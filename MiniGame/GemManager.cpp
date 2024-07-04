@@ -118,3 +118,8 @@ void GemManager::SetUseGem()
 	}
 	patternPos.clear();
 }
+
+const Gem& GemManager::GetGemInstance(const int _index)const
+{
+	return *this->gem[_index];
+}

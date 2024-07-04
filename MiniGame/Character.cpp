@@ -4,14 +4,12 @@
 /// コンストラクタ
 /// </summary>
 Character::Character(const int _modelHandle)
-	: hitResult			(nullptr)
-	, moveVec			(0.0f)
+	: moveVec			(0.0f)
 	, fixVec			(0.0f)
 	, initPos			(0.0f)
 	, radius			(0.0f)
 	, modelHandle		(0)
 {
-	this->hitResult = new HitResult();
 	this->modelHandle = MV1DuplicateModel(_modelHandle);
 }
 
@@ -20,13 +18,6 @@ Character::Character(const int _modelHandle)
 /// </summary>
 Character::~Character()
 {
-	/*インスタンスの開放*/
-	if (this->hitResult != nullptr)
-	{
-		delete(this->hitResult);
-		this->hitResult = nullptr;
-	}
-
 	/*モデルハンドルの削除*/
 	MV1DeleteModel(this->modelHandle);
 }

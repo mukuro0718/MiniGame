@@ -14,6 +14,7 @@ public:
     void Update();  //XV
     const void SetPrice(const int _in);
     const void SetPos(const WrapVECTOR& _in);
+    const int GetPrice()const { return this->price; }
 private:
     /*“à•”ˆ—ŠÖ”*/
     const void Draw()const; //•`‰æ
