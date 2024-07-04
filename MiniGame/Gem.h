@@ -22,5 +22,6 @@ private:
     /*メンバ変数*/
     int modelHandle;//モデルハンドル
     int price;      //値段
+    bool isSet;     //座標がセットされたか
 };
 

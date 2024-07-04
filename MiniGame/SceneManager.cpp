@@ -44,6 +44,9 @@ void SceneManager::Update()
 		/*‚e‚o‚r‚Ì•½‹Ï‚ðŽZo*/
 		this->fps->Ave();
 		
+		/*fps‚Ì•`‰æ*/
+		this->fps->Draw();
+		
 		/*— ‰æ–Ê‚Ì“à—e‚ð•\‚É”½‰f‚³‚¹‚é*/
 		ScreenFlip();
 		

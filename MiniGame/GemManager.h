@@ -36,12 +36,26 @@ public:
 
 	void Update();//更新
 private:
+	/*列挙体*/
+	enum class PatternType
+	{
+		CENTER	= 0,
+		BOTTOM	= 1,
+		TOP		= 2,
+		UP		= 3,
+		DOWN	= 4,
+	};
+
 	/*内部処理関数*/
-	GemManager(); //コンストラクタ
+	GemManager();		//コンストラクタ
+	void InitUseGem();	//使用しているジェムの初期化
+	void SetUseGem();	//使用するジェムのセット
 
 	/*メンバ変数*/
 	static GemManager*	instance;	//唯一のインスタンス
 	vector<Gem*>		gem;		//宝石
+	Gem*				specialGem;
+	int					useCurrentlyNum;
 };
 
 

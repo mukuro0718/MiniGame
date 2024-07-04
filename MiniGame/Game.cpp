@@ -32,7 +32,7 @@ void Game::Update()
 	auto& timer			= GameTimer::GetInstance();
 	auto& backGround	= BackGround::GetInstance();
 	auto& ui			= UIManager::GetInstance();
-
+	
 	timer.Update();
 	backGround.Update();
 	camera.Update();

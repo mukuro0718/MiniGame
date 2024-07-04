@@ -8,7 +8,7 @@
 
 class WrapVECTOR;
 class Transform;
-class Animation;
+class HitResult;
 class Character abstract : public Object
 {
 public:
@@ -24,15 +24,11 @@ protected:
 	/*内部処理関数*/
 	const void Draw()const;//描画
 	/*メンバ変数*/
-	Animation* anim;	//アニメーションクラス
-
-
-	WrapVECTOR initPos;	//初期座標
-	WrapVECTOR moveVec;	//移動ベクトル
-	WrapVECTOR fixVec;	//補正ベクトル
-
-	int modelHandle;		//モデルハンドル
-
-	float radius;//モデルの半径
+	WrapVECTOR	initPos;	//初期座標
+	WrapVECTOR	moveVec;	//移動ベクトル
+	WrapVECTOR	fixVec;		//補正ベクトル
+	HitResult*	hitResult;	//当たり判定結果
+	int			modelHandle;//モデルハンドル
+	float		radius;		//モデルの半径
 };
 

@@ -4,6 +4,9 @@
 /// コンストラクタ
 /// </summary>
 Gem::Gem(const int _modelHandle,const int _price)
+    : isSet(false)
+    , modelHandle(0)
+    , price(0)
 {
     this->modelHandle = MV1DuplicateModel(_modelHandle);
     this->price = _price;
@@ -30,6 +33,7 @@ void Gem::Init()
     this->transform.scale   .Convert(json.GetJson(jsonIndex)["INIT_SCALE"]);
     this->transform.rotate  .Convert(json.GetJson(jsonIndex)["INIT_ROTATE"]);
     this->transform.rotate  .DegToRad(this->transform.rotate);
+    this->isSet = false;
     
     /*モデルの設定*/
     MV1SetScale(this->modelHandle, this->transform.scale.value);
@@ -85,4 +89,5 @@ const void Gem::SetPrice(const int _in)
 const void Gem::SetPos(const WrapVECTOR& _in)
 {
     this->transform.pos = _in;
+    this->isSet = true;
 }

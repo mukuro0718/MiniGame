@@ -47,7 +47,19 @@ AmoManager::AmoManager()
 /// </summary>
 AmoManager::~AmoManager()
 {
-
+	for (int i = 0; i < amo.size(); i++)
+	{
+		for (int j = 0; j < amo[i].size(); j++)
+		{
+			if (amo[i][j] != nullptr)
+			{
+				delete(amo[i][j]);
+				amo[i][j] = nullptr;
+			}
+		}
+		amo[i].clear();
+	}
+	amo.clear();
 }
 
 /// <summary>
