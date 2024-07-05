@@ -18,6 +18,8 @@
         "Data/Json/Weapon.json",
         "Data/Json/Amo.json",
         "Data/Json/UI.json",
-        "Data/Json/Gem.json"
+        "Data/Json/Gem.json",
+        "Data/Json/Particle.json",
+        "Data/Json/Effect.json"
     ]
 }

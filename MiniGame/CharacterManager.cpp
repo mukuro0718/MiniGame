@@ -142,3 +142,11 @@ const GamePlayer& CharacterManager::GetPlayerInstance()
 {
 	return *this->player;
 }
+
+/// <summary>
+/// プレイヤーのトランスフォームのgetter
+/// </summary>
+const Transform& CharacterManager::GetPlayerTransform()const
+{
+	return this->player->GetTransform();
+}

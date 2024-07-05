@@ -79,6 +79,9 @@ public:
 		HOUSE			= 14,
 		NOW_BAR			= 15,
 		PREV_BAR		= 16,
+		JET_FLAME		= 17,
+		JET_FLASH		= 18,
+		JET_SMOKE		= 19,
 	};
 
 	enum class FontType

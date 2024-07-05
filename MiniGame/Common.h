@@ -77,4 +77,6 @@ using namespace std;
 
 #include "UIManager.h"
 
+#include "JetFlame.h"
 #include "Jet.h"
+#include "EffectManager.h"

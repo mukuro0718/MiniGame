@@ -164,8 +164,11 @@
     <ClCompile Include="Jet.cpp">
       <Filter>Effect\JetEffect</Filter>
     </ClCompile>
-    <ClCompile Include="JetFrame.cpp">
+    <ClCompile Include="JetFlame.cpp">
       <Filter>Particle\JetFlame</Filter>
+    </ClCompile>
+    <ClCompile Include="EffectManager.cpp">
+      <Filter>Effect\EffectManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -334,6 +337,9 @@
     <Filter Include="Particle\JetFlame">
       <UniqueIdentifier>{feaf92a4-23cc-4104-a6da-468cf9437e17}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Effect\EffectManager">
+      <UniqueIdentifier>{9bbd568f-4a2c-419a-9fbe-0fcc91488ce5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FPSController.h">
@@ -498,8 +504,11 @@
     <ClInclude Include="Jet.h">
       <Filter>Effect\JetEffect</Filter>
     </ClInclude>
-    <ClInclude Include="JetFrame.h">
+    <ClInclude Include="JetFlame.h">
       <Filter>Particle\JetFlame</Filter>
+    </ClInclude>
+    <ClInclude Include="EffectManager.h">
+      <Filter>Effect\EffectManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -567,6 +576,12 @@
       <Filter>Json\JsonFile</Filter>
     </None>
     <None Include="Data\Json\Gem.json">
+      <Filter>Json\JsonFile</Filter>
+    </None>
+    <None Include="Data\Json\Effect.json">
+      <Filter>Json\JsonFile</Filter>
+    </None>
+    <None Include="Data\Json\Particle.json">
       <Filter>Json\JsonFile</Filter>
     </None>
   </ItemGroup>

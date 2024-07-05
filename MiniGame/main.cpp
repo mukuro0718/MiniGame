@@ -21,6 +21,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     Collision::CreateInstance();
     BackGround::CreateInstance();
     UIManager::CreateInstance();
+    EffectManager::CreateInstance();
 
     /*ÉQÅ[ÉÄñ{ï“*/
     while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
@@ -39,6 +40,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     WeaponManager::DeleteInstance();
     CharacterManager::DeleteInstance();
     UIManager::DeleteInstance();
+    EffectManager::DeleteInstance();
     StageManager::DeleteInstance();
     SceneChanger::DeleteInstance();
     InputManager::DeleteInstance();

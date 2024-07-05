@@ -16,6 +16,9 @@
         "Data/Image/car.png",
         "Data/Image/house.png",
         "Data/Image/UI-06.png",
-        "Data/Image/UI-9.png"
+        "Data/Image/UI-9.png",
+        "Data/Image/Effect/Jet/JetFlame.png",
+        "Data/Image/Effect/Jet/JetFlash.png",
+        "Data/Image/Effect/Jet/JetSmoke.png"
     ]
 }

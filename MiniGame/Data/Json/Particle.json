@@ -1,0 +1,7 @@
+{
+    "JET_FLAME_CENTER_X": 0.5,
+    "JET_FLAME_CENTER_Y": 0.5,
+    "JET_FLAME_SIZE": 5.0,
+    "JET_FLAME_ANGLE": 0.0,
+    "JET_FLAME_MOVE_VEC": [ -1.0, 0.0, 0.0 ]
+}

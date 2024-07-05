@@ -59,6 +59,8 @@ public:
 		AMO				= 16,	//弾
 		UI				= 17,	//UI
 		GEM				= 18,	//宝石
+		PARTICLE		= 19,	//パーティクル
+		EFFECT			= 20,	//エフェクト
 	};
 
 	/*jsonデータのgetter*/

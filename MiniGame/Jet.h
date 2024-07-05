@@ -3,22 +3,20 @@
 //=================================================
 #pragma once
 
+class JetFlame;
 class Jet
 {
 public:
     Jet();  //コンストラクタ
     ~Jet(); //デストラクタ
 
-    void Update();//更新
+    void Init();    //初期化
+    void Update();  //更新
 private:
     /*列挙隊*/
-    enum class ParticleType
-    {
 
-    };
-
-    void Draw();//描画
-
-    
+    /*メンバ変数*/
+    vector<JetFlame*> flame;
+    int useFlame;
+    int addCount;
 };
-

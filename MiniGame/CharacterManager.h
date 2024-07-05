@@ -6,6 +6,7 @@
 
 class GamePlayer;
 class Enemy;
+class Transform;
 class CharacterManager
 {
 public:
@@ -35,16 +36,17 @@ public:
 		}
 	}
 
-	void				Init();								//初期化
-	void				Update();							//更新
-	const WrapVECTOR&	GetPlayerPos()const;				//プレイヤー座標のgetter
-	const WrapVECTOR&	GetEnemyPos(const int _index)const;	//エネミー座標のgetter
-	const int			GetEnemyNum()const;					//エネミーの数のgetter
-	const int			GetNowMoveEnemyNum()const;			//現在移動している敵の数のgetter
-	const bool GetIsShowBoss()const;
-	const bool GetIsStop(const int _index)const;
-	const int GetPlayerPrice()const;
-	const GamePlayer& GetPlayerInstance();
+	void				Init				();							//初期化
+	void				Update				();							//更新
+	const WrapVECTOR&	GetPlayerPos		()const;					//プレイヤー座標のgetter
+	const WrapVECTOR&	GetEnemyPos			(const int _index)const;	//エネミー座標のgetter
+	const int			GetEnemyNum			()const;					//エネミーの数のgetter
+	const int			GetNowMoveEnemyNum	()const;					//現在移動している敵の数のgetter
+	const bool			GetIsShowBoss		()const;					//ボスが現れたかどうかのgetter
+	const bool			GetIsStop			(const int _index)const;	//停止したかどうかのgetter
+	const int			GetPlayerPrice		()const;					//プレイヤーの所持金のgetter
+	const GamePlayer&	GetPlayerInstance	();							//プレイヤーのインスタンスのgetter
+	const Transform&	GetPlayerTransform	()const;					//プレイヤーのトランスフォームのgetter
 private:
 	/*内部処理関数*/
 	CharacterManager();			//コンストラクタ
