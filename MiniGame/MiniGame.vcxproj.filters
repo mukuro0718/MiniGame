@@ -161,6 +161,12 @@
     <ClCompile Include="GemManager.cpp">
       <Filter>Object\Gem</Filter>
     </ClCompile>
+    <ClCompile Include="Jet.cpp">
+      <Filter>Effect\JetEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="JetFrame.cpp">
+      <Filter>Particle\JetFlame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="FPSController">
@@ -315,6 +321,18 @@
     </Filter>
     <Filter Include="Object\Gem">
       <UniqueIdentifier>{63648420-89c2-44e9-b4a9-ff29ace2b54f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Effect">
+      <UniqueIdentifier>{f96115a1-81dd-4544-a25d-0e89e7d5c072}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Effect\JetEffect">
+      <UniqueIdentifier>{23d47832-0d76-490f-9430-3a68f91a846d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Particle">
+      <UniqueIdentifier>{1a25db4a-9433-428a-bbc9-118fc4b2ec22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Particle\JetFlame">
+      <UniqueIdentifier>{feaf92a4-23cc-4104-a6da-468cf9437e17}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -476,6 +494,12 @@
     </ClInclude>
     <ClInclude Include="GemManager.h">
       <Filter>Object\Gem</Filter>
+    </ClInclude>
+    <ClInclude Include="Jet.h">
+      <Filter>Effect\JetEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="JetFrame.h">
+      <Filter>Particle\JetFlame</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
