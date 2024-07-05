@@ -14,7 +14,7 @@ public:
 	void			OnIsHit			() { this->isHit = true; }		//isHitフラグを立てる
 	const bool		GetIsHit		()const { return this->isHit; }	//isHitフラグを取得
 	const bool		GetIsSet		()const { return this->isSet; }	//セットフラグのgetter
-	const bool		GetIsOut		()const { return this->isOut; }
+	const bool		GetIsOut		()const { return this->isOut; }	//一度でも画面外に出たか
 	const bool		GetIsRebel		()const { return this->isRebel;}//反逆フラグのgetter
 	const int		GetPrice		()const { return this->price; }	//値段のgetter
 protected:
@@ -24,7 +24,7 @@ protected:
 	void		ChangeRotate();						//回転率の変更
 	void		ChangeScale();						//スケールの変更
 	const float GetRandom(const int _range)	const;	//ランダムなfloat値の取得
-	void		HitCheck();//当たり判定
+	void		HitCheck();							//当たり判定
 	/*メンバ変数*/
 	WrapVECTOR	moveVec;	//移動ベクトル
 	WrapVECTOR	posOffset;	//位置補正値

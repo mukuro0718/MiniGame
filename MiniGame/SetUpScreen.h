@@ -38,7 +38,7 @@ public:
 		}
 	}
 
-	void Init();
+	int Init();
 private:
 	/*“à•”ˆ—ŠÖ”*/
 	SetUpScreen();

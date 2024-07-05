@@ -37,6 +37,9 @@ public:
 	void Update();//XV
 	const int GetUseNum()const { return this->useCurrentlyNum; }
 	const Gem& GetGemInstance(const int _index)const;
+
+	const bool GetGemIsHit(const int _index)const;
+	const bool GetGemIsSet(const int _index)const;
 private:
 	/*—ñ‹“‘Ì*/
 	enum class PatternType

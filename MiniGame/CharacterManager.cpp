@@ -78,7 +78,7 @@ void CharacterManager::ChangeNowMoveEnemy()
 	if (this->nowMoveEnemy < this->enemy.size())
 	{
 		if (timer.GetElapsetFrame() == 0 &&
-			timer.GetElapsetTime() % 2 == 0)
+			timer.GetElapsetTime() % 20 == 0)
 		{
 			this->nowMoveEnemy++;
 			//è„å¿à»è„Ç…Ç»Ç¡ÇΩÇÁ

@@ -18,7 +18,7 @@ SetUpScreen::~SetUpScreen()
 
 }
 
-void SetUpScreen::Init()
+int SetUpScreen::Init()
 {
     /*Jsonマネージャーのインスタンスの取得*/
     auto& json = JsonManager::GetInstance();
@@ -29,19 +29,31 @@ void SetUpScreen::Init()
     int windowHeight = json.GetJson(jsonFileNum)["WINDOW_HEIGHT"];
     int windowWidth  = json.GetJson(jsonFileNum)["WINDOW_WIDTH"];
     int colorBit     = json.GetJson(jsonFileNum)["COLOR_BIT"];
-
 	/*画面の作成*/
     SetGraphMode(windowWidth, windowHeight, colorBit);
-    //フラグを立てることで非同期ロードが可能になる
-    SetUseASyncLoadFlag(TRUE);
-    //ScreenFlipを実行しても垂直同期信号を待たない
-    SetWaitVSyncFlag(FALSE);
-    //描画先を裏画面にする
-    SetDrawScreen(DX_SCREEN_BACK);
-    //画面モードをウィンドウモードで描画するか
+
+    /*画面モードをウィンドウモードで描画するか*/
 #if _DEBUG
     ChangeWindowMode(TRUE);
 #else
     ChangeWindowMode(FALSE);
 #endif// _DEBUG
+
+    /*ScreenFlipを実行しても垂直同期信号を待たない*/
+    SetWaitVSyncFlag(FALSE);
+    
+    /*ＤＸライブラリの初期化*/
+    if (DxLib_Init() == -1)
+    {
+        // エラーが発生したら直ちに終了
+        return -1;
+    }
+
+
+    /*フラグを立てることで非同期ロードが可能になる*/
+    SetUseASyncLoadFlag(TRUE);
+
+    /*描画先を裏画面にする*/
+    SetDrawScreen(DX_SCREEN_BACK);
+    return 0;
 }

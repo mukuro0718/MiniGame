@@ -37,21 +37,21 @@ void SceneManager::Update()
 
 		/*ƒV[ƒ“‚ÌXV*/
 		this->scene->Update();
-		
+
 		/*ƒV[ƒ“‚Ì•ÏX*/
 		SceneChange();
 
 		/*‚e‚o‚r‚Ì•½‹Ï‚ðŽZo*/
 		this->fps->Ave();
-		
+
 		/*fps‚Ì•`‰æ*/
 		this->fps->Draw();
-		
-		/*— ‰æ–Ê‚Ì“à—e‚ð•\‚É”½‰f‚³‚¹‚é*/
-		ScreenFlip();
-		
+
+
 		/*‚e‚o‚r‚Ìˆ—*/
 		this->fps->Wait();
+		/*— ‰æ–Ê‚Ì“à—e‚ð•\‚É”½‰f‚³‚¹‚é*/
+		ScreenFlip();
 	}
 	else
 	{

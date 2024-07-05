@@ -15,9 +15,9 @@ GemManager::GemManager()
 	/*インスタンスの作成*/
 	for (int i = 0; i < json.GetJson(jsonIndex)["MAX_GEM_NUM"]; i++)
 	{
-		this->gem.emplace_back(new Gem(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::GEM_1)), 0));
+		this->gem.emplace_back(new Gem(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::GEM_1)),100));
 	}
-	this->specialGem = new Gem(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::GEM_2)),0);
+	this->specialGem = new Gem(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::GEM_2)),1000);
 
 	vector<vector<float>> patternPos = json.GetJson(jsonIndex)["BOTTOM_PATTERN"];
 	WrapVECTOR addPos = 0.0f;
@@ -122,4 +122,13 @@ void GemManager::SetUseGem()
 const Gem& GemManager::GetGemInstance(const int _index)const
 {
 	return *this->gem[_index];
+}
+
+const bool GemManager::GetGemIsHit(const int _index)const
+{
+	return this->gem[_index]->GetIsHit();
+}
+const bool GemManager::GetGemIsSet(const int _index)const
+{
+	return this->gem[_index]->GetIsSet();
 }

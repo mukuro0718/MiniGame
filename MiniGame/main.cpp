@@ -3,12 +3,6 @@
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-    /*ＤＸライブラリの初期化*/
-    if (DxLib_Init() == -1)
-    {
-        // エラーが発生したら直ちに終了
-        return -1;
-    }
     /*インスタンスの作成*/
     JsonLoader::CreateInstance();
     JsonManager::CreateInstance();

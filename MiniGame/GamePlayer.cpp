@@ -86,6 +86,7 @@ void GamePlayer::HitCheck()
 	/*シングルトンクラスのインスタンスの取得*/
 	auto& collision = Collision::GetInstance();
 	auto& amo = AmoManager::GetInstance();
+	auto& gem = GemManager::GetInstance();
 
 	/*弾との当たり判定*/
 	//使用している球の数を取得
@@ -98,7 +99,7 @@ void GamePlayer::HitCheck()
 			//弾が誰とも当たっていないかつプレイヤーに向けて移動してきていたら
 			if (!amo.GetAmoInstance(i, j).GetIsHit() && amo.GetAmoInstance(i, j).GetIsOut())
 			{
-				//球と球の当たり判定をとる（弾のほうはカプセルのほうが良いかも）
+				//プレイヤーと弾の当たり判定をスフィアでとる（弾のほうはカプセルのほうが良いかも）
 				this->hitResult = collision.SphereAndSphereCollision(*this, amo.GetAmoInstance(i, j));
 				//当たっていたら
 				if (this->hitResult->isHit)
@@ -106,6 +107,22 @@ void GamePlayer::HitCheck()
 					//当たった弾の値段分だけプレイヤーの所持金を減らす
 					this->price -= amo.GetAmoInstance(i, j).GetPrice();
 				}
+			}
+		}
+	}
+
+	/*宝石との当たり判定*/
+	//使用している宝石の数を取得
+	for (int i = 0; i < gem.GetUseNum(); i++)
+	{
+		if (!gem.GetGemInstance(i).GetIsHit() && gem.GetGemInstance(i).GetIsSet())
+		{
+			//プレイヤーと宝石の当たり判定をスフィアでとる
+ 			this->hitResult = collision.SphereAndSphereCollision(*this, gem.GetGemInstance(i));
+			//もし当たっていたら
+			if (this->hitResult->isHit)
+			{
+				this->price += gem.GetGemInstance(i).GetPrice();
 			}
 		}
 	}
