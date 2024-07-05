@@ -87,16 +87,23 @@ void GamePlayer::HitCheck()
 	auto& collision = Collision::GetInstance();
 	auto& amo = AmoManager::GetInstance();
 
+	/*弾との当たり判定*/
+	//使用している球の数を取得
 	vector<int> useAmoNum = amo.GetNowUseNum();
+	//弾の数だけループ
 	for (int i = 0; i < useAmoNum.size(); i++)
 	{
 		for (int j = 0; j < useAmoNum[i]; j++)
 		{
+			//弾が誰とも当たっていないかつプレイヤーに向けて移動してきていたら
 			if (!amo.GetAmoInstance(i, j).GetIsHit() && amo.GetAmoInstance(i, j).GetIsOut())
 			{
+				//球と球の当たり判定をとる（弾のほうはカプセルのほうが良いかも）
 				this->hitResult = collision.SphereAndSphereCollision(*this, amo.GetAmoInstance(i, j));
+				//当たっていたら
 				if (this->hitResult->isHit)
 				{
+					//当たった弾の値段分だけプレイヤーの所持金を減らす
 					this->price -= amo.GetAmoInstance(i, j).GetPrice();
 				}
 			}
