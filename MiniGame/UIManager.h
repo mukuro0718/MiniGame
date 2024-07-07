@@ -4,7 +4,7 @@
 #pragma once
 #include<cassert>
 
-class Price;
+class Operation;
 class UnderBar;
 class UIManager
 {
@@ -42,7 +42,7 @@ private:
 
 	/*メンバ変数*/
 	static UIManager* instance;//唯一のインスタンス
-	Price* price;//値段UI
+	Operation* operation;//値段UI
 	UnderBar* bar;//バーUI
 };
 

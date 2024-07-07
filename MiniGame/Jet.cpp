@@ -15,7 +15,7 @@ Jet::Jet()
     /*画像ハンドルの取得*/
     for (int i = 0; i < json.GetJson(jsonIndex)["JET_FLAME_NUM"]; i++)
     {
-        this->flame.emplace_back(new JetFlame(asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::JET_FLAME))));
+        this->flame.emplace_back(new JetFlame(asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::STAR_YELLOW))));
     }
 
     Init();
@@ -47,7 +47,13 @@ void Jet::Init()
     auto& character = CharacterManager::GetInstance();
     for (int i = 0; i < this->flame.size(); i++)
     {
-        this->flame[i]->Init(json.GetJson(jsonIndex)["JET_FLAME_SIZE"], character.GetPlayerTransform());
+        this->flame[i]->Init
+        (
+            json.GetJson(jsonIndex)["JET_FLAME_SIZE"],
+            character.GetPlayerTransform().pos,
+            GetRandomMoveVec(json.GetJson(jsonIndex)["JET_FLAME_MOVE_X"], json.GetJson(jsonIndex)["JET_FLAME_MOVE_Y"]),
+            GetRandomVelocity(json.GetJson(jsonIndex)["JET_FLAME_VELOCITY"])
+        );
     }
     this->useFlame = 0;
 }
@@ -66,7 +72,13 @@ void Jet::Update()
     {
         if (flame[i]->GetPos().value.x <= json.GetJson(jsonIndex)["JET_FLAME_X"])
         {
-            flame[i]->Init(10.0f, character.GetPlayerTransform());
+            flame[i]->Init
+            (
+                json.GetJson(jsonIndex)["JET_FLAME_SIZE"],
+                character.GetPlayerTransform().pos,
+                GetRandomMoveVec(json.GetJson(jsonIndex)["JET_FLAME_MOVE_X"], json.GetJson(jsonIndex)["JET_FLAME_MOVE_Y"]),
+                GetRandomVelocity(json.GetJson(jsonIndex)["JET_FLAME_VELOCITY"])
+            );
         }
         this->flame[i]->Update();
     }
@@ -79,4 +91,39 @@ void Jet::Update()
             this->useFlame++;
         }
     }
+}
+
+/// <summary>
+/// float型の値をランダムで取得
+/// </summary>
+float Jet::GetRandom(const int _range)
+{
+    /*ランダム値を取得*/
+    float out = static_cast<float>(GetRand(_range));
+
+    if (GetRand(1) == 0)
+    {
+        out *= -1.0f;
+    }
+    return out;
+}
+
+/// <summary>
+/// 移動速度をランダムで取得
+/// </summary>
+float Jet::GetRandomVelocity(const int _range)
+{
+    return static_cast<float>(GetRand(_range));
+}
+
+/// <summary>
+/// 移動ベクトルをランダムで取得
+/// </summary>
+WrapVECTOR& Jet::GetRandomMoveVec(const float _x,const int _yRange)
+{
+    float x = _x;
+    float randomY = GetRandom(_yRange);
+    WrapVECTOR out = { x,randomY,0.0f };
+    out = out.Norm();
+    return out;
 }

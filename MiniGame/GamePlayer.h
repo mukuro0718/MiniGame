@@ -27,7 +27,6 @@ public:
 	const bool	GetIsStan()		const { return this->isStun; }		//気絶フラグのgetter
 	const float	GetHeight()		const { return this->height; }		//高さのgetter
 	const int	GetAliveTime()	const { return this->aliveTime; }	//生存時間のgetter
-	const int	GetPrice()		const { return this->price; }		//価格のgetter
 	/*フラグを立てる*/
 	const void OnIsStun() { isStun = true; }//気絶フラグを立てる
 private:
@@ -40,6 +39,9 @@ private:
 		JUMP,
 	};
 
+	/*内部処理関数*/
+	void Life();//ライフ処理
+
 	/*メンバ変数*/
 	float jumpPower;	//ジャンプ力
 	float height;		//身長
@@ -50,10 +52,10 @@ private:
 	bool isStun;		//気絶したか
 	bool isOnGround;	//地面にいるか
 	bool isJump;		//ジャンプしているか（敵がプレイヤーを発見したときに、ジャンプするためのもの）
+	bool isHit;			//弾や地面に当たったか
 
 	int countStartTime;	//計測開始時間
 	int aliveTime;		//生存時間
 	int stunFrameCount;	//気絶を解除するまでのフレーム数
-	int price;
 };
 

@@ -109,7 +109,7 @@ void AmoManager::Update()
 	{
 		for (int j = 0; j < useCurrentlyNum[i]; j++)
 		{
-			if (!amo[i][j]->GetIsHit() && character.GetIsStop(weaponNum) && amo[i][j]->GetIsSet())
+			if (character.GetIsStop(weaponNum) && amo[i][j]->GetIsSet())
 			{
 				amo[i][j]->Update();
 				weaponNum++;

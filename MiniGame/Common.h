@@ -72,7 +72,7 @@ using namespace std;
 #include "SceneManager.h"
 
 #include "UI.h"
-#include "Price.h"
+#include "Operation.h"
 #include "UnderBar.h"
 
 #include "UIManager.h"

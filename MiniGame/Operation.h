@@ -3,11 +3,11 @@
 //====================================================
 #pragma once
 
-class Price final
+class Operation final
 {
 public:
-	Price(const int _fontHandle);//コンストラクタ
-	~Price();//デストラクタ
+	Operation(const int _fontHandle);//コンストラクタ
+	~Operation();//デストラクタ
 
 	void Init();	//初期化
 	void Update();	//更新

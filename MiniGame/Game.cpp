@@ -26,7 +26,7 @@ void Game::Update()
 	auto& camera		= CameraManager		::GetInstance();
 	auto& weapon		= WeaponManager		::GetInstance();
 	auto& amo			= AmoManager		::GetInstance();
-	auto& gem			= GemManager		::GetInstance();
+	//auto& gem			= GemManager		::GetInstance();
 	auto& character		= CharacterManager	::GetInstance();
 	auto& input			= InputManager		::GetInstance();
 	auto& timer			= GameTimer			::GetInstance();
@@ -43,7 +43,7 @@ void Game::Update()
 	character	.Update();
 	weapon		.Update();
 	amo			.Update();
-	gem			.Update();
+	//gem			.Update();
 	ui			.Update();
 	
 	/*I—¹ˆ—*/

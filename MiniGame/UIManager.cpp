@@ -6,13 +6,13 @@ UIManager* UIManager::instance = nullptr;
 /// コンストラクタ
 /// </summary>
 UIManager::UIManager()
-	:price(nullptr)
+	:operation(nullptr)
 {
 	/*シングルトンクラスのインスタンスの取得*/
 	auto& asset = LoadingAsset::GetInstance();
 	
 
-	price = new Price(asset.GetFont(asset.GetFontType(LoadingAsset::FontType::MUKASI)));
+	operation = new Operation(asset.GetFont(asset.GetFontType(LoadingAsset::FontType::MUKASI)));
 	bar = new UnderBar();
 }
 
@@ -29,6 +29,6 @@ UIManager::~UIManager()
 /// </summary>
 void UIManager::Update()
 {
-	price->Update();
+	operation->Update();
 	bar->Update();
 }

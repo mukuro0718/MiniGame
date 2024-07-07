@@ -11,7 +11,7 @@ public:
     JetFlame    (const int _imageHandle);//コンストラクタ
     ~JetFlame   ();//デストラクタ
     
-    void                Init    (const float _size, const Transform& _in);  //初期化
+    void                Init    (const float _size, const WrapVECTOR& _pos, const WrapVECTOR& _moveVec,const float _velocity);  //初期化
     void                Update  ();                                         //更新
     const WrapVECTOR&   GetPos  ()const { return this->pos; }               //座標のgetter
 private:

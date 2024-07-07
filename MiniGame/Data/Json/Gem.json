@@ -1,14 +1,15 @@
 {
   "INIT_POS": [ 50.0, 0.0, 0.0 ],
   "INIT_SCALE": [ 0.08, 0.08, 0.08 ],
-    "INIT_ROTATE": [ 0.0, 90.0, 0.0 ],
-    "GEM_RADIUS": 7.0,
-  "GEM_HITPOS_OFFSET": [0.0,0.0,0.0],
+  "INIT_ROTATE": [ 0.0, 90.0, 0.0 ],
+  "GEM_RADIUS": 7.0,
+  "GEM_HITPOS_OFFSET": [ 0.0, 0.0, 0.0 ],
   "MAX_GEM_NUM": 15,
   "MOVE_VELOCITY": -1.0,
   "STOP_MOVE_X_POS": -250.0,
   "TARGET_TIME": 6.0,
   "PATTERN_NUM": 4,
+  "GEM_TARGET_POS": [ -50.0, 50.0, 0.0 ],
   "CENTER_PATTERN": [
     [ 200.0, -10.0, 0.0 ],
     [ 210.0, -10.0, 0.0 ],

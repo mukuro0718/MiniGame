@@ -176,7 +176,7 @@
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="CharacterManager.cpp" />
     <ClCompile Include="Boss.cpp" />
-    <ClCompile Include="Price.cpp" />
+    <ClCompile Include="Operation.cpp" />
     <ClCompile Include="Result.cpp" />
     <ClCompile Include="SceneBase.cpp" />
     <ClCompile Include="SceneChanger.cpp" />
@@ -234,7 +234,7 @@
     <ClInclude Include="Object.h" />
     <ClInclude Include="CharacterManager.h" />
     <ClInclude Include="Boss.h" />
-    <ClInclude Include="Price.h" />
+    <ClInclude Include="Operation.h" />
     <ClInclude Include="Result.h" />
     <ClInclude Include="SceneBase.h" />
     <ClInclude Include="SceneChanger.h" />

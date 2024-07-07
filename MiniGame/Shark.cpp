@@ -51,20 +51,17 @@ void Shark::Init()
 /// </summary>
 void Shark::Update()
 {
-	if (!this->isHit)
-	{
-		HitCheck();
+	HitCheck();
 
-		Move();
+	Move();
 
-		/*ƒ‚ƒfƒ‹‚ÌÝ’è*/
-		MV1SetScale(this->modelHandle, this->transform.scale.value);
-		MV1SetRotationXYZ(this->modelHandle, this->transform.rotate.value);
-		MV1SetPosition(this->modelHandle, this->transform.pos.value);
+	/*ƒ‚ƒfƒ‹‚ÌÝ’è*/
+	MV1SetScale(this->modelHandle, this->transform.scale.value);
+	MV1SetRotationXYZ(this->modelHandle, this->transform.rotate.value);
+	MV1SetPosition(this->modelHandle, this->transform.pos.value);
 
-		/*•`‰æ*/
-		Draw();
-	}
+	/*•`‰æ*/
+	Draw();
 }
 
 /// <summary>
@@ -105,7 +102,7 @@ void Shark::Move()
 			if (this->transform.pos.value.x < -250.0f)
 			{
 				this->hitPosOffset.Convert(json.GetJson(jsonIndex)["SHARK_HIT_POS_OFFSET_REBEL"]);
-				this->transform.pos = { -250.0,-50.0f,0.0 };
+				this->transform.pos = { -250.0,-50.0f,50.0 };
 				this->isRebel = true;
 			}
 		}

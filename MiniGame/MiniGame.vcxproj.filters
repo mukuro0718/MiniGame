@@ -143,8 +143,8 @@
     <ClCompile Include="HitResult.cpp">
       <Filter>Collision\HitResult</Filter>
     </ClCompile>
-    <ClCompile Include="Price.cpp">
-      <Filter>UI\Price</Filter>
+    <ClCompile Include="Operation.cpp">
+      <Filter>UI\Operation</Filter>
     </ClCompile>
     <ClCompile Include="UI.cpp">
       <Filter>UI</Filter>
@@ -313,9 +313,6 @@
     <Filter Include="Collision\HitResult">
       <UniqueIdentifier>{f79f544e-91b4-45b4-aa72-f4d8db4306d9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="UI\Price">
-      <UniqueIdentifier>{40728073-9ca6-45d1-b152-9fc41cf310d8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="UI\Manager">
       <UniqueIdentifier>{7d24a149-3442-4671-8e10-d850166f5a8d}</UniqueIdentifier>
     </Filter>
@@ -339,6 +336,9 @@
     </Filter>
     <Filter Include="Effect\EffectManager">
       <UniqueIdentifier>{9bbd568f-4a2c-419a-9fbe-0fcc91488ce5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Operation">
+      <UniqueIdentifier>{40728073-9ca6-45d1-b152-9fc41cf310d8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -483,8 +483,8 @@
     <ClInclude Include="HitResult.h">
       <Filter>Collision\HitResult</Filter>
     </ClInclude>
-    <ClInclude Include="Price.h">
-      <Filter>UI\Price</Filter>
+    <ClInclude Include="Operation.h">
+      <Filter>UI\Operation</Filter>
     </ClInclude>
     <ClInclude Include="UI.h">
       <Filter>UI</Filter>

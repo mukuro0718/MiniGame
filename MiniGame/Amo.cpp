@@ -129,5 +129,8 @@ void Amo::HitCheck()
 	auto& collision = Collision::GetInstance();
 	auto& character = CharacterManager::GetInstance();
 
-	this->isHit = collision.SphereAndSphereCollision(*this, character.GetPlayerInstance())->isHit;
+	if (!this->isHit)
+	{
+		this->isHit = collision.SphereAndSphereCollision(*this, character.GetPlayerInstance())->isHit;
+	}
 }

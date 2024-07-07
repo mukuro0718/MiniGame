@@ -49,23 +49,20 @@ void Fish2::Init()
 /// </summary>
 void Fish2::Update()
 {
-	if (!this->isHit)
-	{
-		HitCheck();
+	HitCheck();
 
-		Move();
+	Move();
 
-		ChangeRotate();
-		ChangeScale();
+	ChangeRotate();
+	ChangeScale();
 
-		/*ƒ‚ƒfƒ‹‚ÌÝ’è*/
-		MV1SetScale(this->modelHandle, this->transform.scale.value);
-		MV1SetRotationXYZ(this->modelHandle, this->transform.rotate.value);
-		MV1SetPosition(this->modelHandle, this->transform.pos.value);
+	/*ƒ‚ƒfƒ‹‚ÌÝ’è*/
+	MV1SetScale(this->modelHandle, this->transform.scale.value);
+	MV1SetRotationXYZ(this->modelHandle, this->transform.rotate.value);
+	MV1SetPosition(this->modelHandle, this->transform.pos.value);
 
-		/*•`‰æ*/
-		Draw();
-	}
+	/*•`‰æ*/
+	Draw();
 }
 
 /// <summary>

@@ -44,6 +44,7 @@ void GamePlayer::Init()
 	this->fixVec.			Convert(json.GetJson(jsonIndex)["ORIGIN"]);
 	this->isOnGround		= false;
 	this->isStun			= false;
+	this->isHit				= true;
 	this->countStartTime	= GetNowCount();
 	this->aliveTime			= 0;
 	this->stunFrameCount	= 0;
@@ -51,7 +52,6 @@ void GamePlayer::Init()
 	this->height			= json.GetJson(jsonIndex)["STAND_HEIGHT"];
 	this->radius			= json.GetJson(jsonIndex)["RADISU"];
 	this->floatPower		= 0.0f;
-	this->price				= 10000;
 
 	/*モデルの設定*/
 	MV1SetScale			(this->modelHandle, this->transform.scale.value);
@@ -104,8 +104,7 @@ void GamePlayer::HitCheck()
 				//当たっていたら
 				if (this->hitResult->isHit)
 				{
-					//当たった弾の値段分だけプレイヤーの所持金を減らす
-					this->price -= amo.GetAmoInstance(i, j).GetPrice();
+					this->isHit = true;
 				}
 			}
 		}
@@ -113,19 +112,19 @@ void GamePlayer::HitCheck()
 
 	/*宝石との当たり判定*/
 	//使用している宝石の数を取得
-	for (int i = 0; i < gem.GetUseNum(); i++)
-	{
-		if (!gem.GetGemInstance(i).GetIsHit() && gem.GetGemInstance(i).GetIsSet())
-		{
-			//プレイヤーと宝石の当たり判定をスフィアでとる
- 			this->hitResult = collision.SphereAndSphereCollision(*this, gem.GetGemInstance(i));
-			//もし当たっていたら
-			if (this->hitResult->isHit)
-			{
-				this->price += gem.GetGemInstance(i).GetPrice();
-			}
-		}
-	}
+	//for (int i = 0; i < gem.GetUseNum(); i++)
+	//{
+	//	if (!gem.GetGemInstance(i).GetIsHit() && gem.GetGemInstance(i).GetIsSet())
+	//	{
+	//		//プレイヤーと宝石の当たり判定をスフィアでとる
+ //			this->hitResult = collision.SphereAndSphereCollision(*this, gem.GetGemInstance(i));
+	//		//もし当たっていたら
+	//		if (this->hitResult->isHit)
+	//		{
+	//			this->price += gem.GetGemInstance(i).GetPrice();
+	//		}
+	//	}
+	//}
 }
 
 /// <summary>
@@ -205,4 +204,12 @@ void GamePlayer::ChangeFlagsState()
 void GamePlayer::CountTime()
 {
 	this->aliveTime = GetNowCount() - this->countStartTime;
+}
+
+/// <summary>
+/// ライフ処理
+/// </summary>
+void GamePlayer::Life()
+{
+
 }

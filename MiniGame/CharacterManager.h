@@ -44,7 +44,6 @@ public:
 	const int			GetNowMoveEnemyNum	()const;					//現在移動している敵の数のgetter
 	const bool			GetIsShowBoss		()const;					//ボスが現れたかどうかのgetter
 	const bool			GetIsStop			(const int _index)const;	//停止したかどうかのgetter
-	const int			GetPlayerPrice		()const;					//プレイヤーの所持金のgetter
 	const GamePlayer&	GetPlayerInstance	();							//プレイヤーのインスタンスのgetter
 	const Transform&	GetPlayerTransform	()const;					//プレイヤーのトランスフォームのgetter
 private:

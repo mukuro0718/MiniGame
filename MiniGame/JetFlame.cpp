@@ -25,18 +25,21 @@ JetFlame::~JetFlame()
 }
 
 
-void JetFlame::Init(const float _size,const Transform& _in)
+void JetFlame::Init(const float _size, const WrapVECTOR& _pos, const WrapVECTOR& _moveVec, const float _velocity)
 {
     /*シングルトンクラスのインスタンスを取得*/
     auto& json = JsonManager::GetInstance();
     int     jsonIndex = json.GetFileNameType(JsonManager::FileNameType::PARTICLE);
-
-    this->centerX = json.GetJson(jsonIndex)["JET_FLAME_CENTER_X"];
-    this->centerY = json.GetJson(jsonIndex)["JET_FLAME_CENTER_Y"];
+    
+    this->centerX   = json.GetJson(jsonIndex)["JET_FLAME_CENTER_X"];
+    this->centerY   = json.GetJson(jsonIndex)["JET_FLAME_CENTER_Y"];
     this->size      = _size;
     this->angle     = 0.0f;
-    this->pos = _in.pos;
-    this->moveVec.Convert(json.GetJson(jsonIndex)["JET_FLAME_MOVE_VEC"]);
+    this->pos       = _pos;
+    this->pos.value.x -= 5.0f;
+    this->pos.value.y += 5.0f;
+    this->moveVec   = _moveVec;
+    this->moveVec   .Scale(_velocity);
 }
 
 /// <summary>

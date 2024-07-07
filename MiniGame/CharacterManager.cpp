@@ -133,10 +133,6 @@ const bool CharacterManager::GetIsStop(const int _index)const
 }
 
 
-const int CharacterManager::GetPlayerPrice()const
-{
-	return this->player->GetPrice();
-}
 
 const GamePlayer& CharacterManager::GetPlayerInstance()
 {

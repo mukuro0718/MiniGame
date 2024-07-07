@@ -22,11 +22,15 @@ private:
     const void  Draw()const;//描画
     void        Move();     //移動
     void		HitCheck(); //当たり判定
+    WrapVECTOR& BezirPoint(const float _percent,const WrapVECTOR& _pos1, const WrapVECTOR& _pos2, const WrapVECTOR& _pos3);
 
     /*メンバ変数*/
+    WrapVECTOR prevPos;
     int  modelHandle;   //モデルハンドル
     int  price;         //値段
     bool isSet;         //座標がセットされたか
     bool isHit;         //プレイヤーと当たったか
+    bool isShow;        //表示するか
+    float percent;
 };
 
