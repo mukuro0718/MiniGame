@@ -7,7 +7,8 @@ EffectManager* EffectManager::instance = nullptr;
 /// </summary>
 EffectManager::EffectManager()
 {
-    this->jet = new Jet();
+    this->jet		= new Jet();
+	this->explosion = new Explosion();
 }
 
 /// <summary>
@@ -20,6 +21,11 @@ EffectManager::~EffectManager()
 		delete(this->jet);
 		this->jet = nullptr;
 	}
+	if (this->explosion != nullptr)
+	{
+		delete(this->explosion);
+		this->explosion = nullptr;
+	}
 }
 
 /// <summary>
@@ -28,4 +34,5 @@ EffectManager::~EffectManager()
 void EffectManager::Update()
 {
 	jet->Update();
+	explosion->Update();
 }

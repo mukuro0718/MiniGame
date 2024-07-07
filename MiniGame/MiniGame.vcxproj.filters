@@ -170,6 +170,9 @@
     <ClCompile Include="EffectManager.cpp">
       <Filter>Effect\EffectManager</Filter>
     </ClCompile>
+    <ClCompile Include="Explosion.cpp">
+      <Filter>Effect\ExplosionEffect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="FPSController">
@@ -340,6 +343,9 @@
     <Filter Include="UI\Operation">
       <UniqueIdentifier>{40728073-9ca6-45d1-b152-9fc41cf310d8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Effect\ExplosionEffect">
+      <UniqueIdentifier>{892bc8c4-e7ce-4b6b-a40d-a405704ab102}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FPSController.h">
@@ -509,6 +515,9 @@
     </ClInclude>
     <ClInclude Include="EffectManager.h">
       <Filter>Effect\EffectManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Explosion.h">
+      <Filter>Effect\ExplosionEffect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

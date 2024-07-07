@@ -15,7 +15,7 @@ CharacterManager::CharacterManager()
 	int jsonIndex = json.GetFileNameType(JsonManager::FileNameType::ENEMY);
 
 	/*インスタンスの作成*/
-	this->player = new GamePlayer(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::CAR)));
+	this->player = new GamePlayer(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::CAR)), asset.GetModel(static_cast<int>(LoadingAsset::ModelType::CAR_BREAK)));
 	this->enemy.emplace_back(new Normal(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::BLUE_CAR)), json.GetJson(jsonIndex)["CAR_MOVE_POS1"]));
 	this->enemy.emplace_back(new Normal(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::GRY_CAR)), json.GetJson(jsonIndex)["CAR_MOVE_POS2"]));
 	this->enemy.emplace_back(new Normal(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::GREEN_CAR)), json.GetJson(jsonIndex)["CAR_MOVE_POS3"]));
@@ -145,4 +145,12 @@ const GamePlayer& CharacterManager::GetPlayerInstance()
 const Transform& CharacterManager::GetPlayerTransform()const
 {
 	return this->player->GetTransform();
+}
+
+/// <summary>
+/// プレイヤーの当たり判定フラグのgetter
+/// </summary>
+const bool CharacterManager::GetPlayerIsHit()const
+{
+	return this->player->GetIsHit();
 }

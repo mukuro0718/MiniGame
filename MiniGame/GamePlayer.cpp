@@ -3,7 +3,7 @@
 /// <summary>
 /// コンストラクタ
 /// </summary>
-GamePlayer::GamePlayer(int _modelHandle)
+GamePlayer::GamePlayer(int _modelHandle, const int _breakModelHandle)
 	: Character		(_modelHandle)
 	, jumpPower		(0.0f)
 	, height		(0.0f)
@@ -17,6 +17,7 @@ GamePlayer::GamePlayer(int _modelHandle)
 	, stunFrameCount(0)
 {	
 	this->hitResult = new HitResult();
+	this->breakModelHandle = MV1DuplicateModel(_breakModelHandle);
 	/*初期化*/
 	Init();
 }
@@ -44,7 +45,7 @@ void GamePlayer::Init()
 	this->fixVec.			Convert(json.GetJson(jsonIndex)["ORIGIN"]);
 	this->isOnGround		= false;
 	this->isStun			= false;
-	this->isHit				= true;
+	this->isHit				= false;
 	this->countStartTime	= GetNowCount();
 	this->aliveTime			= 0;
 	this->stunFrameCount	= 0;
@@ -57,6 +58,9 @@ void GamePlayer::Init()
 	MV1SetScale			(this->modelHandle, this->transform.scale.value);
 	MV1SetRotationXYZ	(this->modelHandle, this->transform.rotate.value);
 	MV1SetPosition		(this->modelHandle, this->transform.pos.value);
+	MV1SetScale			(this->breakModelHandle, this->transform.scale.value);
+	MV1SetRotationXYZ	(this->breakModelHandle, this->transform.rotate.value);
+	MV1SetPosition		(this->breakModelHandle, this->transform.pos.value);
 
 }
 /// <summary>
@@ -73,9 +77,18 @@ void GamePlayer::Update()
 	/*モデルの設定*/
 	MV1SetPosition		(this->modelHandle, this->transform.pos.value);
 	MV1SetRotationXYZ	(this->modelHandle, this->transform.rotate.value);
+	MV1SetPosition		(this->breakModelHandle, this->transform.pos.value);
+	MV1SetRotationXYZ	(this->breakModelHandle, this->transform.rotate.value);
 
 	/*描画*/
-	Draw();
+	if (!this->isHit)
+	{
+		Draw();
+	}
+	else
+	{
+		MV1DrawModel(this->breakModelHandle);
+	}
 }
 
 /// <summary>
@@ -140,7 +153,7 @@ void GamePlayer::Move()
 	int pad = input.GetPadState();
 
 	/*上昇（もしAボタンが押されていたら）*/
-	if (pad & PAD_INPUT_2 || CheckHitKey(KEY_INPUT_SPACE))
+	if ((pad & PAD_INPUT_2 || CheckHitKey(KEY_INPUT_SPACE)) && !this->isHit)
 	{
 		zAngle += static_cast<float>(json.GetJson(jsonIndex)["ADD_ANGLE"]);
 		floatPower += static_cast<float>(json.GetJson(jsonIndex)["ADD_JUMP_POWER"]);

@@ -5,6 +5,7 @@
 #include <cassert>
 
 class Jet;
+class Explosion;
 class EffectManager
 {
 public:
@@ -42,7 +43,8 @@ private:
 	EffectManager();	 //コンストラクタ
 
 	/*メンバ変数*/
-	static EffectManager* instance;//唯一のインスタンス
-	Jet* jet;//ジェットエフェクト
+	static EffectManager*	instance;	//唯一のインスタンス
+	Jet*					jet;		//ジェットエフェクト
+	Explosion*				explosion;	//爆発エフェクト
 };
 

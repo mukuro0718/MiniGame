@@ -149,6 +149,7 @@
     <ClCompile Include="Cannon.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="EffectManager.cpp" />
+    <ClCompile Include="Explosion.cpp" />
     <ClCompile Include="Fish1.cpp" />
     <ClCompile Include="Fish2.cpp" />
     <ClCompile Include="Fish3.cpp" />
@@ -208,6 +209,7 @@
     <ClInclude Include="Cannon.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="EffectManager.h" />
+    <ClInclude Include="Explosion.h" />
     <ClInclude Include="Fish1.h" />
     <ClInclude Include="Fish2.h" />
     <ClInclude Include="Fish3.h" />

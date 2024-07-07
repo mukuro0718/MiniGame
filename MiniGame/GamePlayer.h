@@ -11,7 +11,7 @@
 class GamePlayer : public Character
 {
 public:
-	GamePlayer(const int _modelHandle);	//コンストラクタ
+	GamePlayer(const int _modelHandle,const int _breakModelHandle);	//コンストラクタ
 	~GamePlayer();						//デストラクタ
 
 	/*継承もとの純粋仮想関数に実態を持たせる*/
@@ -27,6 +27,7 @@ public:
 	const bool	GetIsStan()		const { return this->isStun; }		//気絶フラグのgetter
 	const float	GetHeight()		const { return this->height; }		//高さのgetter
 	const int	GetAliveTime()	const { return this->aliveTime; }	//生存時間のgetter
+	const bool	GetIsHit()		const { return this->isHit; }		//当たり判定フラグのgetter
 	/*フラグを立てる*/
 	const void OnIsStun() { isStun = true; }//気絶フラグを立てる
 private:
@@ -57,5 +58,6 @@ private:
 	int countStartTime;	//計測開始時間
 	int aliveTime;		//生存時間
 	int stunFrameCount;	//気絶を解除するまでのフレーム数
+	int breakModelHandle;//壊れたモデルハンドル
 };
 

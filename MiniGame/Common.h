@@ -79,4 +79,5 @@ using namespace std;
 
 #include "JetFlame.h"
 #include "Jet.h"
+#include "Explosion.h"
 #include "EffectManager.h"
