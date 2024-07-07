@@ -21,12 +21,16 @@ Title::~Title()
 /// </summary>
 void Title::Update()
 {
+}
+
+/// <summary>
+/// •`‰æ
+/// </summary>
+void Title::Draw()
+{
+	ClearDrawScreen();
 	clsDx();
 	printfDx("TITLE");
-
-	/*I—¹ˆ—*/
-	EndProcess();
-
 }
 
 /// <summary>

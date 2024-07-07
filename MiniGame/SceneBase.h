@@ -12,6 +12,7 @@ public:
 
 	/*純粋仮想関数（継承先で実装）*/
 	virtual void Update()		abstract;	//更新
+	virtual void Draw()			abstract;	//更新
 	virtual void EndProcess()	abstract;	//シーンの終了処理
 };
 

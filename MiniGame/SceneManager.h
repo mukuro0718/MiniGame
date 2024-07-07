@@ -46,9 +46,9 @@ private:
 	void SceneChange();//シーンの変更
 
 	/*メンバ変数*/
-	static SceneManager* instance;//唯一のインスタンス
-	SceneBase*		scene;//シーンインスタンス
-	FPSController*  fps;//fpsコントローラー
-	LoadScene*		load;
+	static SceneManager*	instance;	//唯一のインスタンス
+	SceneBase*				scene;		//シーンインスタンス
+	FPSController*			fps;		//fpsコントローラー
+	LoadScene*				load;		//ロードシーン
 };
 

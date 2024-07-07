@@ -35,6 +35,8 @@ public:
 	}
 
 	void Update();//XV
+	const void Draw()const;//•`‰æ
+
 	const int GetWeaponNum()const;
 	const WrapVECTOR& GetWeaponPos(const int _index)const;
 

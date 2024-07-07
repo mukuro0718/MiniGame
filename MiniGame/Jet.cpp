@@ -94,6 +94,16 @@ void Jet::Update()
 }
 
 /// <summary>
+/// •`‰æ
+/// </summary>
+const void Jet::Draw()const
+{
+    for (int i = 0; i < this->useFlame; i++)
+    {
+        this->flame[i]->Draw();
+    }
+}
+/// <summary>
 /// floatŒ^‚Ì’l‚ðƒ‰ƒ“ƒ_ƒ€‚ÅŽæ“¾
 /// </summary>
 float Jet::GetRandom(const int _range)

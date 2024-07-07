@@ -33,9 +33,10 @@ public:
 	}
 
 	/*その他関数*/
-	virtual ~BackGround();	//デストラクタ
-	void	Update();		//更新
-	void	Init();			//初期化
+	virtual		~BackGround	();		//デストラクタ
+	const void	Draw		()const;//描画
+	void		Init		();		//初期化
+	void		Update		();		//更新
 private:
 	/*構造体・列挙体*/
 	struct Vec2d
@@ -55,7 +56,6 @@ private:
 	void Move();
 	void ChangeBackGround();//背景の変更
 	void UpdateAlpha();
-	const void	Draw()const;	//描画
 	/*メンバ変数*/
 	static BackGround*	instance;							//唯一のインスタンス
 	int imageWidth;//画像の横の大きさ

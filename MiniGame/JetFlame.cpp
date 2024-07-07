@@ -49,9 +49,6 @@ void JetFlame::Update()
 {
     /*ˆÚ“®*/
     Move();
-
-    /*•`‰æ*/
-    Draw();
 }
 
 /// <summary>

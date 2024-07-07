@@ -10,7 +10,8 @@ public:
     ~UnderBar();                                            //デストラクタ
 
     void Init();//初期化
-    void Update();//更新
+    void        Update  ();     //更新
+    const void  Draw    ()const;//描画
 private:
     /*構造体・列挙体*/
     //描画範囲
@@ -38,7 +39,6 @@ private:
     };
 
     /*内部処理関数*/
-    const void Draw()const;//描画
     void Convert(DrawRect& _pos,const vector<int> _in);
 
     /*メンバ変数*/

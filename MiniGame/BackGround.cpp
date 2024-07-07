@@ -82,9 +82,6 @@ void BackGround::Update()
 
 	/*アルファ値の更新*/
 	UpdateAlpha();
-
-	/*描画*/
-	Draw();
 }
 
 /// <summary>

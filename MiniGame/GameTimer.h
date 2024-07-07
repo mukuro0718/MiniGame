@@ -34,6 +34,7 @@ public:
 	virtual ~GameTimer();	//デストラクタ
 	void	Update();		//更新
 	void	Init();			//初期化
+	const void Draw()const;	//描画
 
 	/*getter*/
 	const int GetElapsetTime	()const { return this->elapsetTime; }

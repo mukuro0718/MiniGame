@@ -47,9 +47,6 @@ void GameStage::Update()
 {
 	/*ƒ‚ƒfƒ‹‚ÌÝ’è*/
 	MV1SetPosition(this->modelHandle, this->transform.pos.value);
-
-	/*•`‰æ*/
-	Draw();
 }
 /// <summary>
 /// •`‰æ

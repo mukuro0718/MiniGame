@@ -29,6 +29,14 @@ UIManager::~UIManager()
 /// </summary>
 void UIManager::Update()
 {
-	operation->Update();
 	bar->Update();
+}
+
+/// <summary>
+/// •`‰æ
+/// </summary>
+const void UIManager::Draw()const
+{
+	operation->Draw();
+	bar->Draw();
 }

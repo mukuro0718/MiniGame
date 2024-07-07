@@ -53,6 +53,16 @@ void WeaponManager::Update()
 }
 
 /// <summary>
+/// •`‰æ
+/// </summary>
+const void WeaponManager::Draw()const
+{
+	for (int i = 0; i < weapon.size(); i++)
+	{
+		weapon[i]->Draw();
+	}
+}
+/// <summary>
 /// •Ší‚Ì”‚Ìgetter
 /// </summary>
 const int WeaponManager::GetWeaponNum()const

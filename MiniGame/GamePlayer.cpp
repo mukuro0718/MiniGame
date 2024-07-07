@@ -81,13 +81,9 @@ void GamePlayer::Update()
 	MV1SetRotationXYZ	(this->breakModelHandle, this->transform.rotate.value);
 
 	/*•`‰æ*/
-	if (!this->isHit)
+	if (this->isHit)
 	{
-		Draw();
-	}
-	else
-	{
-		MV1DrawModel(this->breakModelHandle);
+		this->modelHandle = this->breakModelHandle;
 	}
 }
 

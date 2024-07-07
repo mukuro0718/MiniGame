@@ -34,10 +34,11 @@ public:
 		}
 	}
 
-	void Update();//更新
-	const int GetAmoTypeNum()const;
-	const vector<int> GetNowUseNum()const;
-	const Amo& GetAmoInstance(const int _type, const int _use)const;
+	void				Update			();										//更新
+	const void			Draw			()const;								//描画
+	const int			GetAmoTypeNum	()const;								//弾の種類のgetter
+	const vector<int>	GetNowUseNum	()const;								//今使用している弾の数のgetter
+	const Amo&			GetAmoInstance	(const int _type, const int _use)const;	//弾のインスタンスのgetter
 private:
 	/*列挙体*/
 	enum class AmoType

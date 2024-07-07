@@ -9,9 +9,9 @@ public:
 	Explosion();//コンストラクタ
 	~Explosion();//デストラクタ
 
-	void Update();//更新
+	void		Update	();		//更新
+	const void	Draw	()const;//描画
 private:
-	const void Draw()const;//描画
 
 	WrapVECTOR pos;
 	float imageSize;

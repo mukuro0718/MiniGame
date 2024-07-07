@@ -69,9 +69,6 @@ void Boss::Update()
 	MV1SetScale			(this->modelHandle, this->transform.scale.value);
 	MV1SetRotationXYZ	(this->modelHandle, this->transform.rotate.value);
 	MV1SetPosition		(this->modelHandle, this->transform.pos.value);
-
-	/*•`‰æ*/
-	Draw();
 }
 
 

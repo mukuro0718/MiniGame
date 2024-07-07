@@ -8,6 +8,7 @@ class Amo abstract: public Object
 public:
 	Amo(const int _modelHandle);//コンストラクタ
 	virtual ~Amo();				//デストラクタ
+	const void		Draw			()const;						//描画
 	virtual void	Move			()abstract;						//移動
 	void			SetPos			(const WrapVECTOR& _pos);		//座標のsetter
 	void			MoveOffScreen	();								//画面外へ移動
@@ -19,12 +20,11 @@ public:
 	const int		GetPrice		()const { return this->price; }	//値段のgetter
 protected:
 	/*内部処理関数*/
-	void		SetTransform(vector<float> _pos, vector<float> _rotate, vector<float> _scale);//トランスフォームの設定
-	const void	Draw()						const;	//描画
-	void		ChangeRotate();						//回転率の変更
-	void		ChangeScale();						//スケールの変更
-	const float GetRandom(const int _range)	const;	//ランダムなfloat値の取得
-	void		HitCheck();							//当たり判定
+	void		SetTransform(vector<float> _pos, vector<float> _rotate, vector<float> _scale);	//トランスフォームの設定
+	void		ChangeRotate();																	//回転率の変更
+	void		ChangeScale	();																	//スケールの変更
+	const float GetRandom	(const int _range)const;											//ランダムなfloat値の取得
+	void		HitCheck	();																	//当たり判定
 	/*メンバ変数*/
 	WrapVECTOR	moveVec;	//移動ベクトル
 	WrapVECTOR	posOffset;	//位置補正値

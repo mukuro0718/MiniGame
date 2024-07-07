@@ -36,3 +36,12 @@ void EffectManager::Update()
 	jet->Update();
 	explosion->Update();
 }
+
+/// <summary>
+/// •`‰æ
+/// </summary>
+const void EffectManager::Draw()const
+{
+	jet->Draw();
+	explosion->Draw();
+}

@@ -12,11 +12,11 @@ public:
     ~JetFlame   ();//デストラクタ
     
     void                Init    (const float _size, const WrapVECTOR& _pos, const WrapVECTOR& _moveVec,const float _velocity);  //初期化
-    void                Update  ();                                         //更新
-    const WrapVECTOR&   GetPos  ()const { return this->pos; }               //座標のgetter
+    void                Update  ();                                                                                             //更新
+    const WrapVECTOR&   GetPos  ()const { return this->pos; }                                                                   //座標のgetter
+    const void          Draw    ()const;                                                                                        //描画
 private:
     /*内部処理関数*/
-    const void  Draw()const;//描画
     void        Move();     //移動
     /*メンバ変数*/
     WrapVECTOR  moveVec;    //移動ベクトル

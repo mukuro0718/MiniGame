@@ -35,7 +35,8 @@ public:
 		}
 	}
 
-	void Update();//更新
+	void		Update	();		//更新
+	const void	Draw	()const;//描画
 private:
 	/*内部処理関数*/
 	UIManager(); //コンストラクタ

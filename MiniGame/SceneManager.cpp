@@ -8,9 +8,9 @@ SceneManager* SceneManager::instance = nullptr;
 SceneManager::SceneManager()
 	:scene(nullptr)
 {
-	this->scene = new Title();
-	this->fps   = new FPSController();
-	this->load  = new LoadScene();
+	this->scene		= new Title();
+	this->fps		= new FPSController();
+	this->load		= new LoadScene();
 }
 /// <summary>
 /// デストラクタ
@@ -29,14 +29,18 @@ void SceneManager::Update()
 		/*インプットマネージャーのインスタンスを取得*/
 		auto& input = InputManager::GetInstance();
 
-		/*画面をきれいにする*/
-		ClearDrawScreen();
-
 		/*インプットマネージャーの更新*/
 		input.Update();
 
 		/*シーンの更新*/
 		this->scene->Update();
+
+		/*シーンの描画*/
+		ClearDrawScreen();
+		this->scene->Draw();
+
+		/*シーンの終了処理*/
+		this->scene->EndProcess();
 
 		/*シーンの変更*/
 		SceneChange();
@@ -47,9 +51,9 @@ void SceneManager::Update()
 		/*fpsの描画*/
 		this->fps->Draw();
 
-
 		/*ＦＰＳの処理*/
 		this->fps->Wait();
+
 		/*裏画面の内容を表に反映させる*/
 		ScreenFlip();
 	}

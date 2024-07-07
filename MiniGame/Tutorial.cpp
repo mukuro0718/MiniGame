@@ -21,11 +21,16 @@ Tutorial::~Tutorial()
 /// </summary>
 void Tutorial::Update()
 {
+}
+
+/// <summary>
+/// ï`âÊ
+/// </summary>
+void Tutorial::Draw()
+{
+	ClearDrawScreen();
 	clsDx();
 	printfDx("Tutorial");
-
-	/*èIóπèàóù*/
-	EndProcess();
 }
 
 /// <summary>

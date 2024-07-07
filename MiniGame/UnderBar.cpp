@@ -50,8 +50,6 @@ void UnderBar::Init()
 /// </summary>
 void UnderBar::Update()
 {
-    /*•`‰æ*/
-    Draw();
 }
 
 /// <summary>

@@ -52,3 +52,14 @@ void GameTimer::Update()
 	}
 }
 
+/// <summary>
+/// •`‰æ
+/// </summary>
+const void GameTimer::Draw()const
+{
+#ifdef _DEBUG
+	printfDx("TIME:%d", this->elapsetTime);
+#endif // _DEBUG
+
+}
+

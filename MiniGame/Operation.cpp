@@ -35,14 +35,6 @@ void Operation::Init()
 }
 
 /// <summary>
-/// XV
-/// </summary>
-void Operation::Update()
-{
-	Draw();
-}
-
-/// <summary>
 /// •`‰æ
 /// </summary>
 const void Operation::Draw()const

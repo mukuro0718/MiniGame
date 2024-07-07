@@ -10,8 +10,9 @@ public:
     Jet();  //コンストラクタ
     ~Jet(); //デストラクタ
 
-    void Init();    //初期化
-    void Update();  //更新
+    void        Init    ();     //初期化
+    void        Update  ();     //更新
+    const void  Draw    ()const;//描画
 private:
     /*列挙隊*/
 

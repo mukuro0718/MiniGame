@@ -21,13 +21,17 @@ Result::~Result()
 /// </summary>
 void Result::Update()
 {
+	
+}
+/// <summary>
+/// •`‰æ
+/// </summary>
+void Result::Draw()
+{
+	ClearDrawScreen();
 	clsDx();
 	printfDx("Result");
-
-	/*I—¹ˆ—*/
-	EndProcess();
 }
-
 /// <summary>
 /// I—¹ˆ—
 /// </summary>

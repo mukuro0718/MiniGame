@@ -68,6 +68,17 @@ void CharacterManager::Update()
 }
 
 /// <summary>
+/// 描画
+/// </summary>
+const void CharacterManager::Draw()const
+{
+	this->player->Draw();
+	for (int i = 0; i < this->nowMoveEnemy; i++)
+	{
+		this->enemy[i]->Draw();
+	}
+}
+/// <summary>
 /// 稼働しているエネミー数の変更
 /// </summary>
 void CharacterManager::ChangeNowMoveEnemy()

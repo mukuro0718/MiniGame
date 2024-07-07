@@ -15,13 +15,13 @@ public:
 	virtual ~Character();				//デストラクタ
 
 	/*getter*/
-	const Transform&	GetTransform()	const { return this->transform; }	//プレイヤー座標のgetter
-	const WrapVECTOR	GetMoveVec()	const { return this->moveVec;} //移動ベクトルのgetter
-	const float			GetRadius()		const { return this->radius; }	//半径のgetter
+	const Transform&	GetTransform()const { return this->transform; }	//プレイヤー座標のgetter
+	const WrapVECTOR	GetMoveVec	()const { return this->moveVec;}	//移動ベクトルのgetter
+	const float			GetRadius	()const { return this->radius; }	//半径のgetter
+	const void			Draw		()const;							//描画
 
 protected:
 	/*内部処理関数*/
-	const void Draw()const;//描画
 	/*メンバ変数*/
 	WrapVECTOR	initPos;	//初期座標
 	WrapVECTOR	moveVec;	//移動ベクトル

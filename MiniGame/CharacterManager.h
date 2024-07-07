@@ -38,6 +38,7 @@ public:
 
 	void				Init				();							//初期化
 	void				Update				();							//更新
+	const void			Draw				()const;					//描画
 	const WrapVECTOR&	GetPlayerPos		()const;					//プレイヤー座標のgetter
 	const WrapVECTOR&	GetEnemyPos			(const int _index)const;	//エネミー座標のgetter
 	const int			GetEnemyNum			()const;					//エネミーの数のgetter

@@ -119,6 +119,28 @@ void AmoManager::Update()
 }
 
 /// <summary>
+/// 更新
+/// </summary>
+const void AmoManager::Draw()const
+{
+	/*シングルトンクラスのインスタンスの取得*/
+	auto& character = CharacterManager::GetInstance();
+
+	int weaponNum = 0;
+	for (int i = 0; i < useCurrentlyNum.size(); i++)
+	{
+		for (int j = 0; j < useCurrentlyNum[i]; j++)
+		{
+			if (character.GetIsStop(weaponNum) && amo[i][j]->GetIsSet())
+			{
+				amo[i][j]->Draw();
+				weaponNum++;
+			}
+		}
+	}
+}
+
+/// <summary>
 /// ランダムで弾の種類を決める
 /// </summary>
 const int AmoManager::GetRandomAmoType()const

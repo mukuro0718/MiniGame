@@ -63,3 +63,17 @@ void StageManager::Update()
 	//skydome->Update();
 }
 
+/// <summary>
+/// •`‰æ
+/// </summary>
+const void StageManager::Draw()const
+{
+	for (int i = 0; i < frontRoad.size(); i++)
+	{
+		frontRoad[i]->Draw();
+	}
+	for (int i = 0; i < backRoad.size(); i++)
+	{
+		backRoad[i]->Draw();
+	}
+}

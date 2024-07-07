@@ -65,9 +65,6 @@ void Explosion::Update()
 	{
 		this->pos = character.GetPlayerPos();
 
-		/*描画*/
-		Draw();
-
 		this->drawFrameCount++;
 
 		if (this->drawFrameCount % 5 == 0 && this->nowDrawImage < this->imageHandle.size() - 1)
@@ -82,5 +79,11 @@ void Explosion::Update()
 /// </summary>
 const void Explosion::Draw()const
 {
-	DrawBillboard3D(this->pos.value, 0.5f, 0.5f, this->imageSize, 0.0f, this->imageHandle[this->nowDrawImage], TRUE);
+	/*シングルトンクラスのインスタンスの取得*/
+	auto& character = CharacterManager::GetInstance();
+
+	if (character.GetPlayerIsHit())
+	{
+		DrawBillboard3D(this->pos.value, 0.5f, 0.5f, this->imageSize, 0.0f, this->imageHandle[this->nowDrawImage], TRUE);
+	}
 }
