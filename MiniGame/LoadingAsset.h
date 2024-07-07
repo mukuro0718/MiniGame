@@ -57,6 +57,14 @@ public:
 		ROAD		= 15,
 		GEM_1		= 16,
 		GEM_2		= 17,
+		BUILDING_A	= 18,
+		BUILDING_B	= 19,
+		BUILDING_C	= 20,
+		BUILDING_D	= 21,
+		BUILDING_E	= 22,
+		BUILDING_F	= 23,
+		BUILDING_G	= 24,
+		BUILDING_H	= 25,
 	};
 
 	/*‰æ‘œ‚ÌŽí—Þ*/

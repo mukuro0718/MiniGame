@@ -65,7 +65,7 @@ void Game::Draw()
 	/*•`‰æ*/
 	clsDx();
 	printfDx("GAME");
-	timer.Draw();
+	timer		.Draw();
 	backGround	.Draw();
 	stage		.Draw();
 	weapon		.Draw();
