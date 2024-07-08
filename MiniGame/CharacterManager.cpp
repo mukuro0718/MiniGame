@@ -21,8 +21,6 @@ CharacterManager::CharacterManager()
 	this->enemy.emplace_back(new Normal(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::GREEN_CAR)), json.GetJson(jsonIndex)["CAR_MOVE_POS3"]));
 	this->enemy.emplace_back(new Normal(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::RED_CAR)), json.GetJson(jsonIndex)["CAR_MOVE_POS4"]));
 	this->enemy.emplace_back(new Boss(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::POLICE_CAR)), json.GetJson(jsonIndex)["BOSS_MOVE_POS"]));
-	
-	Init();
 }
 
 /// <summary>
@@ -50,6 +48,11 @@ CharacterManager::~CharacterManager()
 /// </summary>
 void CharacterManager::Init()
 {
+	this->player->Init();
+	for (int i = 0; i < this->nowMoveEnemy; i++)
+	{
+		this->enemy[i]->Init();
+	}
 	this->nowMoveEnemy = 0;
 	this->isShowBoss = false;
 }

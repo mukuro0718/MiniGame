@@ -12,8 +12,8 @@ UIManager::UIManager()
 	auto& asset = LoadingAsset::GetInstance();
 	
 
-	operation = new Operation(asset.GetFont(asset.GetFontType(LoadingAsset::FontType::MUKASI)));
-	bar = new UnderBar();
+	this->operation = new Operation(asset.GetFont(asset.GetFontType(LoadingAsset::FontType::MUKASI)));
+	this->bar = new UnderBar();
 }
 
 /// <summary>
@@ -21,7 +21,25 @@ UIManager::UIManager()
 /// </summary>
 UIManager::~UIManager()
 {
+	if (this->bar != nullptr)
+	{
+		delete(this->bar);
+		this->bar = nullptr;
+	}
+	if (this->operation != nullptr)
+	{
+		delete(this->operation);
+		this->operation = nullptr;
+	}
+}
 
+/// <summary>
+/// XV
+/// </summary>
+void UIManager::Init()
+{
+	this->bar->Init();
+	this->operation->Init();
 }
 
 /// <summary>
@@ -29,7 +47,7 @@ UIManager::~UIManager()
 /// </summary>
 void UIManager::Update()
 {
-	bar->Update();
+	this->bar->Update();
 }
 
 /// <summary>
@@ -37,6 +55,6 @@ void UIManager::Update()
 /// </summary>
 const void UIManager::Draw()const
 {
-	operation->Draw();
-	bar->Draw();
+	this->operation->Draw();
+	this->bar->Draw();
 }

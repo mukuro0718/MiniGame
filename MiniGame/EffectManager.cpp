@@ -6,8 +6,10 @@ EffectManager* EffectManager::instance = nullptr;
 /// コンストラクタ
 /// </summary>
 EffectManager::EffectManager()
+	: jet(nullptr)
+	, explosion(nullptr)
 {
-    this->jet		= new Jet();
+	this->jet = new Jet();
 	this->explosion = new Explosion();
 }
 
@@ -26,6 +28,15 @@ EffectManager::~EffectManager()
 		delete(this->explosion);
 		this->explosion = nullptr;
 	}
+}
+
+/// <summary>
+/// 初期化
+/// </summary>
+void EffectManager::Init()
+{
+	jet->Init();
+	explosion->Init();
 }
 
 /// <summary>

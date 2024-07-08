@@ -9,6 +9,7 @@ public:
 	Explosion();//コンストラクタ
 	~Explosion();//デストラクタ
 
+	void		Init	();		//初期化
 	void		Update	();		//更新
 	const void	Draw	()const;//描画
 private:

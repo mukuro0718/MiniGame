@@ -33,7 +33,7 @@ public:
 			instance = nullptr;
 		}
 	}
-
+	void				Init			();										//初期化
 	void				Update			();										//更新
 	const void			Draw			()const;								//描画
 	const int			GetAmoTypeNum	()const;								//弾の種類のgetter
@@ -61,7 +61,6 @@ private:
 	vector<vector<Amo*>>amo;		//弾
 	vector<int>			useCurrentlyNum;//今vector内の何番目までが使用されているか
 	int					prevTime;//以前の時間
-	vector<int>			currentlyAmoPrice;
 };
 
 

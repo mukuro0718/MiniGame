@@ -145,6 +145,7 @@
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="BackGround.cpp" />
     <ClCompile Include="Bazooka.cpp" />
+    <ClCompile Include="Building.cpp" />
     <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="Cannon.cpp" />
     <ClCompile Include="Character.cpp" />
@@ -205,6 +206,7 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="BackGround.h" />
     <ClInclude Include="Bazooka.h" />
+    <ClInclude Include="Building.h" />
     <ClInclude Include="CameraManager.h" />
     <ClInclude Include="Cannon.h" />
     <ClInclude Include="Character.h" />

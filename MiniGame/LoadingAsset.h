@@ -65,6 +65,7 @@ public:
 		BUILDING_F	= 23,
 		BUILDING_G	= 24,
 		BUILDING_H	= 25,
+		BASE		= 26,
 	};
 
 	/*‰æ‘œ‚ÌŽí—Þ*/

@@ -49,15 +49,14 @@ private:
 	float floatPower;	//浮力
 	float zAngle;		//Z軸をもとにしたアングル
 	
-	bool isSit;
 	bool isStun;		//気絶したか
 	bool isOnGround;	//地面にいるか
-	bool isJump;		//ジャンプしているか（敵がプレイヤーを発見したときに、ジャンプするためのもの）
 	bool isHit;			//弾や地面に当たったか
 
 	int countStartTime;	//計測開始時間
 	int aliveTime;		//生存時間
 	int stunFrameCount;	//気絶を解除するまでのフレーム数
+	int normalModelHandle;
 	int breakModelHandle;//壊れたモデルハンドル
 };
 

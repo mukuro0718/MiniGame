@@ -173,6 +173,9 @@
     <ClCompile Include="Explosion.cpp">
       <Filter>Effect\ExplosionEffect</Filter>
     </ClCompile>
+    <ClCompile Include="Building.cpp">
+      <Filter>Object\Stage\Building</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="FPSController">
@@ -346,6 +349,9 @@
     <Filter Include="Effect\ExplosionEffect">
       <UniqueIdentifier>{892bc8c4-e7ce-4b6b-a40d-a405704ab102}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\Stage\Building">
+      <UniqueIdentifier>{c637ed65-7149-4483-ab61-3af006af9916}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FPSController.h">
@@ -518,6 +524,9 @@
     </ClInclude>
     <ClInclude Include="Explosion.h">
       <Filter>Effect\ExplosionEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="Building.h">
+      <Filter>Object\Stage\Building</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

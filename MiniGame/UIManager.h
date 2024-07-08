@@ -34,7 +34,7 @@ public:
 			instance = nullptr;
 		}
 	}
-
+	void		Init	();		//‰Šú‰»
 	void		Update	();		//XV
 	const void	Draw	()const;//•`‰æ
 private:

@@ -8,15 +8,15 @@ GamePlayer::GamePlayer(int _modelHandle, const int _breakModelHandle)
 	, jumpPower		(0.0f)
 	, height		(0.0f)
 	, floatPower	(0.0f)
-	, isSit			(false)
 	, isStun		(false)
 	, isOnGround	(false)
-	, isJump		(false)
 	, countStartTime(0)
 	, aliveTime		(0)
 	, stunFrameCount(0)
+	, normalModelHandle(-1)
 {	
 	this->hitResult = new HitResult();
+	this->normalModelHandle = MV1DuplicateModel(_modelHandle);
 	this->breakModelHandle = MV1DuplicateModel(_breakModelHandle);
 	/*‰Šú‰»*/
 	Init();
@@ -43,17 +43,20 @@ void GamePlayer::Init()
 	this->transform.scale.	Convert(json.GetJson(jsonIndex)["INIT_SCALE"]);
 	this->moveVec.			Convert(json.GetJson(jsonIndex)["ORIGIN"]);
 	this->fixVec.			Convert(json.GetJson(jsonIndex)["ORIGIN"]);
-	this->isOnGround		= false;
-	this->isStun			= false;
-	this->isHit				= false;
-	this->countStartTime	= GetNowCount();
 	this->aliveTime			= 0;
 	this->stunFrameCount	= 0;
-	this->jumpPower			= 0.0f;
-	this->height			= json.GetJson(jsonIndex)["STAND_HEIGHT"];
 	this->radius			= json.GetJson(jsonIndex)["RADISU"];
+	this->modelHandle		= this->normalModelHandle;
+	this->countStartTime	= GetNowCount();
+	
+	this->isStun			= false;
+	this->isOnGround		= false;
+	this->isHit				= false;
+	
+	this->zAngle			= 0.0f;
 	this->floatPower		= 0.0f;
-
+	this->height			= json.GetJson(jsonIndex)["STAND_HEIGHT"];
+	this->jumpPower			= 0.0f;
 	/*ƒ‚ƒfƒ‹‚Ìİ’è*/
 	MV1SetScale			(this->modelHandle, this->transform.scale.value);
 	MV1SetRotationXYZ	(this->modelHandle, this->transform.rotate.value);
@@ -213,12 +216,4 @@ void GamePlayer::ChangeFlagsState()
 void GamePlayer::CountTime()
 {
 	this->aliveTime = GetNowCount() - this->countStartTime;
-}
-
-/// <summary>
-/// ƒ‰ƒCƒtˆ—
-/// </summary>
-void GamePlayer::Life()
-{
-
 }

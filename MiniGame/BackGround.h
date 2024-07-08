@@ -57,15 +57,15 @@ private:
 	void ChangeBackGround();//背景の変更
 	void UpdateAlpha();
 	/*メンバ変数*/
-	static BackGround*	instance;							//唯一のインスタンス
-	int imageWidth;//画像の横の大きさ
-	int imageHeight;//画像の縦の大きさ
-	std::vector<int> moveX;		//移動サイズ
-	std::vector<int> velocity;		//移動速度
-	std::vector<int> imageHandle;	//画像ハンドル
-	int alpha;
-	int maxAlpha;
-	bool isEraseImage;//画像を消すか
+	static BackGround*	instance;		//唯一のインスタンス
+	std::vector<int>	moveX;			//移動サイズ
+	std::vector<int>	velocity;		//移動速度
+	std::vector<int>	imageHandle;	//画像ハンドル
+	bool				isEraseImage;	//画像を消すか
+	int					imageWidth;		//画像の横の大きさ
+	int					imageHeight;	//画像の縦の大きさ
+	int					alpha;			//アルファ
+	int					maxAlpha;		//最大アルファ
 
 };
 

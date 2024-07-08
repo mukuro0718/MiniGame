@@ -32,7 +32,25 @@ WeaponManager::WeaponManager()
 /// </summary>
 WeaponManager::~WeaponManager()
 {
+	for (int i = 0; i < this->weapon.size(); i++)
+	{
+		if (this->weapon[i] != nullptr)
+		{
+			delete(this->weapon[i]);
+			this->weapon[i] = nullptr;
+		}
+	}
+}
 
+/// <summary>
+/// ‰Šú‰»
+/// </summary>
+void WeaponManager::Init()
+{
+	for (int i = 0; i < this->weapon.size(); i++)
+	{
+		weapon[i]->Init();
+	}
 }
 
 /// <summary>

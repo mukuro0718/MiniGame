@@ -50,9 +50,18 @@ Explosion::Explosion()
 /// </summary>
 Explosion::~Explosion()
 {
-
+	imageHandle.clear();
 }
 
+/// <summary>
+/// ‰Šú‰»
+/// </summary>
+void Explosion::Init()
+{
+	this->pos = 0.0f;
+	this->drawFrameCount = 0;
+	this->nowDrawImage = 0;
+}
 /// <summary>
 /// XV
 /// </summary>

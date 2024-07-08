@@ -58,6 +58,6 @@ private:
 	GamePlayer*					player;			//ゲームプレイヤー
 	vector<Enemy*>				enemy;			//エネミー
 	int							nowMoveEnemy;	//現在稼働しているエネミーの数
-	bool isShowBoss;//ボス登場フラグ
+	bool						isShowBoss;		//ボス登場フラグ
 };
 

@@ -9,7 +9,6 @@ GameTimer::GameTimer()
 	: elapsetTime(0)
 	, elapsetFrame(0)
 {
-	/*‰Šú‰»*/
 	Init();
 }
 

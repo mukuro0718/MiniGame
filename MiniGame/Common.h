@@ -37,6 +37,7 @@ using namespace std;
 #include "Skydome.h"
 #include "HitResult.h"
 #include "Gem.h"
+#include "Building.h"
 
 #include "BackGround.h"
 

@@ -34,11 +34,11 @@ public:
 		}
 	}
 
-	void Update();//更新
-	const void Draw()const;//描画
-
-	const int GetWeaponNum()const;
-	const WrapVECTOR& GetWeaponPos(const int _index)const;
+	void				Init		();						//初期化
+	void				Update		();						//更新
+	const void			Draw		()const;				//描画
+	const int			GetWeaponNum()const;				//武器の数のgetter
+	const WrapVECTOR&	GetWeaponPos(const int _index)const;//武器の座標のgetter
 
 private:
 	/*内部処理関数*/

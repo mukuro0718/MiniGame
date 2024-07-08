@@ -36,7 +36,6 @@ AmoManager::AmoManager()
 	for (int i = 0; i < amo.size(); i++)
 	{
 		useCurrentlyNum.emplace_back(0);
-		currentlyAmoPrice.emplace_back(0);
 	}
 
 	InitUseCurrentlyNum();
@@ -60,6 +59,26 @@ AmoManager::~AmoManager()
 		amo[i].clear();
 	}
 	amo.clear();
+}
+
+/// <summary>
+/// ‰Šú‰»
+/// </summary>
+void AmoManager::Init()
+{
+	for (int i = 0; i < amo.size(); i++)
+	{
+		for (int j = 0; j < amo[i].size(); j++)
+		{
+			amo[i][j]->Init();
+		}
+	}
+	for (int i = 0; i < this->useCurrentlyNum.size(); i++)
+	{
+		this->useCurrentlyNum[i] = 0;
+	}
+	prevTime = 0;
+
 }
 
 /// <summary>
@@ -92,7 +111,6 @@ void AmoManager::Update()
 				{
 					this->amo[i][j]->Init();
 					this->amo[i][j]->SetPos(weapon.GetWeaponPos(weaponNum));
-					this->currentlyAmoPrice[priceNum] = this->amo[i][j]->GetPrice();
 					priceNum++;
 					weaponNum++;
 				}

@@ -1,10 +1,20 @@
 {
-  "FRONT_ROAD_NUM": 7,
-  "BACK_ROAD_NUM": 9,
+  "FRONT_ROAD_NUM": 12,
+  "BACK_ROAD_NUM": 12,
   "ORIGIN_POS": [ 0.0, 0.0, 0.0 ],
-  "FIRST_FRONT_ROAD_POS": [ -110.0, -50.0, 0.0 ],
-  "FIRST_BACK_ROAD_POS": [ -160.0, -50.0, 50.0 ],
+  "FIRST_FRONT_ROAD_POS": [ -200.0, -50.0, 0.0 ],
+  "FIRST_BACK_ROAD_POS": [ -200.0, -50.0, 50.0 ],
   "ROAD_SCALE": [ 0.2, 0.2, 0.2 ],
   "ROAD_ROTATE": [ 0.0, 90.0, 0.0 ],
-  "ROAD_POS_OFFSET": [ 40.0, 0.0, 0.0 ]
+  "ROAD_POS_OFFSET": [ 40.0, 0.0, 0.0 ],
+
+  "BUILDING_SCALE": [ 0.2, 0.2, 0.2 ],
+  "BUILDING_ROTATE": [ 0.0, 0.0, 0.0 ],
+  "BUILDING_POS": [ 240.0, -50.0, 80.0 ],
+
+  "FIRST_FRONT_BASE_POS": [ -200.0, -50.0, 40.0 ],
+  "FIRST_BACK_BASE_POS": [ -200.0, -50.0, 80.0 ],
+  "BASE_POS_OFFSET": [ 40.0, 0.0, 0.0 ],
+  "FRONT_BASE_NUM": 12,
+  "BACK_BASE_NUM": 12
 }

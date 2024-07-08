@@ -6,6 +6,11 @@ BackGround* BackGround::instance = nullptr;
 /// コンストラクタ
 /// </summary>
 BackGround::BackGround()
+	: imageWidth(0)
+	, imageHeight(0)
+	, alpha(0)
+	, maxAlpha(0)
+	, isEraseImage(false)
 {
 	/*シングルトンクラスのインスタンスの取得*/
 	auto& asset = LoadingAsset::GetInstance();
@@ -29,11 +34,6 @@ BackGround::BackGround()
 	imageHandle.emplace_back(asset.GetImage(static_cast<int>(LoadingAsset::ImageType::BACKGROUND_11)));
 	imageHandle.emplace_back(asset.GetImage(static_cast<int>(LoadingAsset::ImageType::BACKGROUND_12)));
 	imageHandle.emplace_back(asset.GetImage(static_cast<int>(LoadingAsset::ImageType::BACKGROUND_13)));
-
-	this->maxAlpha = 255;
-	this->alpha = this->maxAlpha;
-
-	this->isEraseImage = false;
 	int addVelocity = 0;
 	for (int i = 0; i < this->imageHandle.size(); i++)
 	{
@@ -41,9 +41,7 @@ BackGround::BackGround()
 		this->velocity.emplace_back(addVelocity);
 		addVelocity++;
 	}
-	this->velocity[10] = this->velocity[9];
-	/*初期化*/
-	Init();
+
 }
 
 /// <summary>
@@ -61,8 +59,12 @@ BackGround::~BackGround()
 /// </summary>
 void BackGround::Init()
 {
-	this->alpha = this->maxAlpha;
 
+	this->maxAlpha		= 255;
+	this->alpha			= this->maxAlpha;
+	this->isEraseImage	= false;
+	this->velocity[10]	= this->velocity[9];
+	this->alpha			= this->maxAlpha;
 	for (int i = 0; i < this->moveX.size(); i++)
 	{
 		this->moveX[i] = 0;
