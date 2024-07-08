@@ -10,6 +10,7 @@ public:
 	~Operation();//デストラクタ
 
 	void		Init	();		//初期化
+	void		Update	();		//更新
 	const void	Draw	()const;//描画
 
 private:
@@ -18,6 +19,15 @@ private:
 	/*メンバ変数*/
 	int fontHandle;
 	vector<int> pos;
+	vector<string> text;
+	vector<int> endPosX;
+	int moveX;
+	bool isStart;
+	bool isStop;
+	bool isEnd;
+	bool isFinish;
 	int color;
+	int textIndex;
+	int stopFrameCount;
 };
 

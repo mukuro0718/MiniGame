@@ -26,6 +26,7 @@ LoadingAsset::LoadingAsset()
 	/*フォントのロード*/
 	AddFontResourceEx("Data/Font/gomarice_mukasi_mukasi.ttf", FR_PRIVATE, NULL);
 	this->fontHandle.emplace_back(CreateFontToHandle("昔々ふぉんと", 64, 64, DX_FONTTYPE_EDGE, DX_CHARSET_DEFAULT,4));
+	this->fontHandle.emplace_back(CreateFontToHandle("昔々ふぉんと", 256, 64, DX_FONTTYPE_EDGE, DX_CHARSET_DEFAULT, 4));
 }
 
 /// <summary>

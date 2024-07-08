@@ -81,10 +81,6 @@ void SceneManager::SceneChange()
 			delete(this->scene);
 			this->scene = new Title();
 			break;
-		case SceneChanger::SceneType::TUTORIAL:
-			delete(this->scene);
-			this->scene = new Tutorial();
-			break;
 		case SceneChanger::SceneType::GAME:
 			delete(this->scene);
 			this->scene = new Game();

@@ -190,6 +190,7 @@
     <ClCompile Include="StageManager.cpp" />
     <ClCompile Include="GameTimer.cpp" />
     <ClCompile Include="Title.cpp" />
+    <ClCompile Include="TitlePlayer.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Tutorial.cpp" />
     <ClCompile Include="UI.cpp" />
@@ -250,6 +251,7 @@
     <ClInclude Include="StageManager.h" />
     <ClInclude Include="GameTimer.h" />
     <ClInclude Include="Title.h" />
+    <ClInclude Include="TitlePlayer.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Tutorial.h" />
     <ClInclude Include="UI.h" />
@@ -277,6 +279,7 @@
     <None Include="Data\Json\ModelPath.json" />
     <None Include="Data\Json\Particle.json" />
     <None Include="Data\Json\Player.json" />
+    <None Include="Data\Json\Scene.json" />
     <None Include="Data\Json\SceneChanger.json" />
     <None Include="Data\Json\SetUpScreen.json" />
     <None Include="Data\Json\Skydome.json" />

@@ -15,6 +15,10 @@ public:
 	void Draw		()override;	//•`‰æ
 	void EndProcess	()override;	//I—¹ˆ—
 private:
+	/*Ã“I’è”*/
+	static constexpr int MAX_ALPHA = 255;
+
+	/*ƒƒ“ƒo•Ï”*/
 	int alpha;
 	bool isEnd;
 };

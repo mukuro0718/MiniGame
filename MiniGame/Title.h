@@ -23,10 +23,17 @@ private:
 		PUSH_BUTTON,
 	};
 
+	static constexpr int MAX_ALPHA = 255;
+
 	/*“à•”ˆ—ŠÖ”*/
 	const void Draw()const;//•`‰æ
 
 	/*ƒƒ“ƒo•Ï”*/
 	int imageHandle;
+	int fontHandle;
+	int alpha;
+	bool isEnd;
+	int sizeOffset;
+	bool isAdd;
 };
 

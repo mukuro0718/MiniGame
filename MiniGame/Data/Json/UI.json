@@ -1,7 +1,16 @@
 {
-    "OPERATION_POS": [ 1600, 10 ],
+    "OPERATION_START_POS": [ 2000, 100 ],
+    "OPERATION_END_POS": [ -2500, -4000,-4000],
+    "OPERATION_STOP_POS": 1000,
+    "OPERATION_MAX_STOP_COUNT": 120,
+    "OPERATION_MOVE_VELOCITY": 8,
     "OPERATION_COLOR": [ 255, 255, 255 ],
+    "OPERATION_TEXT": [
+        "Aボタンで上昇",
+        "敵の攻撃や道路、車などに当たるとゲームオーバーです",
+        "下のバーの車が、家のマークまでたどり着くとゲームクリアです"
+    ],
     "UNDER_BAR_POS": [ 500, 1000, 1300, 1050 ],
     "HOUCE_POS": [ 1225, 975, 1325, 1075 ],
-    "CAR_POS": [ 475, 975, 575, 1075 ]
+    "CAR_POS": [ 475, 975, 595, 1075 ]
 }

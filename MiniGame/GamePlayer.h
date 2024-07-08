@@ -40,9 +40,6 @@ private:
 		JUMP,
 	};
 
-	/*内部処理関数*/
-	void Life();//ライフ処理
-
 	/*メンバ変数*/
 	float jumpPower;	//ジャンプ力
 	float height;		//身長
@@ -52,6 +49,7 @@ private:
 	bool isStun;		//気絶したか
 	bool isOnGround;	//地面にいるか
 	bool isHit;			//弾や地面に当たったか
+	bool isStop;		//停止フラグ（ボタン入力があったらfalseにする）
 
 	int countStartTime;	//計測開始時間
 	int aliveTime;		//生存時間

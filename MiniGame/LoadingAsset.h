@@ -121,11 +121,13 @@ public:
 		EXPLOSION_26 = 47,
 		EXPLOSION_27 = 48,
 		EXPLOSION_28 = 49,
+		A_BUTTON	 = 50,
 	};
 
 	enum class FontType
 	{
-		MUKASI	= 0,
+		MUKASI	 = 0,
+		MUKASI_2 = 1,
 	};
 	/*ƒ‚ƒfƒ‹‚Ìgetter*/
 	const int GetModel(const int _index) { return modelHandle[_index]; }

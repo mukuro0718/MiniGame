@@ -20,6 +20,7 @@
         "Data/Json/UI.json",
         "Data/Json/Gem.json",
         "Data/Json/Particle.json",
-        "Data/Json/Effect.json"
+        "Data/Json/Effect.json",
+        "Data/Json/Scene.json"
     ]
 }

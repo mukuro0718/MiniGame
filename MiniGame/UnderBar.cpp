@@ -50,6 +50,12 @@ void UnderBar::Init()
 /// </summary>
 void UnderBar::Update()
 {
+    auto& time = GameTimer::GetInstance();
+    if (time.GetElapsetFrame() == 0)
+    {
+        this->pos[static_cast<int>(ImageType::CAR)].lx += 1.0f;
+        this->pos[static_cast<int>(ImageType::CAR)].rx += 1.0f;
+    }
 }
 
 /// <summary>

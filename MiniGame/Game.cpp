@@ -4,7 +4,7 @@
 /// コンストラクタ
 /// </summary>
 Game::Game()
-	: alpha(0)
+	: alpha(MAX_ALPHA)
 {
 	Init();
 }
@@ -72,8 +72,16 @@ void Game::Update()
 	
 	if (character.GetPlayerIsHit() && character.GetPlayerPos().value.y <= -50.0f)
 	{
-		this->alpha++;
+		this->alpha += 2;
 	}
+	else
+	{
+		if (this->alpha > 0)
+		{
+			this->alpha -= 2;
+		}
+	}
+
 }
 /// <summary>
 /// 描画
@@ -120,7 +128,7 @@ void Game::EndProcess()
 
 
 	/*エンターキー（後でPAD対応させる）が押されたらシーンを切り替える*/
-	if (input.GetReturnKeyState() || this->alpha >= 255)
+	if (input.GetReturnKeyState() || this->alpha >= this->MAX_ALPHA)
 	{
 		auto& changer = SceneChanger::GetInstance();
 		changer.ChangeScene(SceneChanger::SceneType::RESULT);

@@ -48,6 +48,7 @@ void UIManager::Init()
 void UIManager::Update()
 {
 	this->bar->Update();
+	this->operation->Update();
 }
 
 /// <summary>

@@ -43,6 +43,7 @@ void Normal::Init()
 	this->transform.pos = this->initPos;
 	this->state			= StateType::MOVE;
 	this->velocity		= 0.0f;
+	this->isStop		= false;
 
 	/*ƒ‚ƒfƒ‹‚ÌÝ’è*/
 	MV1SetScale			(this->modelHandle,this->transform.scale.value);

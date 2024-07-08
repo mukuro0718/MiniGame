@@ -8,6 +8,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     JsonManager::CreateInstance();
     SetUpScreen::CreateInstance();
     LoadingAsset::CreateInstance();
+    BackGround::CreateInstance();
     InputManager::CreateInstance();
     SceneChanger::CreateInstance();
     SceneManager::CreateInstance();
@@ -19,7 +20,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     StageManager::CreateInstance();
     GameTimer::CreateInstance();
     Collision::CreateInstance();
-    BackGround::CreateInstance();
     UIManager::CreateInstance();
     EffectManager::CreateInstance();
 

@@ -37,9 +37,8 @@ public:
 	enum class SceneType :int
 	{
 		TITLE    = 0,//タイトル
-		TUTORIAL = 1,//チュートリアル
-		GAME	 = 2,//ゲーム
-		RESULT   = 3,//リザルト
+		GAME	 = 1,//ゲーム
+		RESULT   = 2,//リザルト
 	};
 
 	//シーンの同期
