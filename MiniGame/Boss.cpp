@@ -3,7 +3,7 @@
 /// <summary>
 /// コンストラクタ
 /// </summary>
-Boss::Boss(const int _modelHandle, const vector<float> _movePos)
+Boss::Boss(const int _modelHandle, const int _breakModelHandle, const vector<float> _movePos)
 	: Enemy(_modelHandle)
 	, velocity(0.0f)
 {
@@ -17,6 +17,7 @@ Boss::Boss(const int _modelHandle, const vector<float> _movePos)
 	this->transform.rotate	.Convert(json.GetJson(jsonIndex)["BOSS_INIT_ROTATE"]);
 	this->transform.rotate	.DegToRad(this->transform.rotate);
 	this->moveTargetPos		.Convert(_movePos);
+	this->breakModelHandle = MV1DuplicateModel(_breakModelHandle);
 
 	Init();
 }
@@ -43,7 +44,8 @@ void Boss::Init()
 	this->transform.pos = this->initPos;
 	this->velocity		= 0.0f;
 	this->state			= StateType::MOVE;
-
+	this->modelHandle	= this->normalModelHandle;
+	this->isHit			= false;
 	/*モデルの設定*/
 	MV1SetScale			(this->modelHandle, this->transform.scale.value);
 	MV1SetRotationXYZ	(this->modelHandle, this->transform.rotate.value);
@@ -56,21 +58,61 @@ void Boss::Init()
 /// </summary>
 void Boss::Update()
 {
+	auto& timer = GameTimer::GetInstance();
+
 	/*速度の更新*/
 	UpdateVelocity();
 
 	/*状態の切り替え*/
 	ChangeFlagsState();
 
-	/*移動*/
-	Move();
+	if(this->isHit)
+	{
+		this->transform.pos.value.x -= 2.0f;
+	}
+	else
+	{
+		/*移動*/
+		Move();
+		HitCheck();
+	}
+
 
 	/*モデルの設定*/
-	MV1SetScale			(this->modelHandle, this->transform.scale.value);
-	MV1SetRotationXYZ	(this->modelHandle, this->transform.rotate.value);
-	MV1SetPosition		(this->modelHandle, this->transform.pos.value);
+	MV1SetScale(this->modelHandle, this->transform.scale.value);
+	MV1SetRotationXYZ(this->modelHandle, this->transform.rotate.value);
+	MV1SetPosition(this->modelHandle, this->transform.pos.value);
 }
 
+void Boss::HitCheck()
+{
+	/*シングルトンクラスのインスタンスの取得*/
+	auto& collision = Collision::GetInstance();
+	auto& amo = AmoManager::GetInstance();
+	/*弾との当たり判定*/
+//使用している球の数を取得
+	vector<int> useAmoNum = amo.GetNowUseNum();
+	//弾の数だけループ
+	for (int i = 0; i < useAmoNum.size(); i++)
+	{
+		for (int j = 0; j < useAmoNum[i]; j++)
+		{
+			//弾が誰とも当たっていないかつプレイヤーに向けて移動してきていたら
+			if (!amo.GetAmoInstance(i, j).GetIsHit() && amo.GetAmoInstance(i, j).GetIsOut())
+			{
+				//プレイヤーと弾の当たり判定をスフィアでとる（弾のほうはカプセルのほうが良いかも）
+				this->hitResult = collision.SphereAndSphereCollision(*this, amo.GetAmoInstance(i, j));
+				//当たっていたら
+				if (this->hitResult->isHit)
+				{
+					this->isHit = true;
+					this->modelHandle = this->breakModelHandle;
+				}
+			}
+		}
+	}
+
+}
 
 /// <summary>
 /// 速度の更新

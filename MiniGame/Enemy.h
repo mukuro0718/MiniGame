@@ -16,5 +16,7 @@ public:
 protected:
 	WrapVECTOR moveTargetPos;//ˆÚ“®–Ú•WÀ•W
 	bool isStop;//’â~‚µ‚½‚©
+	int breakModelHandle;
+	int normalModelHandle;
 };
 

@@ -158,6 +158,7 @@
     <ClCompile Include="Gem.cpp" />
     <ClCompile Include="GemManager.cpp" />
     <ClCompile Include="HitResult.cpp" />
+    <ClCompile Include="House.cpp" />
     <ClCompile Include="Jet.cpp" />
     <ClCompile Include="JetFlame.cpp" />
     <ClCompile Include="Normal.cpp" />
@@ -220,6 +221,7 @@
     <ClInclude Include="Gem.h" />
     <ClInclude Include="GemManager.h" />
     <ClInclude Include="HitResult.h" />
+    <ClInclude Include="House.h" />
     <ClInclude Include="Jet.h" />
     <ClInclude Include="JetFlame.h" />
     <ClInclude Include="Normal.h" />

@@ -60,10 +60,10 @@ const void FPSController::Ave()
 /// </summary>
 const void FPSController::Draw()
 {
-#if _DEBUG
-	//FPS‚Ì•`‰æ
-	DrawFormatString(1650, 0, GetColor(255,255,255), "FPS:%lg", fps);
-#endif // _DEBUG
+//#if _DEBUG
+//	//FPS‚Ì•`‰æ
+//	DrawFormatString(1650, 0, GetColor(255,255,255), "FPS:%lg", fps);
+//#endif // _DEBUG
 }
 /// <summary>
 /// –Ú•WFPS‚É‚È‚é‚æ‚¤‘Ò‹@

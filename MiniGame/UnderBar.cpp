@@ -42,7 +42,13 @@ UnderBar::~UnderBar()
 /// </summary>
 void UnderBar::Init()
 {
+    auto& json = JsonManager::GetInstance();
+    int jsonIndex = json.GetFileNameType(JsonManager::FileNameType::UI);
 
+    Convert(this->pos[static_cast<int>(ImageType::PREV)], json.GetJson(jsonIndex)["UNDER_BAR_POS"]);
+    Convert(this->pos[static_cast<int>(ImageType::NOW)], json.GetJson(jsonIndex)["UNDER_BAR_POS"]);
+    Convert(this->pos[static_cast<int>(ImageType::CAR)], json.GetJson(jsonIndex)["CAR_POS"]);
+    Convert(this->pos[static_cast<int>(ImageType::HOUSE)], json.GetJson(jsonIndex)["HOUCE_POS"]);
 }
 
 /// <summary>
@@ -53,8 +59,8 @@ void UnderBar::Update()
     auto& time = GameTimer::GetInstance();
     if (time.GetElapsetFrame() == 0)
     {
-        this->pos[static_cast<int>(ImageType::CAR)].lx += 1.0f;
-        this->pos[static_cast<int>(ImageType::CAR)].rx += 1.0f;
+        this->pos[static_cast<int>(ImageType::CAR)].lx += 10;
+        this->pos[static_cast<int>(ImageType::CAR)].rx += 10;
     }
 }
 

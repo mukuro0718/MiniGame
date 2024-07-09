@@ -15,12 +15,12 @@ CharacterManager::CharacterManager()
 	int jsonIndex = json.GetFileNameType(JsonManager::FileNameType::ENEMY);
 
 	/*インスタンスの作成*/
-	this->player = new GamePlayer(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::CAR)), asset.GetModel(static_cast<int>(LoadingAsset::ModelType::CAR_BREAK)));
-	this->enemy.emplace_back(new Normal(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::BLUE_CAR)), json.GetJson(jsonIndex)["CAR_MOVE_POS1"]));
-	this->enemy.emplace_back(new Normal(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::GRY_CAR)), json.GetJson(jsonIndex)["CAR_MOVE_POS2"]));
-	this->enemy.emplace_back(new Normal(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::GREEN_CAR)), json.GetJson(jsonIndex)["CAR_MOVE_POS3"]));
-	this->enemy.emplace_back(new Normal(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::RED_CAR)), json.GetJson(jsonIndex)["CAR_MOVE_POS4"]));
-	this->enemy.emplace_back(new Boss(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::POLICE_CAR)), json.GetJson(jsonIndex)["BOSS_MOVE_POS"]));
+	this->player =				new GamePlayer	(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::CAR))			, asset.GetModel(static_cast<int>(LoadingAsset::ModelType::CAR_BREAK)));
+	this->enemy	.emplace_back(	new Normal		(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::BLUE_CAR))	, asset.GetModel(static_cast<int>(LoadingAsset::ModelType::CAR_BREAK)), json.GetJson(jsonIndex)["CAR_MOVE_POS1"]));
+	this->enemy	.emplace_back(	new Normal		(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::GRY_CAR))		, asset.GetModel(static_cast<int>(LoadingAsset::ModelType::CAR_BREAK)), json.GetJson(jsonIndex)["CAR_MOVE_POS2"]));
+	this->enemy	.emplace_back(	new Normal		(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::GREEN_CAR))	, asset.GetModel(static_cast<int>(LoadingAsset::ModelType::CAR_BREAK)), json.GetJson(jsonIndex)["CAR_MOVE_POS3"]));
+	this->enemy	.emplace_back(	new Normal		(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::RED_CAR))		, asset.GetModel(static_cast<int>(LoadingAsset::ModelType::CAR_BREAK)), json.GetJson(jsonIndex)["CAR_MOVE_POS4"]));
+	this->enemy	.emplace_back(	new Boss		(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::POLICE_CAR))	, asset.GetModel(static_cast<int>(LoadingAsset::ModelType::CAR_BREAK)), json.GetJson(jsonIndex)["BOSS_MOVE_POS"]));
 }
 
 /// <summary>

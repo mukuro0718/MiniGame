@@ -27,6 +27,7 @@ LoadingAsset::LoadingAsset()
 	AddFontResourceEx("Data/Font/gomarice_mukasi_mukasi.ttf", FR_PRIVATE, NULL);
 	this->fontHandle.emplace_back(CreateFontToHandle("êÃÅXÇ”ÇßÇÒÇ∆", 64, 64, DX_FONTTYPE_EDGE, DX_CHARSET_DEFAULT,4));
 	this->fontHandle.emplace_back(CreateFontToHandle("êÃÅXÇ”ÇßÇÒÇ∆", 256, 64, DX_FONTTYPE_EDGE, DX_CHARSET_DEFAULT, 4));
+	this->fontHandle.emplace_back(CreateFontToHandle("êÃÅXÇ”ÇßÇÒÇ∆", 128, 64, DX_FONTTYPE_EDGE, DX_CHARSET_DEFAULT, 4));
 }
 
 /// <summary>

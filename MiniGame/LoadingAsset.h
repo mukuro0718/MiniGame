@@ -128,6 +128,7 @@ public:
 	{
 		MUKASI	 = 0,
 		MUKASI_2 = 1,
+		MUKASI_3 = 2,
 	};
 	/*ƒ‚ƒfƒ‹‚Ìgetter*/
 	const int GetModel(const int _index) { return modelHandle[_index]; }

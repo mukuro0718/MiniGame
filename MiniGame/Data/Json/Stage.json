@@ -16,5 +16,11 @@
   "FIRST_BACK_BASE_POS": [ -200.0, -50.0, 80.0 ],
   "BASE_POS_OFFSET": [ 40.0, 0.0, 0.0 ],
   "FRONT_BASE_NUM": 12,
-  "BACK_BASE_NUM": 12
+  "BACK_BASE_NUM": 12,
+
+  "HOUSE_SCALE": [ 0.2, 0.2, 0.2 ],
+  "HOUSE_ROTATE": [ 0.0, 0.0, 0.0 ],
+  "HOUSE_POS": [ 200.0, 0.0, 0.0 ],
+  "TARGET_TIME": 116,
+  "TARGET_X": -50.0
 }

@@ -28,11 +28,11 @@ Character::~Character()
 const void Character::Draw()const
 {
 	MV1DrawModel(this->modelHandle);
-#ifdef _DEBUG
-	WrapVECTOR centerPos = this->transform.pos;
-	centerPos += this->hitPosOffset;
-
-	DrawSphere3D(centerPos.value, this->radius, 16, GetColor(0, 255, 255), GetColor(0, 255, 255), FALSE);
-#endif // _DEBUG
+//#ifdef _DEBUG
+//	WrapVECTOR centerPos = this->transform.pos;
+//	centerPos += this->hitPosOffset;
+//
+//	DrawSphere3D(centerPos.value, this->radius, 16, GetColor(0, 255, 255), GetColor(0, 255, 255), FALSE);
+//#endif // _DEBUG
 
 }

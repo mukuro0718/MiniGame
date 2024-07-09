@@ -105,7 +105,7 @@ void Title::EndProcess()
 	/*インプットマネージャーのインスタンスを取得*/
 	auto& input = InputManager::GetInstance();
 	
-	if (input.GetReturnKeyState() || input.GetPadState() & PAD_INPUT_2)
+	if (input.GetReturnKeyState() || input.GetPadState() & PAD_INPUT_3)
 	{
 		this->isEnd = true;
 	}

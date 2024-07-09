@@ -3,7 +3,7 @@
 /// <summary>
 /// コンストラクタ
 /// </summary>
-Normal::Normal(const int _modelHandle, const vector<float> _movePos)
+Normal::Normal(const int _modelHandle, const int _breakModelHandle, const vector<float> _movePos)
 	: Enemy(_modelHandle)
 	, velocity(0.0f)
 {
@@ -17,7 +17,7 @@ Normal::Normal(const int _modelHandle, const vector<float> _movePos)
 	this->transform.rotate	.Convert(json.GetJson(jsonIndex)["NORMAL_INIT_ROTATE"]);
 	this->transform.rotate	.DegToRad(this->transform.rotate);
 	this->moveTargetPos		.Convert(_movePos);
-
+	this->breakModelHandle = MV1DuplicateModel(_breakModelHandle);
 	Init();
 }
 
@@ -44,6 +44,7 @@ void Normal::Init()
 	this->state			= StateType::MOVE;
 	this->velocity		= 0.0f;
 	this->isStop		= false;
+	this->modelHandle = this->normalModelHandle;
 
 	/*モデルの設定*/
 	MV1SetScale			(this->modelHandle,this->transform.scale.value);
@@ -57,10 +58,19 @@ void Normal::Init()
 void Normal::Update()
 {
 	auto& character = CharacterManager::GetInstance();
+	auto& timer = GameTimer::GetInstance();
 
 	if (character.GetIsShowBoss())
 	{
-		MoveOffScreen();
+		if (timer.GetElapsetTime() >= 120)
+		{
+			this->transform.pos.value.x-=2.0f;
+			this->modelHandle = this->breakModelHandle;
+		}
+		else
+		{
+			MoveOffScreen();
+		}
 	}
 	else
 	{

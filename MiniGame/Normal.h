@@ -9,7 +9,7 @@ class WrapVECTOR;
 class Normal : public Enemy
 {
 public:
-	Normal(const int _modelHandle,const vector<float> _movePos);	//コンストラクタ
+	Normal(const int _modelHandle, const int _breakModelHandle, const vector<float> _movePos);	//コンストラクタ
 	~Normal();														//デストラクタ
 
 	void Init()				override;//初期化

@@ -54,9 +54,9 @@ void Amo::SetPos(const WrapVECTOR& _pos)
 const void Amo::Draw()const
 {
 	MV1DrawModel(this->modelHandle);
-	WrapVECTOR spherePos = this->transform.pos.value;
-	spherePos += this->hitPosOffset;
-	DrawSphere3D(spherePos.value, this->radius, 16, GetColor(255, 0, 0), GetColor(255, 0, 0), FALSE);
+	//WrapVECTOR spherePos = this->transform.pos.value;
+	//spherePos += this->hitPosOffset;
+	//DrawSphere3D(spherePos.value, this->radius, 16, GetColor(255, 0, 0), GetColor(255, 0, 0), FALSE);
 }
 
 /// <summary>
@@ -112,12 +112,25 @@ void Amo::ChangeScale()
 /// </summary>
 const float Amo::GetRandom(const int _range)const
 {
-	float out = static_cast<float>(GetRand(_range));
+	auto& character = CharacterManager::GetInstance();
+	float out = character.GetPlayerPos().value.y;
+
+	float add = static_cast<float>(GetRand(_range));
 	if (GetRand(1) == 0)
 	{
-		return out * -1.0f;
+		add *= -1.0f;
 	}
-	return out - 10.0f;
+	out += add;
+	if (out >= 55.0f)
+	{
+		out = 50.0f;
+	}
+	else if (out <= -50.0f)
+	{
+		out = -45.0f;
+	}
+	return add + out;
+	
 }
 
 /// <summary>

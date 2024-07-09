@@ -7,8 +7,9 @@ Enemy::Enemy(const int _modelHandle)
 	: Character(_modelHandle)
 	, moveTargetPos(0.0f)
 	, isStop(false)
+	, breakModelHandle(0)
 {
-
+	this->normalModelHandle = MV1DuplicateModel(_modelHandle);
 }
 
 /// <summary>

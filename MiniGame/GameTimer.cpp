@@ -56,9 +56,10 @@ void GameTimer::Update()
 /// </summary>
 const void GameTimer::Draw()const
 {
-#ifdef _DEBUG
-	printfDx("TIME:%d", this->elapsetTime);
-#endif // _DEBUG
+//#ifdef _DEBUG
+//	clsDx();
+//	printfDx("TIME:%d", this->elapsetTime);
+//#endif // _DEBUG
 
 }
 

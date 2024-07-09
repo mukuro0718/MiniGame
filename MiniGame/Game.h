@@ -20,6 +20,8 @@ private:
 
 	/*ƒƒ“ƒo•Ï”*/
 	int alpha;
-	bool isEnd;
+	int color;
+	bool isGameOver;
+	bool isGameCrear;
 };
 

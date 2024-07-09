@@ -4,7 +4,7 @@
 class Boss : public Enemy
 {
 public:
-	Boss(const int _modelHandle, const vector<float> _movePos);	//コンストラクタ
+	Boss(const int _modelHandle, const int _breakModelHandle, const vector<float> _movePos);	//コンストラクタ
 	~Boss();													//デストラクタ
 
 	void Init()				override;//初期化
@@ -25,9 +25,10 @@ private:
 	/*内部処理関数*/
 	void UpdateVelocity();	//速度の更新
 	float RandomY();	//ジャンプ力の更新
-
+	void HitCheck();
 	/*メンバ変数*/
 	float velocity;	//移動速度
 	StateType state;//状態
+	bool isHit;
 };
 

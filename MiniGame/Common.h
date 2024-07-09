@@ -38,7 +38,7 @@ using namespace std;
 #include "HitResult.h"
 #include "Gem.h"
 #include "Building.h"
-
+#include "House.h"
 #include "BackGround.h"
 
 #include "Cannon.h"

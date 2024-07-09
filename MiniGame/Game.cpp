@@ -5,6 +5,9 @@
 /// </summary>
 Game::Game()
 	: alpha(MAX_ALPHA)
+	, isGameCrear(false)
+	, isGameOver(false)
+	, color(0)
 {
 	Init();
 }
@@ -70,7 +73,19 @@ void Game::Update()
 	//gem		.Update();
 	ui			.Update();
 	
-	if (character.GetPlayerIsHit() && character.GetPlayerPos().value.y <= -50.0f)
+
+	if (timer.GetElapsetTime() >= 120)
+	{
+		this->isGameCrear = true;
+		this->color = GetColor(255, 255, 255);
+	}
+	else if (character.GetPlayerIsHit())
+	{
+		this->isGameOver = true;
+		this->color = GetColor(0, 0, 0);
+	}
+
+	if ((this->isGameOver && character.GetPlayerPos().value.y <= -50.0f) || this->isGameCrear)
 	{
 		this->alpha += 2;
 	}
@@ -102,9 +117,6 @@ void Game::Draw()
 	int jsonFileNum = static_cast<int>(JsonManager::FileNameType::SET_UP_SCREEN);
 
 	/*•`‰æ*/
-	clsDx();
-	printfDx("GAME");
-
 	timer		.Draw();
 	backGround	.Draw();
 	stage		.Draw();
@@ -115,7 +127,7 @@ void Game::Draw()
 	character	.Draw();
 
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, this->alpha);
-	DrawBox(0, 0, json.GetJson(jsonFileNum)["WINDOW_WIDTH"], json.GetJson(jsonFileNum)["WINDOW_HEIGHT"], GetColor(0, 0, 0), TRUE);
+	DrawBox(0, 0, json.GetJson(jsonFileNum)["WINDOW_WIDTH"], json.GetJson(jsonFileNum)["WINDOW_HEIGHT"], this->color, TRUE);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 }
 /// <summary>

@@ -72,7 +72,7 @@ void Fish2::Move()
 		MoveOffScreen();
 		if (this->transform.pos.value.x >= 100.0f || this->transform.pos.value.y >= 100.0f)
 		{
-			this->transform.pos = { 120.0,GetRandom(40),0.0 };
+			this->transform.pos = { 120.0,GetRandom(10),0.0 };
 			this->isOut = true;
 		}
 	}

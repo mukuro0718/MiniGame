@@ -179,6 +179,9 @@
     <ClCompile Include="TitlePlayer.cpp">
       <Filter>Object\Charactar\Player</Filter>
     </ClCompile>
+    <ClCompile Include="House.cpp">
+      <Filter>Object\Stage\House</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="FPSController">
@@ -354,6 +357,9 @@
     </Filter>
     <Filter Include="Object\Stage\Building">
       <UniqueIdentifier>{c637ed65-7149-4483-ab61-3af006af9916}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Stage\House">
+      <UniqueIdentifier>{4886b7a3-16b9-4b80-b738-db0311c2e433}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -533,6 +539,9 @@
     </ClInclude>
     <ClInclude Include="TitlePlayer.h">
       <Filter>Object\Charactar\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="House.h">
+      <Filter>Object\Stage\House</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
