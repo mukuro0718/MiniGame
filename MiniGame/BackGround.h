@@ -44,13 +44,7 @@ private:
 		int x = 0;
 		int y = 0;
 	};
-	enum class BackGroundType
-	{
-		NIGHT	= 0,//夜
-		CAVE	= 1,//洞窟
-		FOREST	= 2,//森
-		OCEAN	= 3,//海
-	};
+	
 	/*内部処理関数*/
 	BackGround();			//コンストラクタ
 	void Move();

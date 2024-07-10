@@ -191,6 +191,7 @@
     <ClCompile Include="StageManager.cpp" />
     <ClCompile Include="GameTimer.cpp" />
     <ClCompile Include="Title.cpp" />
+    <ClCompile Include="TitleCamera.cpp" />
     <ClCompile Include="TitlePlayer.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Tutorial.cpp" />
@@ -253,6 +254,7 @@
     <ClInclude Include="StageManager.h" />
     <ClInclude Include="GameTimer.h" />
     <ClInclude Include="Title.h" />
+    <ClInclude Include="TitleCamera.h" />
     <ClInclude Include="TitlePlayer.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Tutorial.h" />

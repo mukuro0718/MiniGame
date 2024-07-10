@@ -140,10 +140,11 @@ void BackGround::UpdateAlpha()
 const void BackGround::Draw()const
 {
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, this->alpha);
-	for (int i = 0; i < this->imageHandle.size(); i++)
-	{
-		DrawExtendGraph(0 - this->moveX[i]					, 0, this->imageWidth - this->moveX[i]		, this->imageHeight, this->imageHandle[i], TRUE);
-		DrawExtendGraph(this->imageWidth - this->moveX[i]	, 0, (this->imageWidth * 2) - this->moveX[i], this->imageHeight, this->imageHandle[i], TRUE);
-	}
+		DrawBox(0, 0, 1920, 1080, GetColor(24, 235, 249), TRUE);
+	//for (int i = 0; i < this->imageHandle.size(); i++)
+	//{
+	//	//DrawExtendGraph(0 - this->moveX[i]					, 0, this->imageWidth - this->moveX[i]		, this->imageHeight, this->imageHandle[i], TRUE);
+	//	//DrawExtendGraph(this->imageWidth - this->moveX[i]	, 0, (this->imageWidth * 2) - this->moveX[i], this->imageHeight, this->imageHandle[i], TRUE);
+	//}
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, this->maxAlpha);
 }

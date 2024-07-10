@@ -182,6 +182,9 @@
     <ClCompile Include="House.cpp">
       <Filter>Object\Stage\House</Filter>
     </ClCompile>
+    <ClCompile Include="TitleCamera.cpp">
+      <Filter>Object\Camera</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="FPSController">
@@ -542,6 +545,9 @@
     </ClInclude>
     <ClInclude Include="House.h">
       <Filter>Object\Stage\House</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleCamera.h">
+      <Filter>Object\Camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

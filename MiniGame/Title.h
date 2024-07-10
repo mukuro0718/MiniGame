@@ -4,6 +4,7 @@
 #pragma once
 #include "SceneBase.h"
 
+class Transform;
 class Title : public SceneBase
 {
 public:
@@ -19,21 +20,36 @@ private:
 	//画像の種類
 	enum class ImageType
 	{
-		TITLE_LOGO,
-		PUSH_BUTTON,
+		TITLE_LOGO = 0,
+		PUSH_BUTTON = 1,
 	};
-
+	//モデルの種類
+	enum class ModelType
+	{
+		FISH_1 = 0,
+		FISH_2 = 1,
+		FISH_3 = 2,
+		PLAYER = 3,
+	};
 	static constexpr int MAX_ALPHA = 255;
 
 	/*内部処理関数*/
-	const void Draw()const;//描画
+	void		ChangeLogoSizeOffset	();//ロゴサイズオフセットの変更
+	void		ChangeTransitionAlpha	();//遷移アルファ値の変更
+	void		Create					();//作成
+	void		SetTransform			();
+	const void	DrawLogo				()const;
+	const void	DrawButton				()const;
+	const void	DrawTransition			()const;
 
 	/*メンバ変数*/
-	int imageHandle;
-	int fontHandle;
-	int alpha;
-	bool isEnd;
-	int sizeOffset;
-	bool isAdd;
+	int					imageHandle;
+	int					fontHandle;
+	int					alpha;
+	int					sizeOffset;
+	bool				isEnd;
+	bool				isAdd;
+	vector<Transform>	transform;
+	vector<int>			modelHandle;
 };
 

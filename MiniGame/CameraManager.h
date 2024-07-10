@@ -35,6 +35,7 @@ public:
 	}
 
 	void Update();//更新
+	void TitleCameraUpdate();//タイトルカメラの更新
 private:
 	/*内部処理関数*/
 	CameraManager(); //コンストラクタ
@@ -42,5 +43,6 @@ private:
 	/*メンバ変数*/
 	static CameraManager*	instance;	//唯一のインスタンス
 	GameCamera*				camera;		//ゲームカメラ
+	TitleCamera*			titleCamera;//タイトルカメラ
 };
 
