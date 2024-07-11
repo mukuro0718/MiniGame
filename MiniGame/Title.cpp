@@ -4,12 +4,15 @@
 /// コンストラクタ
 /// </summary>
 Title::Title()
-	: imageHandle(-1)
-	, fontHandle(-1)
-	, alpha(MAX_ALPHA)
-	, isEnd(false)
-	, sizeOffset(0)
-	, isAdd(true)
+	: imageHandle		(-1)
+	, fontHandle		(-1)
+	, alpha				(MAX_ALPHA)
+	, isEnd				(false)
+	, sizeOffset		(0)
+	, logoAlpha			(0)
+	, buttonAlpha		(0)
+	, buttonFontHandle	(-1)
+	, isAddButtonAlpha	(true)
 {
 	Create();
 	SetTransform();
@@ -37,7 +40,6 @@ void Title::Update()
 
 
 	backGround.Update();
-	camera.TitleCameraUpdate();
 	
 	for (int i = 0; i < this->modelHandle.size(); i++)
 	{
@@ -46,7 +48,7 @@ void Title::Update()
 		MV1SetPosition(this->modelHandle[i], this->transform[i].pos.value);
 	}
 	
-	//ChangeLogoSizeOffset();
+	ChangeLogoSizeOffset();
 	ChangeTransitionAlpha();
 }
 
@@ -60,13 +62,8 @@ void Title::Draw()
 
 	backGround.Draw();
 	
-	for (int i = 0; i < this->modelHandle.size(); i++)
-	{
-		MV1DrawModel(this->modelHandle[i]);
-	}
-
-	//DrawLogo();
-	//DrawButton();
+	DrawTitleImage();
+	DrawLogo();
 	DrawTransition();
 }
 
@@ -97,21 +94,27 @@ const void Title::DrawLogo()const
 {
 	auto& json = JsonManager::GetInstance();
 	int jsonIndex = json.GetFileNameType(JsonManager::FileNameType::SCENE);
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, this->logoAlpha);
 	DrawStringToHandle(json.GetJson(jsonIndex)["TITLE_LOGO_X"], json.GetJson(jsonIndex)["TITLE_LOGO_Y"], "いつもとちがう\n　　　帰り道", GetColor(255, 255, 255), this->fontHandle);
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, this->MAX_ALPHA);
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, this->buttonAlpha);
+	DrawStringToHandle(json.GetJson(jsonIndex)["TITLE_BUTTON_X"], json.GetJson(jsonIndex)["TITLE_BUTTON_Y"], "ボタンを押す", GetColor(255, 255, 255), this->buttonFontHandle);
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, this->MAX_ALPHA);
 }
 
 /// <summary>
 /// ボタンの描画
 /// </summary>
-const void Title::DrawButton()const
+const void Title::DrawTitleImage()const
 {
 	auto& json = JsonManager::GetInstance();
 	int jsonIndex = json.GetFileNameType(JsonManager::FileNameType::SCENE);
 
-	const int x = json.GetJson(jsonIndex)["TITLE_A_BUTTON_X"];
-	const int y = json.GetJson(jsonIndex)["TITLE_A_BUTTON_Y"];
-	const int size = json.GetJson(jsonIndex)["TITLE_A_SIZE"];
-	DrawExtendGraph(x - this->sizeOffset, y - this->sizeOffset, x + size + this->sizeOffset, y + size + this->sizeOffset, this->imageHandle, TRUE);
+	const int lx = json.GetJson(jsonIndex)["TITLE_IMAGE_LX"];
+	const int ly = json.GetJson(jsonIndex)["TITLE_IMAGE_LY"];
+	const int rx = json.GetJson(jsonIndex)["TITLE_IMAGE_RX"];
+	const int ry = json.GetJson(jsonIndex)["TITLE_IMAGE_RY"];
+	DrawExtendGraph(lx, ly, rx, ry, this->imageHandle, TRUE);
 }
 
 /// <summary>
@@ -136,22 +139,37 @@ void Title::ChangeLogoSizeOffset()
 	auto& json = JsonManager::GetInstance();
 	int jsonIndex = json.GetFileNameType(JsonManager::FileNameType::SCENE);
 
-	if (this->isAdd)
+	if (this->alpha <= 0)
 	{
-		sizeOffset++;
-		if (sizeOffset >= json.GetJson(jsonIndex)["TITLE_A_SIZE_OFFSET"])
+		if (this->logoAlpha < this->MAX_ALPHA)
 		{
-			this->isAdd = false;
+			this->logoAlpha += json.GetJson(jsonIndex)["TITLE_LOGO_ADD_ALPHA"];
+			if (this->logoAlpha >= this->MAX_ALPHA)
+			{
+				this->logoAlpha = this->MAX_ALPHA;
+			}
+		}
+		else
+		{
+			if (this->isAddButtonAlpha)
+			{
+				this->buttonAlpha += json.GetJson(jsonIndex)["TITLE_LOGO_ADD_ALPHA"];
+				if (this->buttonAlpha >= this->MAX_ALPHA)
+				{
+					this->isAddButtonAlpha = false;
+				}
+			}
+			else
+			{
+				this->buttonAlpha -= json.GetJson(jsonIndex)["TITLE_LOGO_ADD_ALPHA"];
+				if (this->buttonAlpha < 0)
+				{
+					this->isAddButtonAlpha = true;
+				}
+			}
 		}
 	}
-	else
-	{
-		sizeOffset--;
-		if (sizeOffset <= 0)
-		{
-			this->isAdd = true;
-		}
-	}
+
 }
 
 /// <summary>
@@ -185,7 +203,8 @@ void Title::Create()
 	this->modelHandle.emplace_back(MV1DuplicateModel(asset.GetModel(asset.GetModelType(LoadingAsset::ModelType::FISH_3))));
 	this->modelHandle.emplace_back(MV1DuplicateModel(asset.GetModel(asset.GetModelType(LoadingAsset::ModelType::CAR))));
 	this->fontHandle = asset.GetFont(asset.GetFontType(LoadingAsset::FontType::MUKASI_2));
-	this->imageHandle = asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::A_BUTTON));
+	this->buttonFontHandle = asset.GetFont(asset.GetFontType(LoadingAsset::FontType::MUKASI));
+	this->imageHandle = asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::TITLE_IMAGE));
 }
 
 void Title::SetTransform()

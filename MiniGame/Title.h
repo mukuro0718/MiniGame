@@ -20,8 +20,7 @@ private:
 	//‰æ‘œ‚Ìí—Ş
 	enum class ImageType
 	{
-		TITLE_LOGO = 0,
-		PUSH_BUTTON = 1,
+		TITLE_IMAGE = 0,
 	};
 	//ƒ‚ƒfƒ‹‚Ìí—Ş
 	enum class ModelType
@@ -39,16 +38,19 @@ private:
 	void		Create					();//ì¬
 	void		SetTransform			();
 	const void	DrawLogo				()const;
-	const void	DrawButton				()const;
+	const void	DrawTitleImage			()const;
 	const void	DrawTransition			()const;
 
 	/*ƒƒ“ƒo•Ï”*/
 	int					imageHandle;
 	int					fontHandle;
+	int					buttonFontHandle;
 	int					alpha;
+	int					logoAlpha;
+	int					buttonAlpha;
 	int					sizeOffset;
 	bool				isEnd;
-	bool				isAdd;
+	bool				isAddButtonAlpha;
 	vector<Transform>	transform;
 	vector<int>			modelHandle;
 };

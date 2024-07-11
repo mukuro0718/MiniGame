@@ -19,7 +19,7 @@ Result::Result()
 	int jsonIndex = static_cast<int>(JsonManager::FileNameType::SCENE);
 
 
-	this->imageHandle = asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::A_BUTTON));
+	this->imageHandle = asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::TITLE_IMAGE));
 	this->fontHandle = asset.GetFont(asset.GetFontType(LoadingAsset::FontType::MUKASI_3));
 	if (timer.GetElapsetTime() >= 120)
 	{

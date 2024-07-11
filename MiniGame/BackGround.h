@@ -44,22 +44,30 @@ private:
 		int x = 0;
 		int y = 0;
 	};
-	
+	//画像の種類
+	enum class ImageType
+	{
+		TITLE_IMAGE,
+		CLOUD,
+	};
+
+	/*静的定数*/
+	static constexpr int MAX_ALPHA = 255;
+
 	/*内部処理関数*/
 	BackGround();			//コンストラクタ
 	void Move();
-	void ChangeBackGround();//背景の変更
+	void ChangeCloudInfo(const int _index);//背景の変更
 	void UpdateAlpha();
+	int GetRandom(const int _range, const bool _isSign,const int _offset);//ランダム値の取得
+
 	/*メンバ変数*/
 	static BackGround*	instance;		//唯一のインスタンス
-	std::vector<int>	moveX;			//移動サイズ
-	std::vector<int>	velocity;		//移動速度
-	std::vector<int>	imageHandle;	//画像ハンドル
+	std::vector<Vec2d>	cloudPos;		//描画座標
+	std::vector<Vec2d>	cloudSize;		//画像サイズ
+	std::vector<int>	cloudVelocity;	//移動速度
+	vector<int>			imageHandle;	//画像ハンドル
 	bool				isEraseImage;	//画像を消すか
-	int					imageWidth;		//画像の横の大きさ
-	int					imageHeight;	//画像の縦の大きさ
 	int					alpha;			//アルファ
-	int					maxAlpha;		//最大アルファ
-
 };
 
