@@ -7,14 +7,20 @@ const int Result::COLOR_WHITE = GetColor(255, 255, 255);
 /// コンストラクタ
 /// </summary>
 Result::Result()
-	: transitionAlpha(MAX_ALPHA)
-	, color(0)
-	, isGameClear(false)
-	, isGameOver(false)
-	, buttonAlpha(0)
-	, isExplosion(false)
-	, explosionIndex(0)
+	: explosionPos		 (0.0f)
+	, isGameClear		 (false)
+	, isGameOver		 (false)
+	, isExplosion		 (false)
+	, isEnd				 (false)
+	, isAddAlpha		 (false)
+	, isDrawClearText	 (false)
+	, textColor			 (0)
+	, transitionAlpha	 (MAX_ALPHA)
+	, color				 (0)
+	, buttonAlpha		 (0)
+	, explosionIndex	 (0)
 	, explosionFrameCount(0)
+	, smokeHandle		 (-1)
 {
 	/*シングルトンクラスのインスタンスの取得*/
 	auto& character = CharacterManager::GetInstance();
@@ -25,6 +31,7 @@ Result::Result()
 	Create();
 	SetTransform();
 	SetText();
+	InitSmoke();
 }
 
 /// <summary>
@@ -40,28 +47,23 @@ Result::~Result()
 /// </summary>
 void Result::Update()
 {
-	auto& input = InputManager::GetInstance();
-	auto& json = JsonManager::GetInstance();
+	auto& input		 = InputManager::GetInstance();
+	auto& json		 = JsonManager::GetInstance();
 	auto& backGround = BackGround::GetInstance();
-	auto& camera = CameraManager::GetInstance();
-	auto& stage = StageManager::GetInstance();
-	auto& character = CharacterManager::GetInstance();
-	auto& timer = GameTimer::GetInstance();
-	int   jsonIndex = static_cast<int>(JsonManager::FileNameType::SCENE);
+	auto& camera	 = CameraManager::GetInstance();
+	auto& stage		 = StageManager::GetInstance();
+	auto& character  = CharacterManager::GetInstance();
+	auto& timer		 = GameTimer::GetInstance();
+	int   jsonIndex  = static_cast<int>(JsonManager::FileNameType::SCENE);
 
 	backGround.Update();
 
 	/*更新処理*/
-	if (this->isGameOver)
-	{
-		camera.OverCameraUpdate();
-		character.Update();
-	}
-	else
+	if (this->isGameClear)
 	{
 		timer.Update();
 		camera.ClearCameraUpdate();
-		if (!this->isExplosion)
+		if (this->transform[static_cast<int>(ModelType::HOUSE)].pos.value.x > 0.0f)
 		{
 			stage.Update();
 			this->transform[static_cast<int>(ModelType::HOUSE)].pos.value.x--;
@@ -76,6 +78,30 @@ void Result::Update()
 			MV1SetRotationXYZ(this->modelHandle[i], this->transform[i].rotate.value);
 			MV1SetScale(this->modelHandle[i], this->transform[i].scale.value);
 		}
+		if (this->isExplosion)
+		{
+			this->explosionFrameCount++;
+
+			if (this->explosionFrameCount % 5 == 0)
+			{
+				this->explosionIndex++;
+				if (this->explosionIndex >= this->explosionHandle.size())
+				{
+					this->isExplosion = false;
+					this->explosionIndex = 0;
+				}
+				if (this->explosionIndex >= 5)
+				{
+					this->isDrawClearText = true;
+				}
+			}
+		}
+	}
+	else
+	{
+		camera.OverCameraUpdate();
+		character.Update();
+		UpdateSmoke();
 	}
 	/*α値の増減*/
 	if (this->isEnd)
@@ -87,6 +113,10 @@ void Result::Update()
 		if (this->transitionAlpha > 0)
 		{
 			this->transitionAlpha -= json.GetJson(jsonIndex)["RESULT_ADD_TRRANSITION_ALPHA"];
+		}
+		else
+		{
+			this->color = this->COLOR_BLACK;
 		}
 	}
 	UpdateButtonAlpha();
@@ -124,13 +154,13 @@ void Result::Draw()
 {
 	auto& json		 = JsonManager		::GetInstance();
 	int   jsonIndex	 = static_cast<int>(JsonManager::FileNameType::SET_UP_SCREEN);
-	if (this->isGameOver)
+	if (this->isGameClear)
 	{
-		DrawGameOver();
+		DrawGameClear();
 	}
 	else
 	{
-		DrawGameClear();
+		DrawGameOver();
 	}
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, this->transitionAlpha);
 	DrawBox(0, 0, json.GetJson(jsonIndex)["WINDOW_WIDTH"], json.GetJson(jsonIndex)["WINDOW_HEIGHT"], this->color, TRUE);
@@ -146,12 +176,18 @@ void Result::DrawGameOver()
 
 	backGround.Draw();
 	stage.Draw();
+	for (int i = 0; i < this->smokePos.size(); i++)
+	{
+		DrawBillboard3D(this->smokePos[i].value, 0.5f, 0.5f, this->smokeSize[i], 0.0f, this->smokeHandle, TRUE);
+	}
 	character.Draw();
+
+
 	fontIndex = static_cast<int>(FontType::OVER);
-	DrawStringToHandle(this->textPos[fontIndex].x, this->textPos[fontIndex].y, "GAMEOVER", this->textColor, this->fontHandle[fontIndex]);
+	DrawStringToHandle(this->textPos[fontIndex].x, this->textPos[fontIndex].y, "GAMEOVER", this->COLOR_WHITE, this->fontHandle[fontIndex]);
 	fontIndex = static_cast<int>(FontType::BUTTON);
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, this->buttonAlpha);
-	DrawStringToHandle(this->textPos[fontIndex].x, this->textPos[fontIndex].y, "ボタンを押す", this->textColor, this->fontHandle[fontIndex]);
+	DrawStringToHandle(this->textPos[fontIndex].x, this->textPos[fontIndex].y, "ボタンを押す", this->COLOR_WHITE, this->fontHandle[fontIndex]);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, this->MAX_ALPHA);
 }
 void Result::DrawGameClear()
@@ -160,18 +196,34 @@ void Result::DrawGameClear()
 	auto& backGround = BackGround::GetInstance();
 	int   fontIndex = 0;
 
+	/*背景*/
 	backGround.Draw();
+
+	/*ステージ*/
 	stage.Draw();
+	
+	/*モデル*/
 	for (int i = 0; i < this->modelHandle.size(); i++)
 	{
 		MV1DrawModel(this->modelHandle[i]);
 	}
-	fontIndex = static_cast<int>(FontType::OVER);
-	DrawStringToHandle(this->textPos[fontIndex].x, this->textPos[fontIndex].y, "GAMECLEAR", this->COLOR_WHITE, this->fontHandle[fontIndex]);
-	fontIndex = static_cast<int>(FontType::BUTTON);
-	SetDrawBlendMode(DX_BLENDMODE_ALPHA, this->buttonAlpha);
-	DrawStringToHandle(this->textPos[fontIndex].x, this->textPos[fontIndex].y, "ボタンを押す", this->COLOR_WHITE, this->fontHandle[fontIndex]);
-	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, this->MAX_ALPHA);
+	
+	/*テキスト*/
+	if (this->isDrawClearText)
+	{
+		fontIndex = static_cast<int>(FontType::CLEAR);
+		DrawStringToHandle(this->textPos[fontIndex].x, this->textPos[fontIndex].y, "GAMECLEAR", this->COLOR_WHITE, this->fontHandle[fontIndex]);
+		fontIndex = static_cast<int>(FontType::BUTTON);
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, this->buttonAlpha);
+		DrawStringToHandle(this->textPos[fontIndex].x, this->textPos[fontIndex].y, "ボタンを押す", this->COLOR_WHITE, this->fontHandle[fontIndex]);
+		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, this->MAX_ALPHA);
+	}
+	
+	/*爆発*/
+	if (this->isExplosion)
+	{
+		DrawBillboard3D(this->explosionPos.value, 0.5f, 0.5f, this->EXPLOSIONT_SIZE, 0.0f, this->explosionHandle[this->explosionIndex], TRUE);
+	}
 }
 
 
@@ -238,6 +290,8 @@ void Result::Create()
 	this->explosionHandle.emplace_back(asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::EXPLOSION_26)));
 	this->explosionHandle.emplace_back(asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::EXPLOSION_27)));
 	this->explosionHandle.emplace_back(asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::EXPLOSION_28)));
+
+	this->smokeHandle = asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::SMOKE_BLACK));
 }
 
 void Result::SetTransform()
@@ -260,6 +314,7 @@ void Result::SetTransform()
 	this->transform[static_cast<int>(ModelType::HOUSE)].rotate.DegToRad(this->transform[static_cast<int>(ModelType::HOUSE)].rotate);
 	this->transform[static_cast<int>(ModelType::HOUSE)].scale.Convert(json.GetJson(jsonIndex)["RESULT_HOUSE_SCALE"]);
 
+	explosionPos = { 0.0f,0.0f,0.0f };
 }
 
 
@@ -294,4 +349,117 @@ void Result::SetText()
 	vector<int> buttonPos = json.GetJson(jsonIndex)["RESULT_BUTTON_TEXT_POS"];
 	addPos = { buttonPos[0] ,buttonPos[1] };
 	this->textPos.emplace_back(addPos);
+}
+int Result::GetRandom(const int _range, const bool _isSign, const int _offset)
+{
+	int out = GetRand(_range);
+	if (_isSign && GetRand(1) == 1)
+	{
+		out *= -1;
+	}
+
+	return out + _offset;
+}
+
+
+/// <summary>
+/// 煙の設定
+/// </summary>
+void Result::InitSmoke()
+{
+	auto& json = JsonManager::GetInstance();
+	int jsonIndex = static_cast<int>(JsonManager::FileNameType::SCENE);
+	auto& character = CharacterManager::GetInstance();
+
+	WrapVECTOR origin = 0.0f;
+	WrapVECTOR playerPos = character.GetPlayerPos();
+	playerPos = playerPos.Add(json.GetJson(jsonIndex)["RESULT_SMOKE_POS_OFFSET"]);
+	for (int i = 0; i < json.GetJson(jsonIndex)["RESULT_SMOKE_NUM"]; i++)
+	{
+		this->smokeMoveVec.emplace_back(origin);
+		this->smokePos.emplace_back(playerPos);
+		this->smokeVelocity.emplace_back(0.0f);
+		this->smokeSize.emplace_back(0);
+	}
+
+	for (int i = 0; i < json.GetJson(jsonIndex)["RESULT_SMOKE_NUM"]; i++)
+	{
+		this->smokeMoveVec[i].value.x = static_cast<float>(GetRandom
+		(
+			json.GetJson(jsonIndex)["RESULT_SMOKE_X_RANGE"],
+			true, 0
+		));
+		this->smokeMoveVec[i].value.y = static_cast<float>(GetRandom
+		(
+			json.GetJson(jsonIndex)["RESULT_SMOKE_Y_RANGE"],
+			false,
+			json.GetJson(jsonIndex)["RESULT_SMOKE_Y_OFFSET"]
+		));
+		this->smokeMoveVec[i] = this->smokeMoveVec[i].Norm();
+
+		this->smokeVelocity[i] = static_cast<float>(GetRandom
+		(
+			json.GetJson(jsonIndex)["RESULT_SMOKE_VELOCITY_RANGE"],
+			false,
+			json.GetJson(jsonIndex)["RESULT_SMOKE_VELOCITY_OFFSET"]
+		));
+		this->smokeSize[i] = GetRandom
+		(
+			json.GetJson(jsonIndex)["RESULT_SMOKE_SIZE_RANGE"],
+			false,
+			json.GetJson(jsonIndex)["RESULT_SMOKE_SIZE_OFFSET"]
+		);
+	}
+}
+/// <summary>
+/// 煙の設定
+/// </summary>
+void Result::SetSmoke(const int _index)
+{
+	auto& json = JsonManager::GetInstance();
+	auto& character = CharacterManager::GetInstance();
+	int jsonIndex = static_cast<int>(JsonManager::FileNameType::SCENE);
+	this->smokePos[_index] = character.GetPlayerPos();
+	smokePos[_index] = smokePos[_index].Add(json.GetJson(jsonIndex)["RESULT_SMOKE_POS_OFFSET"]);
+
+	this->smokeMoveVec[_index].value.x = static_cast<float>(GetRandom
+	(
+		json.GetJson(jsonIndex)["RESULT_SMOKE_X_RANGE"],
+		true, 0
+	));
+	this->smokeMoveVec[_index].value.y = static_cast<float>(GetRandom
+	(
+		json.GetJson(jsonIndex)["RESULT_SMOKE_Y_RANGE"],
+		false,
+		json.GetJson(jsonIndex)["RESULT_SMOKE_Y_OFFSET"]
+	));
+	this->smokeMoveVec[_index] = this->smokeMoveVec[_index].Norm();
+	this->smokeVelocity[_index] = static_cast<float>(GetRandom
+	(
+		json.GetJson(jsonIndex)["RESULT_SMOKE_VELOCITY_RANGE"],
+		false,
+		json.GetJson(jsonIndex)["RESULT_SMOKE_VELOCITY_OFFSET"]
+	));
+	this->smokeSize[_index] = GetRandom
+	(
+		json.GetJson(jsonIndex)["RESULT_SMOKE_SIZE_RANGE"],
+		false,
+		json.GetJson(jsonIndex)["RESULT_SMOKE_SIZE_OFFSET"]
+	);
+}
+
+/// <summary>
+/// 煙の更新
+/// </summary>
+void Result::UpdateSmoke()
+{
+	for (int i = 0; i < this->smokePos.size(); i++)
+	{
+		float velocity = this->smokeVelocity[i] / 10.0f;
+		this->smokePos[i] += this->smokeMoveVec[i].Scale(velocity);
+		if (this->smokePos[i].value.y >= 10.0f)
+		{
+			SetSmoke(i);
+		}
+	}
 }

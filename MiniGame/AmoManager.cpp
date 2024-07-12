@@ -173,6 +173,16 @@ void AmoManager::InitUseCurrentlyNum()
 {
 	auto& character = CharacterManager::GetInstance();
 	//インデックスの初期化
+	if (!character.GetIsShowBoss())
+	{
+		for (int i = 0; i < useCurrentlyNum.size(); i++)
+		{
+			for (int j = 0; j < useCurrentlyNum[i]; j++)
+			{
+				amo[i][j]->Init();
+			}
+		}
+	}
 	for (int i = 0; i < this->useCurrentlyNum.size(); i++)
 	{
 		this->useCurrentlyNum[i] = 0;

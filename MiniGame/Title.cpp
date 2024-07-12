@@ -181,12 +181,12 @@ void Title::ChangeTransitionAlpha()
 	{
 		if (this->alpha > 0)
 		{
-			this->alpha -= 2;
+			this->alpha -= 10;
 		}
 	}
 	else
 	{
-		this->alpha += 2;
+		this->alpha += 10;
 		if (this->alpha >= this->MAX_ALPHA)
 		{
 			this->alpha = this->MAX_ALPHA;

@@ -41,7 +41,7 @@ void Building::Update()
 {
 	if (this->isMove)
 	{
-		this->transform.pos.value.x -= 2.0f;
+ 		this->transform.pos.value.x -= 2.0f;
 		if (this->transform.pos.value.x <= -240.0f)
 		{
 			Init();
