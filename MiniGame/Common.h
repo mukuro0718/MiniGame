@@ -49,7 +49,7 @@ using namespace std;
 #include "Fish4.h"
 #include "Shark.h"
 #include "GameCamera.h"
-#include "TitleCamera.h"
+#include "ResultCamera.h"
 #include "CameraManager.h"
 #include "GamePlayer.h"
 #include "Enemy.h"

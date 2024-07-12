@@ -35,14 +35,15 @@ public:
 	}
 
 	void Update();//更新
-	void TitleCameraUpdate();//タイトルカメラの更新
+	void ClearCameraUpdate(); //クリアカメラの更新
+	void OverCameraUpdate();  //オーバーカメラの更新
 private:
 	/*内部処理関数*/
 	CameraManager(); //コンストラクタ
 
 	/*メンバ変数*/
-	static CameraManager*	instance;	//唯一のインスタンス
-	GameCamera*				camera;		//ゲームカメラ
-	TitleCamera*			titleCamera;//タイトルカメラ
+	static CameraManager*	instance;	 //唯一のインスタンス
+	GameCamera*				camera;		 //ゲームカメラ
+	ResultCamera*			resultCamera;//リザルトカメラ
 };
 

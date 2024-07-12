@@ -1,14 +1,16 @@
 #include "Common.h"
 
+const int Result::COLOR_BLACK = GetColor(0, 0, 0);
+const int Result::COLOR_WHITE = GetColor(255, 255, 255);
+
 /// <summary>
 /// コンストラクタ
 /// </summary>
 Result::Result()
-	: alpha(MAX_ALPHA)
+	: transitionAlpha(MAX_ALPHA)
 	, color(0)
 	, isGameClear(false)
 	, isGameOver(false)
-	, waitFrameCount(0)
 	, buttonAlpha(0)
 {
 	/*シングルトンクラスのインスタンスの取得*/
@@ -19,8 +21,9 @@ Result::Result()
 	int jsonIndex = static_cast<int>(JsonManager::FileNameType::SCENE);
 
 
-	this->imageHandle = asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::TITLE_IMAGE));
-	this->fontHandle = asset.GetFont(asset.GetFontType(LoadingAsset::FontType::MUKASI_3));
+	this->fontHandle.emplace_back(asset.GetFont(asset.GetFontType(LoadingAsset::FontType::MUKASI_2)));
+	this->fontHandle.emplace_back(asset.GetFont(asset.GetFontType(LoadingAsset::FontType::MUKASI_2)));
+	this->fontHandle.emplace_back(asset.GetFont(asset.GetFontType(LoadingAsset::FontType::MUKASI)));
 	if (timer.GetElapsetTime() >= 120)
 	{
 		this->color = GetColor(255, 255, 255);
@@ -34,12 +37,17 @@ Result::Result()
 		this->textColor = GetColor(255, 255, 255);
 		this->isGameOver = true;
 	}
-	vector<int> mainPos = json.GetJson(jsonIndex)["RESULT_MAIN_TEXT_POS"];
-	this->textPos.emplace_back(mainPos);
-	vector<int> overPos = json.GetJson(jsonIndex)["RESULT_GAME_OVER_TEXT_POS"];
-	this->textPos.emplace_back(overPos);
-	vector<int> clearPos = json.GetJson(jsonIndex)["RESULT_GAME_CLEAR_TEXT_POS"];
-	this->textPos.emplace_back(clearPos);
+	vector<int> overPos = json.GetJson(jsonIndex)["RESULT_GAMEOVER_TEXT_POS"];
+	Vec2d addPos = { overPos[0] ,overPos[1] };
+	this->textPos.emplace_back(addPos);
+
+	vector<int> clearPos = json.GetJson(jsonIndex)["RESULT_GAMECLEAR_TEXT_POS"];
+	addPos = { clearPos[0] ,clearPos[1] };
+	this->textPos.emplace_back(addPos);
+
+	vector<int> buttonPos = json.GetJson(jsonIndex)["RESULT_BUTTON_TEXT_POS"];
+	addPos = { buttonPos[0] ,buttonPos[1] };
+	this->textPos.emplace_back(addPos);
 }
 
 /// <summary>
@@ -57,142 +65,96 @@ void Result::Update()
 {
 	auto& input = InputManager::GetInstance();
 	auto& json = JsonManager::GetInstance();
-	int jsonIndex = static_cast<int>(JsonManager::FileNameType::SCENE);
+	auto& backGround = BackGround::GetInstance();
+	auto& camera = CameraManager::GetInstance();
+	auto& stage = StageManager::GetInstance();
+	auto& character = CharacterManager::GetInstance();
+	auto& effect = EffectManager::GetInstance();
+	int   jsonIndex = static_cast<int>(JsonManager::FileNameType::SCENE);
 
+	/*更新処理*/
+	if (this->isGameOver)
+	{
+		backGround.Update();
+		camera.OverCameraUpdate();
+		character.Update();
+	}
+
+	/*α値の増減*/
 	if (this->isEnd)
 	{
-		this->alpha += 2;
+		this->transitionAlpha += json.GetJson(jsonIndex)["RESULT_ADD_TRRANSITION_ALPHA"];
 	}
 	else
 	{
-		if (this->alpha > 0)
+		if (this->transitionAlpha > 0)
 		{
-			this->alpha -= 2;
-		}
-		else if (this->textPos[static_cast<int>(TextType::MAIN)][1] >= json.GetJson(jsonIndex)["RESULT_MAIN_TARGET_Y"])
-		{
-			if (waitFrameCount >= json.GetJson(jsonIndex)["RESULT_WAIT_FRAME_COUNT"])
-			{
-				if (input.GetPadState() & PAD_INPUT_3)
-				{
-					this->textPos[static_cast<int>(TextType::MAIN)][1] -= 10;
-				}
-				else
-				{
-					this->textPos[static_cast<int>(TextType::MAIN)][1] -= 3;
-				}
-				if (this->textPos[static_cast<int>(TextType::MAIN)][1] < json.GetJson(jsonIndex)["RESULT_MAIN_TARGET_Y"])
-				{
-					waitFrameCount = 0;
-				}
-			}
-		}
-		else
-		{
-			if (waitFrameCount >= json.GetJson(jsonIndex)["RESULT_WAIT_FRAME_COUNT"])
-			{
-				if (this->isGameClear)
-				{
-					if (this->textPos[static_cast<int>(TextType::CLEAR)][1] >= json.GetJson(jsonIndex)["RESULT_CLEAR_TARGET_Y"])
-					{
-						if (input.GetPadState() & PAD_INPUT_3)
-						{
-							this->textPos[static_cast<int>(TextType::CLEAR)][1] -= 10;
-						}
-						else
-						{
-							this->textPos[static_cast<int>(TextType::CLEAR)][1] -= 3;
-						}
-						if (this->textPos[static_cast<int>(TextType::CLEAR)][1] < json.GetJson(jsonIndex)["RESULT_CLEAR_TARGET_Y"])
-						{
-							waitFrameCount = 0;
-							this->isNext = true;
-						}
-					}
-				}
-				else if (this->isGameOver)
-				{
-					if (this->textPos[static_cast<int>(TextType::OVER)][1] >= json.GetJson(jsonIndex)["RESULT_OVER_TARGET_Y"])
-					{
-						if (input.GetPadState() & PAD_INPUT_3)
-						{
-							this->textPos[static_cast<int>(TextType::OVER)][1] -= 10;
-						}
-						else
-						{
-							this->textPos[static_cast<int>(TextType::OVER)][1] -= 3;
-						}
-						if (this->textPos[static_cast<int>(TextType::OVER)][1] < json.GetJson(jsonIndex)["RESULT_OVER_TARGET_Y"])
-						{
-							waitFrameCount = 0;
-							this->isNext = true;
-						}
-					}
-				}
-			}
+			this->transitionAlpha -= json.GetJson(jsonIndex)["RESULT_ADD_TRRANSITION_ALPHA"];
 		}
 	}
+	UpdateButtonAlpha();
+}
 
-	if (this->isNext)
+void Result::UpdateButtonAlpha()
+{
+	auto& json = JsonManager::GetInstance();
+	int   jsonIndex = static_cast<int>(JsonManager::FileNameType::SCENE);
+	/*α値の増減*/
+	if (this->isAddAlpha)
 	{
-
-		if (this->buttonAlpha < MAX_ALPHA)
+		this->buttonAlpha += json.GetJson(jsonIndex)["RESULT_ADD_BUTTON_ALPHA"];
+		if (this->buttonAlpha >= this->MAX_ALPHA)
 		{
-			this->buttonAlpha++;
-		}
-		if (this->isAdd)
-		{
-			sizeOffset++;
-			if (sizeOffset >= json.GetJson(jsonIndex)["RESULT_A_SIZE_OFFSET"])
-			{
-				this->isAdd = false;
-			}
-		}
-		else
-		{
-			sizeOffset--;
-			if (sizeOffset <= 0)
-			{
-				this->isAdd = true;
-			}
-		}
-		if (input.GetPadState() & PAD_INPUT_3)
-		{
-			this->isEnd = true;
+			this->isAddAlpha = false;
 		}
 	}
-	waitFrameCount++;
+	else
+	{
+		this->buttonAlpha -= json.GetJson(jsonIndex)["RESULT_ADD_BUTTON_ALPHA"];
+		if (this->buttonAlpha < 0)
+		{
+			this->isAddAlpha = true;
+		}
+	}
 }
 /// <summary>
 /// 描画
 /// </summary>
 void Result::Draw()
 {
-	auto& json = JsonManager::GetInstance();
-	int jsonFileNum = static_cast<int>(JsonManager::FileNameType::SET_UP_SCREEN);
-	int jsonIndex = static_cast<int>(JsonManager::FileNameType::SCENE);
-
-	DrawStringToHandle(this->textPos[static_cast<int>(TextType::MAIN)][0], this->textPos[static_cast<int>(TextType::MAIN)][1],"THANK YOU FOR PLAYING", this->textColor, this->fontHandle);
-	if (this->isGameClear)
+	auto& json		 = JsonManager		::GetInstance();
+	auto& stage		 = StageManager		::GetInstance();
+	auto& character	 = CharacterManager ::GetInstance();
+	auto& backGround = BackGround		::GetInstance();
+	int   jsonIndex	 = static_cast<int>(JsonManager::FileNameType::SET_UP_SCREEN);
+	int fontIndex = 0;
+	if (this->isGameOver)
 	{
-		DrawStringToHandle(this->textPos[static_cast<int>(TextType::CLEAR)][0], this->textPos[static_cast<int>(TextType::CLEAR)][1], "CONGRATULATIONS", this->textColor, this->fontHandle);
+		DrawGameOver();
 	}
-	else if (this->isGameOver)
-	{
-		DrawStringToHandle(this->textPos[static_cast<int>(TextType::OVER)][0], this->textPos[static_cast<int>(TextType::OVER)][1], "PLEASE TRY AGAIN", this->textColor, this->fontHandle);
-	}
-
-	const int x = json.GetJson(jsonIndex)["RESULT_A_BUTTON_Y"];
-	const int y = json.GetJson(jsonIndex)["RESULT_A_BUTTON_X"];
-	const int size = json.GetJson(jsonIndex)["RESULT_A_SIZE"];
-	SetDrawBlendMode(DX_BLENDMODE_ALPHA, this->buttonAlpha);
-	DrawExtendGraph(x - this->sizeOffset, y - this->sizeOffset, x + size + this->sizeOffset, y + size + this->sizeOffset, this->imageHandle, TRUE);
-	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
-
-	SetDrawBlendMode(DX_BLENDMODE_ALPHA, this->alpha);
-	DrawBox(0, 0, json.GetJson(jsonFileNum)["WINDOW_WIDTH"], json.GetJson(jsonFileNum)["WINDOW_HEIGHT"], this->color, TRUE);
-	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, this->transitionAlpha);
+	DrawBox(0, 0, json.GetJson(jsonIndex)["WINDOW_WIDTH"], json.GetJson(jsonIndex)["WINDOW_HEIGHT"], this->color, TRUE);
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, this->MAX_ALPHA);
 }
+
+void Result::DrawGameOver()
+{
+	auto& stage		 = StageManager::GetInstance();
+	auto& character  = CharacterManager::GetInstance();
+	auto& backGround = BackGround::GetInstance();
+	int   fontIndex  = 0;
+
+	backGround.Draw();
+	stage.Draw();
+	character.Draw();
+	fontIndex = static_cast<int>(FontType::OVER);
+	DrawStringToHandle(this->textPos[fontIndex].x, this->textPos[fontIndex].y, "GAMEOVER", this->textColor, this->fontHandle[fontIndex]);
+	fontIndex = static_cast<int>(FontType::BUTTON);
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, this->buttonAlpha);
+	DrawStringToHandle(this->textPos[fontIndex].x, this->textPos[fontIndex].y, "ボタンを押す", this->textColor, this->fontHandle[fontIndex]);
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, this->MAX_ALPHA);
+}
+
 /// <summary>
 /// 終了処理
 /// </summary>
@@ -207,7 +169,7 @@ void Result::EndProcess()
 	}
 
 	/*エンターキー（後でPAD対応させる）が押されたらシーンを切り替える*/
-	if (this->isEnd && this->alpha >= this->MAX_ALPHA)
+	if (this->isEnd && this->transitionAlpha >= this->MAX_ALPHA)
 	{
 		auto& changer = SceneChanger::GetInstance();
 		changer.ChangeScene(SceneChanger::SceneType::TITLE);

@@ -10,7 +10,7 @@ CameraManager::CameraManager()
 {
 	/*インスタンスの作成*/
 	camera = new GameCamera();
-	titleCamera = new TitleCamera();
+	resultCamera = new ResultCamera();
 }
 
 /// <summary>
@@ -32,7 +32,14 @@ void CameraManager::Update()
 /// <summary>
 /// 更新
 /// </summary>
-void CameraManager::TitleCameraUpdate()
+void CameraManager::ClearCameraUpdate()
 {
-	titleCamera->Update();
+	resultCamera->ClearUpdate();
+}
+/// <summary>
+/// 更新
+/// </summary>
+void CameraManager::OverCameraUpdate()
+{
+	resultCamera->OverUpdate();
 }

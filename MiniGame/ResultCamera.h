@@ -6,14 +6,15 @@
 #include "Object.h"
 
 class WrapVECTOR;
-class TitleCamera : public Object
+class ResultCamera
 {
 public:
-	TitleCamera();//コンストラクタ
-	~TitleCamera();//デストラクタ
+	ResultCamera();//コンストラクタ
+	~ResultCamera();//デストラクタ
 
-	void Init()		override;//初期化
-	void Update()	override;//更新
+	void Init		();//初期化
+	void ClearUpdate();//ゲームクリア時更新
+	void OverUpdate	();//ゲームオーバー時更新
 private:
 	/*メンバ変数*/
 	WrapVECTOR pos;			//カメラ座標

@@ -5,6 +5,7 @@
     "CAMERA_FAR": 600.0,
     "CAMERA_UP_VEC": [ 0.0, 1.0, 0.0 ],
     "CAMERA_OFF_SET": [ 0.0, 0.0, -100.0 ],
-    "TITLE_CAMERA_OFF_SET": [ 30.0, 10.0, -60.0 ],
-    "TITLE_CAMERA_TARGET": [ 50.0, 25.0, 0.0 ]
+    "OVER_CAMERA_OFFSET": [ 0.0, 10.0, -20.0 ],
+    "OVER_TARGET_OFFSET": [ 0.0, 10.0, 0.0 ],
+    "CLEAR_CAMERA_OFFSET": [ 0.0, 0.0, -60.0 ]
 }
