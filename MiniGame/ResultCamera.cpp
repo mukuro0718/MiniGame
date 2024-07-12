@@ -37,11 +37,11 @@ void ResultCamera::ClearUpdate()
 	auto& chara = CharacterManager::GetInstance();
 	int jsonIndex = json.GetFileNameType(JsonManager::FileNameType::CAMERA);
 	WrapVECTOR target = 0;
-	target = chara.GetPlayerPos();
+	target.Convert(json.GetJson(jsonIndex)["ORIGIN"]);
 	/*座標の更新*/
 	this->targetPos = target;
 
-	this->pos = target.Add(json.GetJson(jsonIndex)["CLEAR_CAMERA_OFF_SET"]);
+	this->pos = target.Add(json.GetJson(jsonIndex)["CLEAR_CAMERA_OFFSET"]);
 
 	/*カメラの設定*/
 	SetCameraPositionAndTargetAndUpVec(this->pos.value, this->targetPos.value, VGet(0.0f, 1.0f, 0.0f));

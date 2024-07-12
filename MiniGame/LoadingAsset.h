@@ -66,6 +66,7 @@ public:
 		BUILDING_G	= 24,
 		BUILDING_H	= 25,
 		BASE		= 26,
+		HOUSE		= 27,
 	};
 
 	/*‰æ‘œ‚ÌŽí—Þ*/
@@ -123,6 +124,7 @@ public:
 		EXPLOSION_28	= 49,
 		TITLE_IMAGE		= 50,
 		CLOUD			= 51,
+		SMOKE_BLACK		= 52,
 	};
 
 	enum class FontType

@@ -4,6 +4,7 @@
 #pragma once
 #include "SceneBase.h"
 
+class Transform;
 class Result : public SceneBase
 {
 public:
@@ -22,6 +23,12 @@ private:
 		CLEAR  = 1,
 		BUTTON = 2,
 	};
+	//ƒ‚ƒfƒ‹‚Ìí—Ş
+	enum class ModelType
+	{
+		CAR = 0,
+		HOUSE = 1,
+	};
 	struct Vec2d
 	{
 		int x = 0;
@@ -38,7 +45,9 @@ private:
 	void DrawGameOver	();
 	void DrawGameClear	();
 	void UpdateButtonAlpha();
-
+	void Create();
+	void SetTransform();
+	void SetText();
 	/*ƒƒ“ƒo•Ï”*/
 	vector<Vec2d> textPos;
 	bool isGameOver;
@@ -50,5 +59,7 @@ private:
 	int  color;
 	vector<int>	 fontHandle;
 	int  buttonAlpha;
+	vector<int> modelHandle;
+	vector<Transform> transform;
 };
 
