@@ -12,6 +12,9 @@ Result::Result()
 	, isGameClear(false)
 	, isGameOver(false)
 	, buttonAlpha(0)
+	, isExplosion(false)
+	, explosionIndex(0)
+	, explosionFrameCount(0)
 {
 	/*シングルトンクラスのインスタンスの取得*/
 	auto& character = CharacterManager::GetInstance();
@@ -58,7 +61,15 @@ void Result::Update()
 	{
 		timer.Update();
 		camera.ClearCameraUpdate();
-		stage.Update();
+		if (!this->isExplosion)
+		{
+			stage.Update();
+			this->transform[static_cast<int>(ModelType::HOUSE)].pos.value.x--;
+			if (this->transform[static_cast<int>(ModelType::HOUSE)].pos.value.x <= 0.0f)
+			{
+				this->isExplosion = true;
+			}
+		}
 		for (int i = 0; i < this->modelHandle.size(); i++)
 		{
 			MV1SetPosition(this->modelHandle[i], this->transform[i].pos.value);
@@ -198,6 +209,35 @@ void Result::Create()
 	this->fontHandle.emplace_back(asset.GetFont(asset.GetFontType(LoadingAsset::FontType::MUKASI)));
 	this->modelHandle.emplace_back(asset.GetModel(asset.GetModelType(LoadingAsset::ModelType::CAR)));
 	this->modelHandle.emplace_back(asset.GetModel(asset.GetModelType(LoadingAsset::ModelType::HOUSE)));
+
+	this->explosionHandle.emplace_back(asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::EXPLOSION_01)));
+	this->explosionHandle.emplace_back(asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::EXPLOSION_02)));
+	this->explosionHandle.emplace_back(asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::EXPLOSION_03)));
+	this->explosionHandle.emplace_back(asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::EXPLOSION_04)));
+	this->explosionHandle.emplace_back(asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::EXPLOSION_05)));
+	this->explosionHandle.emplace_back(asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::EXPLOSION_06)));
+	this->explosionHandle.emplace_back(asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::EXPLOSION_07)));
+	this->explosionHandle.emplace_back(asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::EXPLOSION_08)));
+	this->explosionHandle.emplace_back(asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::EXPLOSION_09)));
+	this->explosionHandle.emplace_back(asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::EXPLOSION_10)));
+	this->explosionHandle.emplace_back(asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::EXPLOSION_11)));
+	this->explosionHandle.emplace_back(asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::EXPLOSION_12)));
+	this->explosionHandle.emplace_back(asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::EXPLOSION_13)));
+	this->explosionHandle.emplace_back(asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::EXPLOSION_14)));
+	this->explosionHandle.emplace_back(asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::EXPLOSION_15)));
+	this->explosionHandle.emplace_back(asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::EXPLOSION_16)));
+	this->explosionHandle.emplace_back(asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::EXPLOSION_17)));
+	this->explosionHandle.emplace_back(asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::EXPLOSION_18)));
+	this->explosionHandle.emplace_back(asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::EXPLOSION_19)));
+	this->explosionHandle.emplace_back(asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::EXPLOSION_20)));
+	this->explosionHandle.emplace_back(asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::EXPLOSION_21)));
+	this->explosionHandle.emplace_back(asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::EXPLOSION_22)));
+	this->explosionHandle.emplace_back(asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::EXPLOSION_23)));
+	this->explosionHandle.emplace_back(asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::EXPLOSION_24)));
+	this->explosionHandle.emplace_back(asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::EXPLOSION_25)));
+	this->explosionHandle.emplace_back(asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::EXPLOSION_26)));
+	this->explosionHandle.emplace_back(asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::EXPLOSION_27)));
+	this->explosionHandle.emplace_back(asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::EXPLOSION_28)));
 }
 
 void Result::SetTransform()

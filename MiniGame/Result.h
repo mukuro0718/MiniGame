@@ -36,6 +36,7 @@ private:
 	};
 	/*ê√ìIíËêî*/
 	static constexpr int MAX_ALPHA = 255;
+	static constexpr int EXPLOSIONT_SIZE = 1920;
 	static const int COLOR_BLACK;
 	static const int COLOR_WHITE;
 
@@ -58,6 +59,11 @@ private:
 	int  transitionAlpha;
 	int  color;
 	vector<int>	 fontHandle;
+	vector<int>	 explosionHandle;
+	int explosionIndex;
+	int explosionFrameCount;
+	int smokeHandle;
+	bool isExplosion;
 	int  buttonAlpha;
 	vector<int> modelHandle;
 	vector<Transform> transform;
