@@ -45,6 +45,7 @@ void GamePlayer::Init()
 	this->moveVec.			Convert(json.GetJson(jsonIndex)["ORIGIN"]);
 	this->fixVec.			Convert(json.GetJson(jsonIndex)["ORIGIN"]);
 	this->aliveTime			= 0;
+	this->price				= 0;
 	this->stunFrameCount	= 0;
 	this->radius			= json.GetJson(jsonIndex)["RADISU"];
 	this->modelHandle		= this->normalModelHandle;
@@ -73,16 +74,21 @@ void GamePlayer::Init()
 /// </summary>
 void GamePlayer::Update()
 {
-		/*移動*/
-		Move();
+	auto& time = GameTimer::GetInstance();
+	this->aliveTime = time.GetElapsetTime();
 
-		/*当たり判定*/
-		HitCheck();
+	/*移動*/
+	Move();
+
+	/*当たり判定*/
+	HitCheck();
 	/*モデルの設定*/
-	MV1SetPosition		(this->modelHandle, this->transform.pos.value);
-	MV1SetRotationXYZ	(this->modelHandle, this->transform.rotate.value);
-	MV1SetPosition		(this->breakModelHandle, this->transform.pos.value);
-	MV1SetRotationXYZ	(this->breakModelHandle, this->transform.rotate.value);
+	MV1SetPosition(this->modelHandle, this->transform.pos.value);
+	MV1SetRotationXYZ(this->modelHandle, this->transform.rotate.value);
+	MV1SetPosition(this->breakModelHandle, this->transform.pos.value);
+	MV1SetRotationXYZ(this->breakModelHandle, this->transform.rotate.value);
+
+	
 
 	/*描画*/
 	if (this->isHit)
@@ -128,19 +134,19 @@ void GamePlayer::HitCheck()
 
 		/*宝石との当たり判定*/
 		//使用している宝石の数を取得
-		//for (int i = 0; i < gem.GetUseNum(); i++)
-		//{
-		//	if (!gem.GetGemInstance(i).GetIsHit() && gem.GetGemInstance(i).GetIsSet())
-		//	{
-		//		//プレイヤーと宝石の当たり判定をスフィアでとる
-	 //			this->hitResult = collision.SphereAndSphereCollision(*this, gem.GetGemInstance(i));
-		//		//もし当たっていたら
-		//		if (this->hitResult->isHit)
-		//		{
-		//			this->price += gem.GetGemInstance(i).GetPrice();
-		//		}
-		//	}
-		//}
+		for (int i = 0; i < gem.GetUseNum(); i++)
+		{
+			if (!gem.GetGemInstance(i).GetIsHit() && gem.GetGemInstance(i).GetIsSet())
+			{
+				//プレイヤーと宝石の当たり判定をスフィアでとる
+	 			this->hitResult = collision.SphereAndSphereCollision(*this, gem.GetGemInstance(i));
+				//もし当たっていたら
+				if (this->hitResult->isHit)
+				{
+					this->price += gem.GetGemInstance(i).GetPrice();
+				}
+			}
+		}
 	}
 }
 

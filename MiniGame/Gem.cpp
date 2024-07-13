@@ -68,9 +68,6 @@ void Gem::Update()
         /*ƒ‚ƒfƒ‹‚ÌÝ’è*/
         MV1SetRotationXYZ   (this->modelHandle, this->transform.rotate.value);
         MV1SetPosition      (this->modelHandle, this->transform.pos.value);
-
-        /*•`‰æ*/
-        Draw();
     }
 }
 
@@ -118,13 +115,15 @@ void Gem::Move()
 /// </summary>
 const void Gem::Draw()const
 {
-    MV1DrawModel(this->modelHandle);
-#ifdef _DEBUG
-    WrapVECTOR centerPos = this->transform.pos;
-    centerPos += this->hitPosOffset;
-    DrawSphere3D(centerPos.value, this->radius, 16, GetColor(255, 0, 0), GetColor(255, 0, 0), FALSE);
-#endif // _DEBUG
-
+    if (this->isShow)
+    {
+        MV1DrawModel(this->modelHandle);
+//#ifdef _DEBUG
+//        WrapVECTOR centerPos = this->transform.pos;
+//        centerPos += this->hitPosOffset;
+//        DrawSphere3D(centerPos.value, this->radius, 16, GetColor(255, 0, 0), GetColor(255, 0, 0), FALSE);
+//#endif // _DEBUG
+    }
 }
 
 /// <summary>

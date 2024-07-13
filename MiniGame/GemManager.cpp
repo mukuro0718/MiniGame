@@ -70,6 +70,17 @@ void GemManager::Update()
 }
 
 /// <summary>
+/// 描画
+/// </summary>
+const void GemManager::Draw()const
+{
+	for (int i = 0; i < this->useCurrentlyNum; i++)
+	{
+		this->gem[i]->Draw();
+	}
+}
+
+/// <summary>
 /// 使用しているジェムの初期化
 /// </summary>
 void GemManager::InitUseGem()

@@ -195,7 +195,7 @@
     <ClCompile Include="TitlePlayer.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Tutorial.cpp" />
-    <ClCompile Include="UI.cpp" />
+    <ClCompile Include="Score.cpp" />
     <ClCompile Include="UIManager.cpp" />
     <ClCompile Include="UnderBar.cpp" />
     <ClCompile Include="Weapon.cpp" />
@@ -258,7 +258,7 @@
     <ClInclude Include="TitlePlayer.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Tutorial.h" />
-    <ClInclude Include="UI.h" />
+    <ClInclude Include="Score.h" />
     <ClInclude Include="UIManager.h" />
     <ClInclude Include="UnderBar.h" />
     <ClInclude Include="Weapon.h" />

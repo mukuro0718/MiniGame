@@ -29,7 +29,8 @@ public:
 	const int	GetAliveTime()	const { return this->aliveTime; }	//生存時間のgetter
 	const bool	GetIsHit()		const { return this->isHit; }		//当たり判定フラグのgetter
 	/*フラグを立てる*/
-	const void OnIsStun() { isStun = true; }//気絶フラグを立てる
+	const void OnIsStun() { this->isStun = true; }//気絶フラグを立てる
+	const int GetPrice()const { return this->price; }
 private:
 	/*構造体・列挙体*/
 	//アニメーションの種類
@@ -41,20 +42,21 @@ private:
 	};
 
 	/*メンバ変数*/
-	float jumpPower;	//ジャンプ力
-	float height;		//身長
-	float floatPower;	//浮力
-	float zAngle;		//Z軸をもとにしたアングル
+	float jumpPower;		//ジャンプ力
+	float height;			//身長
+	float floatPower;		//浮力
+	float zAngle;			//Z軸をもとにしたアングル
 	
-	bool isStun;		//気絶したか
-	bool isOnGround;	//地面にいるか
-	bool isHit;			//弾や地面に当たったか
-	bool isStop;		//停止フラグ（ボタン入力があったらfalseにする）
+	bool isStun;			//気絶したか
+	bool isOnGround;		//地面にいるか
+	bool isHit;				//弾や地面に当たったか
+	bool isStop;			//停止フラグ（ボタン入力があったらfalseにする）
 
-	int countStartTime;	//計測開始時間
-	int aliveTime;		//生存時間
-	int stunFrameCount;	//気絶を解除するまでのフレーム数
-	int normalModelHandle;
-	int breakModelHandle;//壊れたモデルハンドル
+	int countStartTime;		//計測開始時間
+	int stunFrameCount;		//気絶を解除するまでのフレーム数
+	int normalModelHandle;	
+	int breakModelHandle;	//壊れたモデルハンドル
+	int aliveTime;			//生存時間
+	int price;				//宝石の合計金額
 };
 

@@ -6,6 +6,7 @@
 
 class Operation;
 class UnderBar;
+class Score;
 class UIManager
 {
 public:
@@ -42,8 +43,9 @@ private:
 	UIManager(); //コンストラクタ
 
 	/*メンバ変数*/
-	static UIManager* instance;//唯一のインスタンス
-	Operation* operation;//値段UI
-	UnderBar* bar;//バーUI
+	static UIManager*	instance;	//唯一のインスタンス
+	Operation*			operation;	//値段UI
+	UnderBar*			bar;		//バーUI
+	Score*				score;		//スコア用UIクラス
 };
 

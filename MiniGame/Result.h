@@ -43,7 +43,7 @@ private:
 
 	/*内部処理関数*/
 	void UpdateGameOver	();
-	void UpdateGameClear();
+	void DrawScore();
 	void DrawGameOver	();
 	void DrawGameClear	();
 	void UpdateButtonAlpha();
@@ -51,6 +51,7 @@ private:
 	void SetTransform();
 	void SetText();
 	void InitSmoke();
+	Vec2d Convert(const vector<int> _in);
 	void SetSmoke(const int _index);
 	int GetRandom(const int _range, const bool _isSign,const int _offset);
 	void UpdateSmoke();
@@ -68,6 +69,7 @@ private:
 	bool				isAddAlpha;			//α追加フラグ
 	bool				isExplosion;		//爆発フラグ
 	bool				isDrawClearText;	//クリア文字の描画
+	bool				isShowScore;		//スコアの表示
 	int					textColor;			//テキストカラー
 	int					transitionAlpha;	//遷移α
 	int					color;				//色
@@ -79,5 +81,6 @@ private:
 	vector<WrapVECTOR>  smokePos;
 	vector<float>		smokeVelocity;
 	vector<int>			smokeSize;
+	int					showScoreFrameCount;
 };
 

@@ -73,7 +73,7 @@ using namespace std;
 #include "FPSController.h"
 #include "SceneManager.h"
 
-#include "UI.h"
+#include "Score.h"
 #include "Operation.h"
 #include "UnderBar.h"
 

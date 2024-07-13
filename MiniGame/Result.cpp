@@ -14,6 +14,7 @@ Result::Result()
 	, isEnd				 (false)
 	, isAddAlpha		 (false)
 	, isDrawClearText	 (false)
+	, isShowScore		 (false)
 	, textColor			 (0)
 	, transitionAlpha	 (MAX_ALPHA)
 	, color				 (0)
@@ -119,6 +120,11 @@ void Result::Update()
 			this->color = this->COLOR_BLACK;
 		}
 	}
+
+	if (this->isShowScore)
+	{
+		this->showScoreFrameCount++;
+	}
 	UpdateButtonAlpha();
 }
 
@@ -152,8 +158,8 @@ void Result::UpdateButtonAlpha()
 /// </summary>
 void Result::Draw()
 {
-	auto& json		 = JsonManager		::GetInstance();
-	int   jsonIndex	 = static_cast<int>(JsonManager::FileNameType::SET_UP_SCREEN);
+	auto& json = JsonManager::GetInstance();
+	int   jsonIndex = static_cast<int>(JsonManager::FileNameType::SET_UP_SCREEN);
 	if (this->isGameClear)
 	{
 		DrawGameClear();
@@ -182,13 +188,19 @@ void Result::DrawGameOver()
 	}
 	character.Draw();
 
-
-	fontIndex = static_cast<int>(FontType::OVER);
-	DrawStringToHandle(this->textPos[fontIndex].x, this->textPos[fontIndex].y, "GAMEOVER", this->COLOR_WHITE, this->fontHandle[fontIndex]);
-	fontIndex = static_cast<int>(FontType::BUTTON);
-	SetDrawBlendMode(DX_BLENDMODE_ALPHA, this->buttonAlpha);
-	DrawStringToHandle(this->textPos[fontIndex].x, this->textPos[fontIndex].y, "ボタンを押す", this->COLOR_WHITE, this->fontHandle[fontIndex]);
-	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, this->MAX_ALPHA);
+	if (this->isShowScore)
+	{
+		DrawScore();
+	}
+	else
+	{
+		fontIndex = static_cast<int>(FontType::OVER);
+		DrawStringToHandle(this->textPos[fontIndex].x, this->textPos[fontIndex].y, "GAMEOVER", this->COLOR_WHITE, this->fontHandle[fontIndex]);
+		fontIndex = static_cast<int>(FontType::BUTTON);
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, this->buttonAlpha);
+		DrawStringToHandle(this->textPos[fontIndex].x, this->textPos[fontIndex].y, "ボタンを押す", this->COLOR_WHITE, this->fontHandle[fontIndex]);
+		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, this->MAX_ALPHA);
+	}
 }
 void Result::DrawGameClear()
 {
@@ -208,8 +220,12 @@ void Result::DrawGameClear()
 		MV1DrawModel(this->modelHandle[i]);
 	}
 	
+	if (this->isShowScore)
+	{
+		DrawScore();
+	}
 	/*テキスト*/
-	if (this->isDrawClearText)
+	else if (this->isDrawClearText)
 	{
 		fontIndex = static_cast<int>(FontType::CLEAR);
 		DrawStringToHandle(this->textPos[fontIndex].x, this->textPos[fontIndex].y, "GAMECLEAR", this->COLOR_WHITE, this->fontHandle[fontIndex]);
@@ -237,7 +253,14 @@ void Result::EndProcess()
 
 	if (input.GetReturnKeyState())
 	{
-		this->isEnd = true;
+		if (!isShowScore)
+		{
+			this->isShowScore = true;
+		}
+		else
+		{
+			this->isEnd = true;
+		}
 	}
 
 	/*エンターキー（後でPAD対応させる）が押されたらシーンを切り替える*/
@@ -461,5 +484,42 @@ void Result::UpdateSmoke()
 		{
 			SetSmoke(i);
 		}
+	}
+}
+Result::Vec2d Result::Convert(const vector<int> _in)
+{
+	Vec2d out = { _in[0],_in[1] };
+	return out;
+}
+
+void Result::DrawScore()
+{
+	auto& json = JsonManager::GetInstance();
+	const int jsonIndex = static_cast<int>(JsonManager::FileNameType::SCENE);
+	auto& character = CharacterManager::GetInstance();
+
+	const int type = static_cast<int>(FontType::BUTTON);
+	const int price = character.GetPlayerInstance().GetPrice();
+	const int time = character.GetPlayerInstance().GetAliveTime();
+
+	if (this->showScoreFrameCount >= json.GetJson(jsonIndex)["RESULT_SCORE_FRAME_COUNT"])
+	{
+		Vec2d pos = Convert(json.GetJson(jsonIndex)["RESULT_SCORE_POS"]);
+		DrawFormatStringToHandle(pos.x, pos.y, this->COLOR_WHITE, this->fontHandle[type], "		 スコア		 ");
+	}
+	if (this->showScoreFrameCount >= json.GetJson(jsonIndex)["RESULT_PRICE_FRAME_COUNT"])
+	{
+		Vec2d pos = Convert(json.GetJson(jsonIndex)["RESULT_PRICE_POS"]);
+		DrawFormatStringToHandle(pos.x, pos.y, this->COLOR_WHITE, this->fontHandle[type], "しょじきん　　　　：%d", price);
+	}
+	if (this->showScoreFrameCount >= json.GetJson(jsonIndex)["RESULT_TIME_FRAME_COUNT"])
+	{
+		Vec2d pos = Convert(json.GetJson(jsonIndex)["RESULT_TIME_POS"]);
+		DrawFormatStringToHandle(pos.x, pos.y, this->COLOR_WHITE, this->fontHandle[type], "せいぞんじかん：%d", time);
+	}
+	if (this->showScoreFrameCount >= json.GetJson(jsonIndex)["RESULT_TOTAL_SCORE_FRAME_COUNT"])
+	{
+		Vec2d pos = Convert(json.GetJson(jsonIndex)["RESULT_TORTAL_POS"]);
+		DrawFormatStringToHandle(pos.x, pos.y, this->COLOR_WHITE, this->fontHandle[type], "トータルスコア：%d", price + 10000 * (time / 100));
 	}
 }

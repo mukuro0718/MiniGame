@@ -125,6 +125,7 @@ public:
 		TITLE_IMAGE		= 50,
 		CLOUD			= 51,
 		SMOKE_BLACK		= 52,
+		MONEY_BAG		= 53,
 	};
 
 	enum class FontType

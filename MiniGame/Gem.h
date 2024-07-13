@@ -12,6 +12,7 @@ public:
 
     void        Init    ();                             //初期化
     void        Update  ();                             //更新
+    const void  Draw    ()const;                        //描画
     const void  SetPrice(const int _in);                //値段のセット
     const void  SetPos  (const WrapVECTOR& _in);        //座標のgetter
     const int   GetPrice()const { return this->price; } //値段のgetter
@@ -19,7 +20,6 @@ public:
     const bool  GetIsHit()const { return this->isHit; } //ヒットフラグのgetter
 private:
     /*内部処理関数*/
-    const void  Draw()const;//描画
     void        Move();     //移動
     void		HitCheck(); //当たり判定
     WrapVECTOR& BezirPoint(const float _percent,const WrapVECTOR& _pos1, const WrapVECTOR& _pos2, const WrapVECTOR& _pos3);

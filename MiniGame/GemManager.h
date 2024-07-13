@@ -34,9 +34,10 @@ public:
 		}
 	}
 
-	void Update();//更新
-	const int GetUseNum()const { return this->useCurrentlyNum; }
-	const Gem& GetGemInstance(const int _index)const;
+	void		Update			();											//更新
+	const void	Draw			()const;									//描画
+	const int	GetUseNum		()const { return this->useCurrentlyNum; }	//使用している数のgetter
+	const Gem&	GetGemInstance	(const int _index)const;					//ジェムのインスタンスのgetter
 
 	const bool GetGemIsHit(const int _index)const;
 	const bool GetGemIsSet(const int _index)const;

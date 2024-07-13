@@ -13,7 +13,8 @@ UIManager::UIManager()
 	
 
 	this->operation = new Operation(asset.GetFont(asset.GetFontType(LoadingAsset::FontType::MUKASI)));
-	this->bar = new UnderBar();
+	this->bar		= new UnderBar();
+	this->score		= new Score(asset.GetFont(asset.GetFontType(LoadingAsset::FontType::MUKASI)), asset.GetFont(asset.GetFontType(LoadingAsset::FontType::MUKASI)), asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::MONEY_BAG)));
 }
 
 /// <summary>
@@ -56,6 +57,7 @@ void UIManager::Update()
 /// </summary>
 const void UIManager::Draw()const
 {
+	this->score->Draw();
 	this->operation->Draw();
 	this->bar->Draw();
 }

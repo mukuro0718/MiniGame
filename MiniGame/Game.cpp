@@ -53,7 +53,7 @@ void Game::Update()
 	auto&camera			= CameraManager		::GetInstance();
 	auto&weapon			= WeaponManager		::GetInstance();
 	auto&amo				= AmoManager		::GetInstance();
-	//auto& gem			= GemManager		::GetInstance();
+	auto& gem			= GemManager		::GetInstance();
 	auto& character	= CharacterManager	::GetInstance();
 	auto& input			= InputManager		::GetInstance();
 	auto& timer			= GameTimer			::GetInstance();
@@ -70,7 +70,7 @@ void Game::Update()
 	character	.Update();
 	weapon		.Update();
 	amo			.Update();
-	//gem		.Update();
+	gem		.Update();
 	ui			.Update();
 	
 
@@ -107,7 +107,7 @@ void Game::Draw()
 	auto& stage = StageManager::GetInstance();
 	auto& weapon = WeaponManager::GetInstance();
 	auto& amo = AmoManager::GetInstance();
-	//auto& gem			= GemManager		::GetInstance();
+	auto& gem			= GemManager		::GetInstance();
 	auto& character = CharacterManager::GetInstance();
 	auto& backGround = BackGround::GetInstance();
 	auto& ui = UIManager::GetInstance();
@@ -121,6 +121,7 @@ void Game::Draw()
 	backGround	.Draw();
 	stage		.Draw();
 	weapon		.Draw();
+	gem			.Draw();
 	amo			.Draw();
 	ui			.Draw();
 	effect		.Draw();
