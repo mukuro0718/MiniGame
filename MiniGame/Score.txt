@@ -6,6 +6,9 @@ time 			…lifetime
 specialScoreMultiplier	…if you get an "H,O,M,E" your score will be doubled!
 
 <calculation formula>
-price * (1.0 + time / 100) * special score multiplier
+//price * (1.0 + time / 100) * special score multiplier
+price + 10000 * (time / 100) * special score multiplier
 
 10000 * (1.0 + 120 / 100) * 2.0= 
+
+0 + 
