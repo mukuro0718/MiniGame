@@ -65,6 +65,10 @@ void Gem::Update()
         /*ˆÚ“®*/
         Move();
 
+        /*ƒ‚ƒfƒ‹‚Ì‰ñ“]*/
+        this->transform.rotate.value.y += 10.0f;
+        this->transform.rotate.DegToRad(this->transform.rotate);
+
         /*ƒ‚ƒfƒ‹‚ÌÝ’è*/
         MV1SetRotationXYZ   (this->modelHandle, this->transform.rotate.value);
         MV1SetPosition      (this->modelHandle, this->transform.pos.value);
