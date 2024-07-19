@@ -6,7 +6,7 @@
 class Amo abstract: public Object
 {
 public:
-	Amo(const int _modelHandle);//コンストラクタ
+	Amo(const int _modelHandle, const int _imageHandle);//コンストラクタ
 	virtual ~Amo();				//デストラクタ
 	const void		Draw			()const;						//描画
 	virtual void	Move			()abstract;						//移動
@@ -17,7 +17,6 @@ public:
 	const bool		GetIsSet		()const { return this->isSet; }	//セットフラグのgetter
 	const bool		GetIsOut		()const { return this->isOut; }	//一度でも画面外に出たか
 	const bool		GetIsRebel		()const { return this->isRebel;}//反逆フラグのgetter
-	const int		GetPrice		()const { return this->price; }	//値段のgetter
 protected:
 	/*内部処理関数*/
 	void		SetTransform(vector<float> _pos, vector<float> _rotate, vector<float> _scale);	//トランスフォームの設定
@@ -25,16 +24,22 @@ protected:
 	void		ChangeScale	();																	//スケールの変更
 	const float GetRandom	(const int _range)const;											//ランダムなfloat値の取得
 	void		HitCheck	();																	//当たり判定
+	void Swim();
 	/*メンバ変数*/
-	WrapVECTOR	moveVec;	//移動ベクトル
-	WrapVECTOR	posOffset;	//位置補正値
-	WrapVECTOR	hitPos;		//当たり判定位置
-	float		velocity;	//速度
-	int			modelHandle;//モデルハンドル
-	int			price;		//値段
-	bool		isHit;		//プレイヤーに当たったか
-	bool		isOut;		//画面外へ出たか
-	bool		isSet;		//設定フラグ
-	bool		isRebel;	//反逆するか
+	WrapVECTOR	moveVec;			//移動ベクトル
+	WrapVECTOR	posOffset;			//位置補正値
+	WrapVECTOR	hitPos;				//当たり判定位置
+	WrapVECTOR	moveTargetPos;		//移動目標座標
+	float		velocity;			//速度
+	int			modelHandle;		//モデルハンドル
+	int			imageHandle;		//画像ハンドル
+	int			swimFrameCount;
+	bool		isSwimAdd;
+	float		swimAngle;
+	bool		isHit;				//プレイヤーに当たったか
+	bool		isOut;				//画面外へ出たか
+	bool		isSet;				//設定フラグ
+	bool		isSetMoveTargetPos;	//移動目標座標の設定フラグ
+	bool		isRebel;			//反逆するか
 };
 

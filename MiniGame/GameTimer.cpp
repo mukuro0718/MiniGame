@@ -6,8 +6,8 @@ GameTimer* GameTimer::instance = nullptr;
 /// コンストラクタ
 /// </summary>
 GameTimer::GameTimer()
-	: elapsetTime(0)
-	, elapsetFrame(0)
+	: elapsetTime(1)
+	, elapsetFrame(1)
 {
 	Init();
 }
@@ -25,8 +25,8 @@ GameTimer::~GameTimer()
 /// </summary>
 void GameTimer::Init()
 {
-	this->elapsetTime = 0;
-	this->elapsetFrame = 0;
+	this->elapsetTime = 1;
+	this->elapsetFrame = 1;
 }
 
 /// <summary>
@@ -36,18 +36,22 @@ void GameTimer::Update()
 {
 	/*シングルトンクラスのインスタンスの取得*/
 	auto& json = JsonManager::GetInstance();
+	auto& character = CharacterManager::GetInstance();
 	int jsonIndex = json.GetFileNameType(JsonManager::FileNameType::TIMER);
 
-	/*フレーム数の増加*/
-	this->elapsetFrame++;
-
-	/*もしフレーム数が最大フレーム数を超えていたら*/
-	if (this->elapsetFrame >= json.GetJson(jsonIndex)["MAX_FRAME"])
+	if (!character.GetPlayerInstance().GetIsStop())
 	{
-		//経過時間を増やす
-		this->elapsetTime++;
-		//フレーム数を初期化する
-		this->elapsetFrame = 0;
+		/*フレーム数の増加*/
+		this->elapsetFrame++;
+
+		/*もしフレーム数が最大フレーム数を超えていたら*/
+		if (this->elapsetFrame >= json.GetJson(jsonIndex)["MAX_FRAME"])
+		{
+			//経過時間を増やす
+			this->elapsetTime++;
+			//フレーム数を初期化する
+			this->elapsetFrame = 0;
+		}
 	}
 }
 

@@ -70,6 +70,7 @@ private:
 	bool				isExplosion;		//爆発フラグ
 	bool				isDrawClearText;	//クリア文字の描画
 	bool				isShowScore;		//スコアの表示
+	bool				isShowTotalScore;	//最終スコアの描画
 	int					textColor;			//テキストカラー
 	int					transitionAlpha;	//遷移α
 	int					color;				//色

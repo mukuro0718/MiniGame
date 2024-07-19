@@ -21,11 +21,11 @@ AmoManager::AmoManager()
 	/*インスタンスの作成*/
 	for (int i = 0; i < json.GetJson(jsonIndex)["MAX_AMO_NUM"]; i++)
 	{
-		fish1.emplace_back(new Fish1(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::FISH_1))));
-		fish2.emplace_back(new Fish2(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::FISH_2))));
-		fish3.emplace_back(new Fish3(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::FISH_3))));
-		fish4.emplace_back(new Fish4(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::FISH_4))));
-		shark.emplace_back(new Shark(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::BOSS_FISH))));
+		fish1.emplace_back(new Fish1(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::FISH_1)), asset.GetImage(static_cast<int>(LoadingAsset::ImageType::BUBBLE))));
+		fish2.emplace_back(new Fish2(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::FISH_2)), asset.GetImage(static_cast<int>(LoadingAsset::ImageType::BUBBLE))));
+		fish3.emplace_back(new Fish3(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::FISH_3)), asset.GetImage(static_cast<int>(LoadingAsset::ImageType::BUBBLE))));
+		fish4.emplace_back(new Fish4(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::FISH_4)), asset.GetImage(static_cast<int>(LoadingAsset::ImageType::BUBBLE))));
+		shark.emplace_back(new Shark(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::BOSS_FISH)), asset.GetImage(static_cast<int>(LoadingAsset::ImageType::BUBBLE))));
 	}
 	this->amo.emplace_back(fish1);
 	this->amo.emplace_back(fish2);

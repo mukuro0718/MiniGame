@@ -28,6 +28,7 @@ Result::Result()
 	auto& timer = GameTimer::GetInstance();
 	auto& json = JsonManager::GetInstance();
 	int jsonIndex = static_cast<int>(JsonManager::FileNameType::SCENE);
+	this->isShowTotalScore = false;
 
 	Create();
 	SetTransform();
@@ -251,13 +252,13 @@ void Result::EndProcess()
 	/*インプットマネージャーのインスタンスを取得*/
 	auto& input = InputManager::GetInstance();
 
-	if (input.GetReturnKeyState())
+	if (input.GetReturnKeyState() || input.GetPadState() & PAD_INPUT_3)
 	{
 		if (!isShowScore)
 		{
 			this->isShowScore = true;
 		}
-		else
+		else if(this->isShowTotalScore)
 		{
 			this->isEnd = true;
 		}
@@ -519,6 +520,7 @@ void Result::DrawScore()
 	}
 	if (this->showScoreFrameCount >= json.GetJson(jsonIndex)["RESULT_TOTAL_SCORE_FRAME_COUNT"])
 	{
+		this->isShowTotalScore = true;
 		Vec2d pos = Convert(json.GetJson(jsonIndex)["RESULT_TORTAL_POS"]);
 		DrawFormatStringToHandle(pos.x, pos.y, this->COLOR_WHITE, this->fontHandle[type], "トータルスコア：%d", price + 10000 * (time / 100));
 	}

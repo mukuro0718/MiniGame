@@ -13,6 +13,7 @@ public:
 	void Update		()override;//XV
 	void Draw		()override;//•`‰æ
 	void EndProcess	()override;//I—¹ˆ—
-
+private:
+	int fontHandle;
 };
 

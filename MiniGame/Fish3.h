@@ -7,7 +7,7 @@
 class Fish3 : public Amo
 {
 public:
-	Fish3(const int _modelHandle);	//コンストラクタ
+	Fish3(const int _modelHandle, const int _imageHandle);	//コンストラクタ
 	virtual ~Fish3();				//デストラクタ
 
 	void Init()		override;//初期化

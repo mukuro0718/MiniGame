@@ -7,7 +7,7 @@
 class Shark : public Amo
 {
 public:
-	Shark(const int _modelHandle);	//コンストラクタ
+	Shark(const int _modelHandle, const int _imageHandle);	//コンストラクタ
 	virtual ~Shark();				//デストラクタ
 
 	void Init()		override;//初期化

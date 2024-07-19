@@ -4,8 +4,11 @@
 /// コンストラクタ
 /// </summary>
 Tutorial::Tutorial()
+	: fontHandle(-1)
 {
-
+	/*シングルトンクラスのインスタンスの取得*/
+	auto& asset = LoadingAsset::GetInstance();
+	this->fontHandle = asset.GetFont(asset.GetFontType(LoadingAsset::FontType::MUKASI_3));
 }
 
 /// <summary>
@@ -21,6 +24,12 @@ Tutorial::~Tutorial()
 /// </summary>
 void Tutorial::Update()
 {
+	/*シングルトンクラスのインスタンスの取得*/
+	auto& backGround = BackGround::GetInstance();
+
+	/*更新*/
+	backGround.Update();
+
 }
 
 /// <summary>
@@ -28,9 +37,12 @@ void Tutorial::Update()
 /// </summary>
 void Tutorial::Draw()
 {
-	ClearDrawScreen();
-	clsDx();
-	printfDx("Tutorial");
+	/*シングルトンクラスのインスタンスの取得*/
+	auto& backGround = BackGround::GetInstance();
+
+	/*描画*/
+	backGround.Draw();
+	DrawStringToHandle(0, 0, "あなたは家に帰る途中です！\n無事に家に帰ってください！\n", GetColor(255, 255, 255), this->fontHandle);
 }
 
 /// <summary>

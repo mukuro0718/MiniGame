@@ -126,6 +126,7 @@ public:
 		CLOUD			= 51,
 		SMOKE_BLACK		= 52,
 		MONEY_BAG		= 53,
+		BUBBLE			= 54
 	};
 
 	enum class FontType

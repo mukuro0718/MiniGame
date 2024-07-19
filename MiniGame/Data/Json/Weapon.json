@@ -4,6 +4,6 @@
   "CANNON_INIT_ROTATE": [ 0.0, 0.0, 50.0 ],
   "CANNON_POS_OFFSET": [ 0.0, 10.0, 0.0 ],
   "BAZOOKA_INIT_SCALE": [ 0.02, 0.02, 0.02 ],
-  "BAZOOKA_INIT_ROTATE": [ 0.0, 0.0, 50.0 ],
+  "BAZOOKA_INIT_ROTATE": [ 0.0, 40.0, 50.0 ],
   "BAZOOKA_POS_OFFSET": [ 0.0, 10.0, 0.0 ]
 }

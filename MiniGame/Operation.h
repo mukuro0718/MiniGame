@@ -14,6 +14,8 @@ public:
 	const void	Draw	()const;//•`‰æ
 
 private:
+	static constexpr int POS_Y_OFFSET = 100;
+
 	/*“à•”ˆ—ŠÖ”*/
 
 	/*ƒƒ“ƒo•Ï”*/

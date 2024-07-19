@@ -3,8 +3,8 @@
 /// <summary>
 /// コンストラクタ
 /// </summary>
-Fish3::Fish3(const int _modelHandle)
-	: Amo(_modelHandle)
+Fish3::Fish3(const int _modelHandle, const int _imageHandle)
+	: Amo(_modelHandle, _imageHandle)
 {
 	Init();
 }
@@ -31,12 +31,13 @@ void Fish3::Init()
 	this->isHit		= false;
 	this->isOut		= false;
 	this->isSet = false;
+	this->isSetMoveTargetPos = false;
+
 	this->velocity = json.GetJson(jsonIndex)["FISH3_VELOCITY"];
 	this->radius = json.GetJson(jsonIndex)["FISH3_RADIUS"];
 	this->hitPosOffset.Convert(json.GetJson(jsonIndex)["FISH3_HIT_POS_OFFSET"]);
-	this->price = json.GetJson(jsonIndex)["FISH3_PRICE"];
 
-	SetTransform(json.GetJson(jsonIndex)["INIT_POS"], json.GetJson(jsonIndex)["INIT_ROTATE"], json.GetJson(jsonIndex)["INIT_SCALE"]);
+	SetTransform(json.GetJson(jsonIndex)["INIT_POS"], json.GetJson(jsonIndex)["CHANGE_ROTATE"], json.GetJson(jsonIndex)["CHANGE_SCALE"]);
 
 	/*モデルの設定*/
 	MV1SetScale(this->modelHandle, this->transform.scale.value);
@@ -52,9 +53,9 @@ void Fish3::Update()
 	HitCheck();
 
 	Move();
-
 	ChangeRotate();
 	ChangeScale();
+	Swim();
 
 	/*モデルの設定*/
 	MV1SetScale(this->modelHandle, this->transform.scale.value);
@@ -67,13 +68,41 @@ void Fish3::Update()
 /// </summary>
 void Fish3::Move()
 {
+	/*シングルトンクラスのインスタンスの取得*/
+	auto& json = JsonManager::GetInstance();
+	int		jsonIndex = json.GetFileNameType(JsonManager::FileNameType::AMO);
+
 	if (!this->isOut)
 	{
-		MoveOffScreen();
-		if (this->transform.pos.value.x >= 100.0f || this->transform.pos.value.y >= 100.0f)
+		//移動目標座標を設定していなかったら設定する
+		if (!this->isSetMoveTargetPos)
 		{
-			this->transform.pos = { 120.0,GetRandom(10),0.0 };
-			this->isOut = true;
+			//x,z軸は決められた位置で、y軸のみランダムにする
+			this->moveTargetPos = { json.GetJson(jsonIndex)["MOVE_TARGET_X_POS"],GetRandom(10),0.0 };
+			//フラグを立てる
+			this->isSetMoveTargetPos = true;
+		}
+		else
+		{
+			WrapVECTOR moveTargetToPosVec = this->moveTargetPos - this->transform.pos;
+			this->moveVec = moveTargetToPosVec.Norm();
+			float moveTargetToPosVecSize = moveTargetToPosVec.Size();
+			if (moveTargetToPosVecSize <= 5.0f)
+			{
+				this->isOut = true;
+				this->transform.pos = this->moveTargetPos;
+			}
+			else
+			{
+				this->transform.pos += this->moveVec;
+			}
+
+			/*MoveOffScreen();
+			if (this->transform.pos.value.x >= 100.0f || this->transform.pos.value.y >= 100.0f)
+			{
+				this->transform.pos = { 120.0,GetRandom(10),0.0 };
+				this->isOut = true;
+			}*/
 		}
 	}
 	else

@@ -188,6 +188,7 @@
     <ClCompile Include="Shadow.cpp" />
     <ClCompile Include="Shark.cpp" />
     <ClCompile Include="Skydome.cpp" />
+    <ClCompile Include="Sound.cpp" />
     <ClCompile Include="StageManager.cpp" />
     <ClCompile Include="GameTimer.cpp" />
     <ClCompile Include="Title.cpp" />
@@ -251,6 +252,7 @@
     <ClInclude Include="Shadow.h" />
     <ClInclude Include="Shark.h" />
     <ClInclude Include="Skydome.h" />
+    <ClInclude Include="Sound.h" />
     <ClInclude Include="StageManager.h" />
     <ClInclude Include="GameTimer.h" />
     <ClInclude Include="Title.h" />

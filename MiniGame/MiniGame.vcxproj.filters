@@ -185,6 +185,9 @@
     <ClCompile Include="ResultCamera.cpp">
       <Filter>Object\Camera</Filter>
     </ClCompile>
+    <ClCompile Include="Sound.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="FPSController">
@@ -363,6 +366,9 @@
     </Filter>
     <Filter Include="Object\Stage\House">
       <UniqueIdentifier>{4886b7a3-16b9-4b80-b738-db0311c2e433}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound">
+      <UniqueIdentifier>{5cb7e344-0ea9-420f-b442-5821b1409b2b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -548,6 +554,9 @@
     </ClInclude>
     <ClInclude Include="ResultCamera.h">
       <Filter>Object\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound.h">
+      <Filter>Sound</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

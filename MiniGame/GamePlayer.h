@@ -24,10 +24,11 @@ public:
 	void CountTime();//時間の計測
 	
 	/*getter*/
-	const bool	GetIsStan()		const { return this->isStun; }		//気絶フラグのgetter
-	const float	GetHeight()		const { return this->height; }		//高さのgetter
-	const int	GetAliveTime()	const { return this->aliveTime; }	//生存時間のgetter
-	const bool	GetIsHit()		const { return this->isHit; }		//当たり判定フラグのgetter
+	const bool	GetIsStan	()const { return this->isStun;	 }//気絶フラグのgetter
+	const float	GetHeight	()const { return this->height;	 }//高さのgetter
+	const int	GetAliveTime()const { return this->aliveTime;}//生存時間のgetter
+	const bool	GetIsHit	()const { return this->isHit;	 }//当たり判定フラグのgetter
+	const bool	GetIsStop	()const { return this->isStop;	 }
 	/*フラグを立てる*/
 	const void OnIsStun() { this->isStun = true; }//気絶フラグを立てる
 	const int GetPrice()const { return this->price; }

@@ -55,24 +55,31 @@ void Operation::Update()
 {
 	/*シングルトンクラスのインスタンスの取得*/
 	auto& json = JsonManager::GetInstance();
-	int jsonIndex = json.GetFileNameType(JsonManager::FileNameType::UI);
 	auto& timer = GameTimer::GetInstance();
+	auto& character = CharacterManager::GetInstance();
+	int jsonIndex = json.GetFileNameType(JsonManager::FileNameType::UI);
 	int time = timer.GetElapsetTime();
 	int frame = timer.GetElapsetFrame();
 
 	if (!this->isFinish)
 	{
-		//X座標が停止位置に行ったら停止する
-		if (this->moveX <= this->endPosX[this->textIndex])
+		if (character.GetPlayerInstance().GetIsStop())
 		{
-			this->moveX = 0;
-			this->textIndex++;
-			if (this->textIndex >= this->text.size())
+			//X座標が停止位置に行ったら停止する
+			if (this->moveX >= json.GetJson(jsonIndex)["OPERATION_STOP_POS"])
+			{
+				this->moveX -= json.GetJson(jsonIndex)["OPERATION_MOVE_VELOCITY"];
+			}
+		}
+		else
+		{
+			//X座標が停止位置に行ったら停止する
+			if (this->moveX <= this->endPosX[this->textIndex])
 			{
 				isFinish = true;
 			}
+			this->moveX -= json.GetJson(jsonIndex)["OPERATION_MOVE_VELOCITY"];
 		}
-		this->moveX -= json.GetJson(jsonIndex)["OPERATION_MOVE_VELOCITY"];
 	}
 }
 
@@ -83,6 +90,9 @@ const void Operation::Draw()const
 {
 	if (!this->isFinish)
 	{
-		DrawStringToHandle(this->pos[0] + this->moveX, this->pos[1], this->text[this->textIndex].c_str(), this->color, this->fontHandle);
+		for (int i = 0; i < this->text.size(); i++)
+		{
+			DrawStringToHandle(this->pos[0] + this->moveX, this->pos[1] + POS_Y_OFFSET * i, this->text[i].c_str(), this->color, this->fontHandle);
+		}
 	}
 }

@@ -3,18 +3,22 @@
 /// <summary>
 /// コンストラクタ
 /// </summary>
-Amo::Amo(const int _modelHandle)
-	: Object()
-	, modelHandle	(0)
-	, price			(0)
-	, moveVec		(0.0f)
-	, posOffset		(0.0f)
-	, hitPos		(0.0f)
-	, isHit			(false)
-	, isOut			(false)
-	, isSet			(false)
-	, velocity		(0.0f)
-	, isRebel		(false)
+Amo::Amo(const int _modelHandle, const int _imageHandle)
+	: Object			()
+	, modelHandle		(0)
+	, imageHandle		(_imageHandle)
+	, moveVec			(0.0f)
+	, posOffset			(0.0f)
+	, hitPos			(0.0f)
+	, moveTargetPos		(0.0f)
+	, isHit				(false)
+	, isOut				(false)
+	, isSet				(false)
+	, velocity			(0.0f)
+	, isRebel			(false)
+	, isSetMoveTargetPos(false)
+	, isSwimAdd			(false)
+	, swimAngle			(0.0f)
 {
 	this->modelHandle = MV1DuplicateModel(_modelHandle);
 }
@@ -54,9 +58,13 @@ void Amo::SetPos(const WrapVECTOR& _pos)
 const void Amo::Draw()const
 {
 	MV1DrawModel(this->modelHandle);
+	if (!this->isOut)
+	{
+		DrawBillboard3D(this->transform.pos.value, 0.5f, 0.5f, 30.0f, 0.0f, this->imageHandle, TRUE);
+	}
 	//WrapVECTOR spherePos = this->transform.pos.value;
 	//spherePos += this->hitPosOffset;
-	//DrawSphere3D(spherePos.value, this->radius, 16, GetColor(255, 0, 0), GetColor(255, 0, 0), FALSE);
+	//DrawSphere3D(this->moveTargetPos.value, this->radius, 16, GetColor(255, 0, 0), GetColor(255, 0, 0), FALSE);
 }
 
 /// <summary>
@@ -146,4 +154,32 @@ void Amo::HitCheck()
 	{
 		this->isHit = collision.SphereAndSphereCollision(*this, character.GetPlayerInstance())->isHit;
 	}
+}
+
+/// <summary>
+/// 泳ぎ
+/// </summary>
+void Amo::Swim()
+{
+	if (this->isSwimAdd)
+	{
+		swimAngle += 1.0f;
+
+		if (this->swimAngle >= 5.0f)
+		{
+			this->isSwimAdd = false;
+		}
+	}
+	else
+	{
+		swimAngle -= 1.0f;
+		if (this->swimAngle <= -5.0f)
+		{
+			this->isSwimAdd = true;
+		}
+	}
+		this->swimFrameCount++;
+
+
+	this->transform.rotate.value.y += this->swimAngle * (DX_PI_F / 180.0f);
 }
