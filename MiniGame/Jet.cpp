@@ -15,7 +15,7 @@ Jet::Jet()
     /*画像ハンドルの取得*/
     for (int i = 0; i < json.GetJson(jsonIndex)["JET_FLAME_NUM"]; i++)
     {
-        this->flame.emplace_back(new JetFlame(asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::STAR_YELLOW))));
+        this->flame[i] = new JetFlame(asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::STAR_YELLOW)));
     }
 
     Init();
@@ -26,7 +26,7 @@ Jet::Jet()
 /// </summary>
 Jet::~Jet()
 {
-    for (int i = 0; i < this->flame.size(); i++)
+    for (int i = 0; i < this->FLAME_NUM; i++)
     {
         if (this->flame[i] != nullptr)
         {
@@ -45,7 +45,7 @@ void Jet::Init()
     auto& json = JsonManager::GetInstance();
     int     jsonIndex = json.GetFileNameType(JsonManager::FileNameType::EFFECT);
     auto& character = CharacterManager::GetInstance();
-    for (int i = 0; i < this->flame.size(); i++)
+    for (int i = 0; i < this->FLAME_NUM; i++)
     {
         this->flame[i]->Init
         (
@@ -129,7 +129,7 @@ float Jet::GetRandomVelocity(const int _range)
 /// <summary>
 /// 移動ベクトルをランダムで取得
 /// </summary>
-WrapVECTOR& Jet::GetRandomMoveVec(const float _x,const int _yRange)
+WrapVECTOR Jet::GetRandomMoveVec(const float _x,const int _yRange)
 {
     float x = _x;
     float randomY = GetRandom(_yRange);

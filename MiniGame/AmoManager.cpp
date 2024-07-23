@@ -143,7 +143,6 @@ const void AmoManager::Draw()const
 {
 	/*シングルトンクラスのインスタンスの取得*/
 	auto& character = CharacterManager::GetInstance();
-
 	int weaponNum = 0;
 	for (int i = 0; i < useCurrentlyNum.size(); i++)
 	{

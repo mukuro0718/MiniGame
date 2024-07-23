@@ -1,20 +1,23 @@
 {
-    "OPERATION_START_POS": [ 2000, 200 ],
-    "OPERATION_END_POS": [ -4000, -4000, -4000 ],
-    "OPERATION_STOP_POS": -1800,
-    "OPERATION_MAX_STOP_COUNT": 120,
-    "OPERATION_MOVE_VELOCITY": 8,
-    "OPERATION_COLOR": [ 255, 255, 255 ],
-    "OPERATION_TEXT": [
-        "Aボタンで上昇",
-        "敵の攻撃や道路、車などに当たるとゲームオーバーです",
-        "下のバーの車が、家のマークまでたどり着くとゲームクリアです"
-    ],
-    "UNDER_BAR_POS": [ 360, 1000, 1560, 1050 ],
-    "HOUCE_POS": [ 1510, 975, 1610, 1075 ],
-    "CAR_POS": [ 310, 975, 410, 1075 ],
-    "PRICE_POS": [ 360, 75 ],
-    "SPECIAL_SCORE_POS": [ 700, 100 ],
-    "MONEY_BAG_POS": [ 250, 50 ],
-    "MONEY_BAG_SIZE": 100
+  "OPERATION_TEXT_POS": [ 100, 300 ],
+  "OPERATION_END_POS": [ -4000, -4000, -4000 ],
+  "MODEL_POS": [ -75.0, 0.0, 5.0 ],
+  "MODEL_SCALE": [ 0.03, 0.03, 0.03 ],
+  "MODEL_ROTATE": [ 0.0, 0.0, 90.0 ],
+  "OPERATION_STOP_POS": -1800,
+  "OPERATION_MAX_STOP_COUNT": 120,
+  "OPERATION_MOVE_VELOCITY": 8,
+  "OPERATION_COLOR": [ 255, 255, 255 ],
+  "OPERATION_TEXT": [
+    "Aボタンで上昇",
+    "敵の攻撃や道路などに当たるとゲームオーバーです",
+    "下のバーの車が、家のマークまでたどり着くとゲームクリアです"
+  ],
+  "UNDER_BAR_POS": [ 360, 1000, 1560, 1050 ],
+  "HOUCE_POS": [ 1510, 975, 1610, 1075 ],
+  "CAR_POS": [ 310, 975, 410, 1075 ],
+  "PRICE_POS": [ 360, 75 ],
+  "SPECIAL_SCORE_POS": [ 700, 100 ],
+  "MONEY_BAG_POS": [ 250, 50 ],
+  "MONEY_BAG_SIZE": 100
 }

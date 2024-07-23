@@ -12,7 +12,7 @@ UIManager::UIManager()
 	auto& asset = LoadingAsset::GetInstance();
 	
 
-	this->operation = new Operation(asset.GetFont(asset.GetFontType(LoadingAsset::FontType::MUKASI)));
+	this->operation = new Operation(asset.GetFont(asset.GetFontType(LoadingAsset::FontType::MUKASI)),asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::BUTTON)), asset.GetModel(asset.GetModelType(LoadingAsset::ModelType::BOSS_FISH)));
 	this->bar		= new UnderBar();
 	this->score		= new Score(asset.GetFont(asset.GetFontType(LoadingAsset::FontType::MUKASI)), asset.GetFont(asset.GetFontType(LoadingAsset::FontType::MUKASI)), asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::MONEY_BAG)));
 }
@@ -49,7 +49,7 @@ void UIManager::Init()
 void UIManager::Update()
 {
 	this->bar->Update();
-	this->operation->Update();
+	//this->operation->Update();
 }
 
 /// <summary>
@@ -58,6 +58,6 @@ void UIManager::Update()
 const void UIManager::Draw()const
 {
 	this->score->Draw();
-	this->operation->Draw();
+	//this->operation->Draw();
 	this->bar->Draw();
 }

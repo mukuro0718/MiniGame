@@ -8,6 +8,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     JsonManager::CreateInstance();
     SetUpScreen::CreateInstance();
     LoadingAsset::CreateInstance();
+    Sound::CreateInstance();
     BackGround::CreateInstance();
     InputManager::CreateInstance();
     SceneChanger::CreateInstance();
@@ -31,6 +32,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     }
 
     /*インスタンスの開放*/
+    Sound::DeleteInstance();
     Collision::DeleteInstance();
     GameTimer::DeleteInstance();
     BackGround::DeleteInstance();

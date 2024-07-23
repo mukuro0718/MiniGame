@@ -6,6 +6,7 @@ StageManager* StageManager::instance = nullptr;
 /// コンストラクタ
 /// </summary>
 StageManager::StageManager()
+	:firstBuilding(nullptr)
 {
 	CreateRoad();
 	CreateBase();
@@ -66,26 +67,28 @@ StageManager::~StageManager()
 }
 void StageManager::Init()
 {
-	for (int i = 0; i < frontRoad.size(); i++)
-	{
-		frontRoad[i]->Init();
-	}
-	for (int i = 0; i < backRoad.size(); i++)
-	{
-		backRoad[i]->Init();
-	}
-	for (int i = 0; i < frontBase.size(); i++)
-	{
-		frontBase[i]->Init();
-	}
-	for (int i = 0; i < backBase.size(); i++)
-	{
-		backBase[i]->Init();
-	}
+	//for (int i = 0; i < frontRoad.size(); i++)
+	//{
+	//	frontRoad[i]->Init();
+	//}
+	//for (int i = 0; i < backRoad.size(); i++)
+	//{
+	//	backRoad[i]->Init();
+	//}
+	//for (int i = 0; i < frontBase.size(); i++)
+	//{
+	//	frontBase[i]->Init();
+	//}
+	//for (int i = 0; i < backBase.size(); i++)
+	//{
+	//	backBase[i]->Init();
+	//}
 	for (int i = 0; i < building.size(); i++)
 	{
 		building[i]->Init();
 	}
+	//firstBuilding->Init();
+	//this->firstBuilding->SetPos(WrapVECTOR(-75.0f, -50.0f, 0.0f));
 }
 
 /// <summary>
@@ -121,6 +124,7 @@ void StageManager::SetMoveBuildingType()
 /// </summary>
 void StageManager::Update()
 {
+	auto& character = CharacterManager::GetInstance();
 	for (int i = 0; i < frontBase.size(); i++)
 	{
 		frontBase[i]->Update();
@@ -142,6 +146,12 @@ void StageManager::Update()
 	{
 		building[i]->Update();
 	}
+
+	//if (character.GetPlayerInstance().GetIsRide())
+	//{
+	//	firstBuilding->OnIsMove();
+	//}
+	//firstBuilding->Update();
 	//skydome->Update();
 }
 
@@ -170,6 +180,7 @@ const void StageManager::Draw()const
 	{
 		backRoad[i]->Draw();
 	}
+	//firstBuilding->Draw();
 }
 
 /// <summary>
@@ -190,6 +201,8 @@ void StageManager::CreateBuilding()
 	this->building.emplace_back(new Building(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::BUILDING_F))));
 	this->building.emplace_back(new Building(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::BUILDING_G))));
 	this->building.emplace_back(new Building(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::BUILDING_H))));
+	/*this->firstBuilding = new Building(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::BUILDING_F)));
+	this->firstBuilding->SetPos(WrapVECTOR(-75.0f, -50.0f, 0.0f));*/
 }
 
 /// <summary>
@@ -264,4 +277,12 @@ void StageManager::CreateBase()
 		backBase.emplace_back(new GameStage(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::BASE)), basePos));
 	}
 
+}
+const int StageManager::GetFrontRoadNum()const
+{
+	return static_cast<int>(this->frontRoad.size());
+}
+const int StageManager::GetFrontRoadModelHandle(const int _index)const
+{
+	return this->frontRoad[_index]->GetModelHandle();
 }

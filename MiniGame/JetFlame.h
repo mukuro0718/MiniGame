@@ -15,9 +15,9 @@ public:
     void                Update  ();                                                                                             //更新
     const WrapVECTOR&   GetPos  ()const { return this->pos; }                                                                   //座標のgetter
     const void          Draw    ()const;                                                                                        //描画
+    void        Move();     //移動
 private:
     /*内部処理関数*/
-    void        Move();     //移動
     /*メンバ変数*/
     WrapVECTOR  moveVec;    //移動ベクトル
     WrapVECTOR  pos;        //描画座標

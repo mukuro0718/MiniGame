@@ -25,6 +25,7 @@ using namespace std;
 #include "LoadingAsset.h"
 #include "Animation.h"
 #include "GameTimer.h"
+#include "Sound.h"
 
 #include "WrapVECTOR.h"
 #include "Transform.h"

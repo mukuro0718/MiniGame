@@ -77,7 +77,7 @@ void Shark::Move()
 		if (!this->isSetMoveTargetPos)
 		{
 			//x,z軸は決められた位置で、y軸のみランダムにする
-			this->moveTargetPos = { json.GetJson(jsonIndex)["MOVE_TARGET_X_POS"],GetRandom(10),0.0 };
+			this->moveTargetPos = { json.GetJson(jsonIndex)["MOVE_BOSS_TARGET_X_POS"],GetRandom(10),0.0 };
 			//フラグを立てる
 			this->isSetMoveTargetPos = true;
 		}
@@ -93,7 +93,7 @@ void Shark::Move()
 			}
 			else
 			{
-				this->transform.pos += this->moveVec;
+				this->transform.pos += this->moveVec.Scale(4.0f);
 			}
 		}
 	}

@@ -9,8 +9,10 @@ Character::Character(const int _modelHandle)
 	, initPos			(0.0f)
 	, radius			(0.0f)
 	, modelHandle		(0)
+	, shadow			(nullptr)
 {
 	this->modelHandle = MV1DuplicateModel(_modelHandle);
+	shadow = new Shadow();
 }
 
 /// <summary>

@@ -53,6 +53,8 @@ void EffectManager::Update()
 /// </summary>
 const void EffectManager::Draw()const
 {
-	jet->Draw();
-	explosion->Draw();
+	auto& character = CharacterManager::GetInstance();
+
+		jet->Draw();
+		explosion->Draw();
 }

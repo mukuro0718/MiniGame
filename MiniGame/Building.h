@@ -13,6 +13,7 @@ public:
 	const void	Draw		()const;						//描画
 	void		OnIsMove	()		{ this->isMove = true; }//移動フラグを立てる
 	const bool	GetIsMove	()const { return this->isMove; }//移動フラグのgetter
+	const void SetPos(const WrapVECTOR& _pos) { this->transform.pos = _pos; }
 private:
 	int modelHandle;//モデルハンドル
 	bool isMove;//移動フラグ

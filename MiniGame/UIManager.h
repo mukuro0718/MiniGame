@@ -38,6 +38,7 @@ public:
 	void		Init	();		//初期化
 	void		Update	();		//更新
 	const void	Draw	()const;//描画
+	const Operation& GetOperationInstance()const { return *this->operation; }
 private:
 	/*内部処理関数*/
 	UIManager(); //コンストラクタ

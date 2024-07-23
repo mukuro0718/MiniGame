@@ -8,6 +8,7 @@
 
 class WrapVECTOR;
 class Transform;
+class Shadow;
 class Character abstract : public Object
 {
 public:
@@ -26,6 +27,7 @@ protected:
 	WrapVECTOR	initPos;	//初期座標
 	WrapVECTOR	moveVec;	//移動ベクトル
 	WrapVECTOR	fixVec;		//補正ベクトル
+	Shadow*		shadow;		//影
 	int			modelHandle;//モデルハンドル
 	float		radius;		//モデルの半径
 };

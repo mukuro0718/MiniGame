@@ -10,7 +10,7 @@ JetFlame::JetFlame(const int _imageHandle)
     , centerY       (0.0f)
     , size          (0.0f)
     , angle         (0.0f)
-    , imageHandle   (0)
+    , imageHandle   (-1)
 {
     /*‰æ‘œƒnƒ“ƒhƒ‹‚ÌŽæ“¾*/
     this->imageHandle = _imageHandle;
@@ -64,5 +64,6 @@ void JetFlame::Move()
 /// </summary>
 const void JetFlame::Draw()const
 {
+    //DrawSphere3D(this->pos.value, 5, 16, GetColor(255, 255, 255), GetColor(255, 255, 255), TRUE);
     DrawBillboard3D(this->pos.value, this->centerX, this->centerY, this->size, this->angle, this->imageHandle, TRUE);
 }

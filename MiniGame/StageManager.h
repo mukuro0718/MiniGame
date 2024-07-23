@@ -37,6 +37,8 @@ public:
 	void		Init	();		//初期化
 	void		Update	();		//更新
 	const void	Draw	()const;//描画
+	const int GetFrontRoadNum()const;
+	const int GetFrontRoadModelHandle(const int _index)const;
 private:
 	/*列挙体*/
 	enum class BuildingType
@@ -66,5 +68,6 @@ private:
 	vector<GameStage*>		backBase;	//後ろの道
 	Skydome*				skydome;	//スカイドーム
 	vector<Building*>		building;	//建物
+	Building* firstBuilding;
 };
 

@@ -39,6 +39,7 @@ public:
 	const int	GetUseNum		()const { return this->useCurrentlyNum; }	//使用している数のgetter
 	const Gem&	GetGemInstance	(const int _index)const;					//ジェムのインスタンスのgetter
 
+	void InitUseGem();	//使用しているジェムの初期化
 	const bool GetGemIsHit(const int _index)const;
 	const bool GetGemIsSet(const int _index)const;
 private:
@@ -54,7 +55,6 @@ private:
 
 	/*内部処理関数*/
 	GemManager();		//コンストラクタ
-	void InitUseGem();	//使用しているジェムの初期化
 	void SetUseGem();	//使用するジェムのセット
 
 	/*メンバ変数*/

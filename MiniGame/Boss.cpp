@@ -46,6 +46,7 @@ void Boss::Init()
 	this->state			= StateType::MOVE;
 	this->modelHandle	= this->normalModelHandle;
 	this->isHit			= false;
+	this->isStop = false;
 	/*モデルの設定*/
 	MV1SetScale			(this->modelHandle, this->transform.scale.value);
 	MV1SetRotationXYZ	(this->modelHandle, this->transform.rotate.value);
@@ -59,6 +60,7 @@ void Boss::Init()
 void Boss::Update()
 {
 	auto& timer = GameTimer::GetInstance();
+	auto& sound = Sound::GetInstance();
 
 	/*速度の更新*/
 	UpdateVelocity();
@@ -77,7 +79,7 @@ void Boss::Update()
 		HitCheck();
 	}
 
-
+	sound.PlayPlayerExplosionSound();
 	/*モデルの設定*/
 	MV1SetScale(this->modelHandle, this->transform.scale.value);
 	MV1SetRotationXYZ(this->modelHandle, this->transform.rotate.value);
@@ -97,21 +99,21 @@ void Boss::HitCheck()
 	{
 		for (int j = 0; j < useAmoNum[i]; j++)
 		{
-			//弾が誰とも当たっていないかつプレイヤーに向けて移動してきていたら
-			if (!amo.GetAmoInstance(i, j).GetIsHit() && amo.GetAmoInstance(i, j).GetIsOut())
+			//プレイヤーと弾の当たり判定をスフィアでとる（弾のほうはカプセルのほうが良いかも）
+			this->hitResult = collision.SphereAndSphereCollision(*this, amo.GetAmoInstance(i, j));
+			//当たっていたら
+			if (this->hitResult->isHit)
 			{
-				//プレイヤーと弾の当たり判定をスフィアでとる（弾のほうはカプセルのほうが良いかも）
-				this->hitResult = collision.SphereAndSphereCollision(*this, amo.GetAmoInstance(i, j));
-				//当たっていたら
-				if (this->hitResult->isHit)
+				if (!this->isHit)
 				{
-					this->isHit = true;
-					this->modelHandle = this->breakModelHandle;
+					auto& sound = Sound::GetInstance();
+					sound.OnIsPlayPlayerExplosionSound();
 				}
+				this->isHit = true;
+				this->modelHandle = this->breakModelHandle;
 			}
 		}
 	}
-
 }
 
 /// <summary>

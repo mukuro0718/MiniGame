@@ -9,6 +9,9 @@ Tutorial::Tutorial()
 	/*シングルトンクラスのインスタンスの取得*/
 	auto& asset = LoadingAsset::GetInstance();
 	this->fontHandle = asset.GetFont(asset.GetFontType(LoadingAsset::FontType::MUKASI_3));
+	this->imageHandle = asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::TUTORIAL));
+	this->movieHandle = LoadGraph("Data/Movie/TutorialMovie.mp4");
+	PlayMovieToGraph(movieHandle);
 }
 
 /// <summary>
@@ -24,12 +27,13 @@ Tutorial::~Tutorial()
 /// </summary>
 void Tutorial::Update()
 {
-	/*シングルトンクラスのインスタンスの取得*/
-	auto& backGround = BackGround::GetInstance();
-
-	/*更新*/
-	backGround.Update();
-
+	if (GetMovieStateToGraph(this->movieHandle) == 0)
+	{
+		//ムービーの再生位置を0秒目に変更します
+		SeekMovieToGraph(this->movieHandle, 0);
+		//ムービーを再生状態にします
+		PlayMovieToGraph(this->movieHandle);
+	}
 }
 
 /// <summary>
@@ -37,12 +41,8 @@ void Tutorial::Update()
 /// </summary>
 void Tutorial::Draw()
 {
-	/*シングルトンクラスのインスタンスの取得*/
-	auto& backGround = BackGround::GetInstance();
-
-	/*描画*/
-	backGround.Draw();
-	DrawStringToHandle(0, 0, "あなたは家に帰る途中です！\n無事に家に帰ってください！\n", GetColor(255, 255, 255), this->fontHandle);
+	DrawExtendGraph(0, 0, 1920, 1080, this->imageHandle, TRUE);
+	DrawExtendGraph(100, 50, 1240, 680, this->movieHandle, FALSE);
 }
 
 /// <summary>
@@ -52,9 +52,10 @@ void Tutorial::EndProcess()
 {
 	/*インプットマネージャーのインスタンスを取得*/
 	auto& input = InputManager::GetInstance();
+	auto& sound = Sound::GetInstance();
 
 	/*エンターキー（後でPAD対応させる）が押されたらシーンを切り替える*/
-	if (input.GetReturnKeyState())
+	if (input.GetReturnKeyState() || input.GetPadState() & PAD_INPUT_3)
 	{
 		auto& changer = SceneChanger::GetInstance();
 		changer.ChangeScene(SceneChanger::SceneType::GAME);

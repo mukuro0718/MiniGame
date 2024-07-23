@@ -26,21 +26,27 @@ void Game::Init()
 	/*シングルトンクラスのインスタンスの取得*/
 	auto& weapon = WeaponManager::GetInstance();
 	auto& amo = AmoManager::GetInstance();
-	//auto& gem			= GemManager		::GetInstance();
+	auto& gem			= GemManager		::GetInstance();
 	auto& character = CharacterManager::GetInstance();
 	auto& input = InputManager::GetInstance();
 	auto& timer = GameTimer::GetInstance();
 	auto& backGround = BackGround::GetInstance();
 	auto& ui = UIManager::GetInstance();
 	auto& effect = EffectManager::GetInstance();
+	auto& stage = StageManager::GetInstance();
+	auto& sound = Sound::GetInstance();
+
 	/*初期化処理*/
+	sound.Init();
+	sound.OnIsPlayBGM();
 	timer.Init();
 	backGround.Init();
 	effect.Init();
 	character.Init();
 	weapon.Init();
 	amo.Init();
-	//gem		.Update();
+	stage.Init();
+	gem		.InitUseGem();
 	ui.Init();
 }
 /// <summary>
@@ -60,6 +66,7 @@ void Game::Update()
 	auto& backGround		= BackGround		::GetInstance();
 	auto& ui				= UIManager			::GetInstance();
 	auto& effect		= EffectManager		::GetInstance();
+	auto& sound = Sound::GetInstance();
 	
 	/*更新処理*/
 	timer		.Update();
@@ -70,8 +77,9 @@ void Game::Update()
 	character	.Update();
 	weapon		.Update();
 	amo			.Update();
-	gem		.Update();
+	gem			.Update();
 	ui			.Update();
+	sound		.PlayBGM();
 	
 
 	if (timer.GetElapsetTime() >= 120)
@@ -123,9 +131,9 @@ void Game::Draw()
 	weapon		.Draw();
 	gem			.Draw();
 	amo			.Draw();
-	ui			.Draw();
 	effect		.Draw();
 	character	.Draw();
+	ui			.Draw();
 
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, this->alpha);
 	DrawBox(0, 0, json.GetJson(jsonFileNum)["WINDOW_WIDTH"], json.GetJson(jsonFileNum)["WINDOW_HEIGHT"], this->color, TRUE);

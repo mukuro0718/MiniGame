@@ -19,7 +19,7 @@ BackGround::BackGround()
 	this->imageHandle.emplace_back(asset.GetImage(static_cast<int>(LoadingAsset::ImageType::CLOUD)));
 	Vec2d pos;
 	Vec2d size;
-	float velocity = 0.0f;
+	int velocity = 0;
 	for (int i = 0; i < json.GetJson(jsonIndex)["MAX_CLOUD_NUM"]; i++)
 	{
 		pos.x = GetRandom(json.GetJson(jsonIndex)["CLOUD_INIT_X"], false,0);
@@ -121,7 +121,7 @@ void BackGround::UpdateAlpha()
 const void BackGround::Draw()const
 {
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, this->alpha);
-	DrawBox(0, 0, 1920, 1080, GetColor(24, 235, 249), TRUE);
+	DrawBox(0, 0, 1920, 1080, GetColor(114, 198, 239), TRUE);
 	for (int i = 0; i < this->cloudPos.size(); i++)
 	{
 		DrawExtendGraph(this->cloudPos[i].x, this->cloudPos[i].y, this->cloudPos[i].x + this->cloudSize[i].x, this->cloudPos[i].y + this->cloudSize[i].y, this->imageHandle[static_cast<int>(ImageType::CLOUD)], TRUE);

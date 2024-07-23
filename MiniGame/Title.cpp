@@ -14,11 +14,15 @@ Title::Title()
 	, buttonFontHandle	(-1)
 	, isAddButtonAlpha	(true)
 {
+	auto& sound = Sound::GetInstance();
+	sound.Init();
 	Create();
 	SetTransform();
 	auto& backGround = BackGround::GetInstance();
-	backGround.Init();
 
+	backGround.Init();
+	sound.OnIsPlayTitleBGM();
+	//sound.OnIsPlayBGM();
 }
 
 /// <summary>
@@ -37,17 +41,21 @@ void Title::Update()
 	/*シングルトンクラスのインスタンスの取得*/
 	auto& backGround = BackGround::GetInstance();
 	auto& camera = CameraManager::GetInstance();
+	auto& sound = Sound::GetInstance();
 
 
 	backGround.Update();
-	
+
 	for (int i = 0; i < this->modelHandle.size(); i++)
 	{
 		MV1SetScale(this->modelHandle[i], this->transform[i].scale.value);
 		MV1SetRotationXYZ(this->modelHandle[i], this->transform[i].rotate.value);
 		MV1SetPosition(this->modelHandle[i], this->transform[i].pos.value);
 	}
-	
+
+	sound.PlayButtonSound();
+	sound.PlayTitleBGM();
+
 	ChangeLogoSizeOffset();
 	ChangeTransitionAlpha();
 }
@@ -74,17 +82,20 @@ void Title::EndProcess()
 {
 	/*インプットマネージャーのインスタンスを取得*/
 	auto& input = InputManager::GetInstance();
-	
-	if (input.GetReturnKeyState() || input.GetPadState() & PAD_INPUT_3)
+	auto& sound = Sound::GetInstance();
+
+	if (!this->isEnd && (input.GetReturnKeyState() || input.GetPadState() & PAD_INPUT_3))
 	{
+		sound.OnIsPlayButtonSound();
 		this->isEnd = true;
 	}
+
 
 	/*エンターキー（後でPAD対応させる）が押されたらシーンを切り替える*/
 	if (this->isEnd && this->alpha >= this->MAX_ALPHA)
 	{
 		auto& changer = SceneChanger::GetInstance();
-		changer.ChangeScene(SceneChanger::SceneType::GAME);
+		changer.ChangeScene(SceneChanger::SceneType::TUTORIAL);
 	}
 }
 /// <summary>

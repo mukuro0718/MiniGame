@@ -27,6 +27,12 @@ void GameStage::Init()
 	this->transform.rotate	.Convert(json.GetJson(jsonIndex)["ROAD_ROTATE"]);
 	this->transform.rotate	.DegToRad(this->transform.rotate);
 	this->transform.pos.value.x = 240.0f;
+
+	/*モデルの設定*/
+	MV1SetScale(this->modelHandle, this->transform.scale.value);
+	MV1SetRotationXYZ(this->modelHandle, this->transform.rotate.value);
+	MV1SetPosition(this->modelHandle, this->transform.pos.value);
+
 }
 /// <summary>
 /// デストラクタ
@@ -39,6 +45,7 @@ GameStage::~GameStage()
 /// </summary>
 void GameStage::Update()
 {
+	auto& character = CharacterManager::GetInstance();
 	this->transform.pos.value.x -= 2.0f;
 	if (this->transform.pos.value.x <= -240.0f)
 	{

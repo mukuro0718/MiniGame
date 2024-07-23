@@ -5,10 +5,17 @@ PSX Style Cars
 Fish - PolyPack Asset
 3d coin
 Bubble sprites
+Coin-AnimationSprite
 
 <効果音ラボ>
 爆発１
 大爆発２
+レジスターで生産
 
 ＜魔王魂＞
 サイバー４１
+
+＜こんとどぅふぇ＞
+169もうあさだよ
+172 しだれ桜とおぼろ月
+57  やすみじっかーん

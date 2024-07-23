@@ -67,6 +67,7 @@ public:
 		BUILDING_H	= 25,
 		BASE		= 26,
 		HOUSE		= 27,
+		PLAYER		= 28,
 	};
 
 	/*‰æ‘œ‚ÌŽí—Þ*/
@@ -126,7 +127,10 @@ public:
 		CLOUD			= 51,
 		SMOKE_BLACK		= 52,
 		MONEY_BAG		= 53,
-		BUBBLE			= 54
+		BUBBLE			= 54,
+		SHADOW			= 55,
+		BUTTON			= 56,
+		TUTORIAL		= 57,
 	};
 
 	enum class FontType

@@ -32,6 +32,10 @@ void Building::Init()
 	this->transform.scale.Convert(json.GetJson(jsonIndex)["BUILDING_SCALE"]);
 
 	this->isMove = false;
+	MV1SetScale(this->modelHandle, this->transform.scale.value);
+	MV1SetRotationXYZ(this->modelHandle, this->transform.rotate.value);
+	MV1SetPosition(this->modelHandle, this->transform.pos.value);
+
 }
 
 /// <summary>

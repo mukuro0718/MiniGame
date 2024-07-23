@@ -8,6 +8,7 @@ CharacterManager* CharacterManager::instance = nullptr;
 CharacterManager::CharacterManager()
 	: player(nullptr)
 	, isShowBoss(false)
+	, nowMoveEnemy(0)
 {
 	/*シングルトンクラスのインスタンスの取得*/
 	auto& asset = LoadingAsset::GetInstance();
@@ -15,7 +16,7 @@ CharacterManager::CharacterManager()
 	int jsonIndex = json.GetFileNameType(JsonManager::FileNameType::ENEMY);
 
 	/*インスタンスの作成*/
-	this->player =				new GamePlayer	(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::CAR))			, asset.GetModel(static_cast<int>(LoadingAsset::ModelType::CAR_BREAK)));
+	this->player =				new GamePlayer	(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::CAR))			, asset.GetModel(static_cast<int>(LoadingAsset::ModelType::CAR_BREAK)), asset.GetModel(static_cast<int>(LoadingAsset::ModelType::PLAYER)));
 	this->enemy	.emplace_back(	new Normal		(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::BLUE_CAR))	, asset.GetModel(static_cast<int>(LoadingAsset::ModelType::CAR_BREAK)), json.GetJson(jsonIndex)["CAR_MOVE_POS1"]));
 	this->enemy	.emplace_back(	new Normal		(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::GRY_CAR))		, asset.GetModel(static_cast<int>(LoadingAsset::ModelType::CAR_BREAK)), json.GetJson(jsonIndex)["CAR_MOVE_POS2"]));
 	this->enemy	.emplace_back(	new Normal		(asset.GetModel(static_cast<int>(LoadingAsset::ModelType::GREEN_CAR))	, asset.GetModel(static_cast<int>(LoadingAsset::ModelType::CAR_BREAK)), json.GetJson(jsonIndex)["CAR_MOVE_POS3"]));
@@ -76,6 +77,7 @@ void CharacterManager::Update()
 const void CharacterManager::Draw()const
 {
 	this->player->Draw();
+	this->player->DrawShadow();
 	for (int i = 0; i < this->nowMoveEnemy; i++)
 	{
 		this->enemy[i]->Draw();
@@ -117,7 +119,7 @@ const WrapVECTOR& CharacterManager::GetPlayerPos()const
 /// </summary>
 const int CharacterManager::GetEnemyNum()const
 {
-	return this->enemy.size();
+	return static_cast<int>(this->enemy.size());
 }
 
 /// <summary>

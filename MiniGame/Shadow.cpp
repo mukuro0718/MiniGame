@@ -7,6 +7,7 @@ Shadow::Shadow()
 	: imageHandle(0)
 {
 	auto& load = LoadingAsset::GetInstance();
+	this->imageHandle = load.GetImage(load.GetImageType(LoadingAsset::ImageType::SHADOW));
 }
 /// <summary>
 /// デストラクタ
@@ -25,7 +26,7 @@ void Shadow::Final()
 /// <summary>
 /// 描画
 /// </summary>
-void Shadow::Draw(const int _stageModelHandle,const VECTOR _targetPos,const float _shadowHeight,const float _shadowSize)
+void Shadow::Draw(const int _stageModelHandle, const VECTOR _targetPos, const float _shadowHeight, const float _shadowSize)
 {
 	MV1_COLL_RESULT_POLY_DIM groundPoly;//プレイヤー直下の地面ポリゴン
 	MV1_COLL_RESULT_POLY* spherePolyNum;//球直下のポリゴンの数
@@ -105,4 +106,35 @@ void Shadow::Draw(const int _stageModelHandle,const VECTOR _targetPos,const floa
 	// Ｚバッファを無効にする
 	SetUseZBuffer3D(FALSE);
 
+	//const int VERTEX_NUM = 4;
+	//const unsigned short VERTEX_INDEX[6] = { 0,1,2,0,2,3 };
+	//VERTEX3D vertex[VERTEX_NUM];//頂点データ
+	//VECTOR targetPos = _targetPos;//影をつけたい目標の座標
+	//float stageHeight = _stageHeight;//影の高さ
+	//float shadowSize = _shadowSize;//影のサイズ
+
+
+	//// ポリゴンの座標は地面ポリゴンの座標
+	//vertex[0].pos = VGet(-50.0f - shadowSize, stageHeight, 0.0f + shadowSize);
+	//vertex[1].pos = VGet(-50.0f + shadowSize, stageHeight, 0.0f + shadowSize);
+	//vertex[2].pos = VGet(-50.0f + shadowSize, stageHeight, 0.0f - shadowSize);
+	//vertex[3].pos = VGet(-50.0f - shadowSize, stageHeight, 0.0f - shadowSize);
+	//for (int i = 0; i < 4; i++)
+	//{
+	//	vertex[i].norm = VGet(0.0f, 1.0f, 0.0f);
+	//	vertex[i].dif = GetColorU8(255, 255, 255, 255);
+	//	vertex[i].spc = GetColorU8(255, 255, 255, 255);
+	//	vertex[i].su = 0.0f;
+	//	vertex[i].sv = 0.0f;
+	//}
+	//vertex[0].u = 0.0f;
+	//vertex[0].v = 0.0f;
+	//vertex[1].u = 1.0f;
+	//vertex[1].v = 0.0f;
+	//vertex[2].u = 1.0f;
+	//vertex[2].v = 1.0f;
+	//vertex[3].u = 0.0f;
+	//vertex[3].v = 1.0f;
+	//// 影ポリゴンを描画
+	//DrawPolygonIndexed3D(vertex, VERTEX_NUM, VERTEX_INDEX, 2, this->imageHandle, TRUE);
 }

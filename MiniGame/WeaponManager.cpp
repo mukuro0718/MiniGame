@@ -85,7 +85,7 @@ const void WeaponManager::Draw()const
 /// </summary>
 const int WeaponManager::GetWeaponNum()const
 {
-	return this->weapon.size();
+	return static_cast<int>(this->weapon.size());
 }
 
 /// <summary>

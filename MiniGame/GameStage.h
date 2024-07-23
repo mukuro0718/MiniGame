@@ -12,6 +12,7 @@ public:
 	void		Update	()override;											//XV
 	void		Init	()override;											//‰Šú‰»
 	const void	Draw	()const;											//•`‰æ
+	const int GetModelHandle()const { return this->modelHandle; }
 private:
 	/*“à•”ˆ—ŠÖ”*/
 	

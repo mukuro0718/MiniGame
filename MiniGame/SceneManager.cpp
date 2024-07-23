@@ -89,6 +89,10 @@ void SceneManager::SceneChange()
 			delete(this->scene);
 			this->scene = new Result();
 			break;
+		case SceneChanger::SceneType::TUTORIAL:
+			delete(this->scene);
+			this->scene = new Tutorial();
+			break;
 		}
 		//ƒV[ƒ“‚ğ“¯Šú‚³‚¹‚é
 		changer.SynchroScene();

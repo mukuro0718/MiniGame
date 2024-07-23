@@ -27,6 +27,10 @@ Result::Result()
 	auto& character = CharacterManager::GetInstance();
 	auto& timer = GameTimer::GetInstance();
 	auto& json = JsonManager::GetInstance();
+	auto& sound = Sound::GetInstance();
+	sound.Init();
+
+
 	int jsonIndex = static_cast<int>(JsonManager::FileNameType::SCENE);
 	this->isShowTotalScore = false;
 
@@ -57,6 +61,7 @@ void Result::Update()
 	auto& character  = CharacterManager::GetInstance();
 	auto& timer		 = GameTimer::GetInstance();
 	int   jsonIndex  = static_cast<int>(JsonManager::FileNameType::SCENE);
+	auto& sound = Sound::GetInstance();
 
 	backGround.Update();
 
@@ -71,6 +76,7 @@ void Result::Update()
 			this->transform[static_cast<int>(ModelType::HOUSE)].pos.value.x--;
 			if (this->transform[static_cast<int>(ModelType::HOUSE)].pos.value.x <= 0.0f)
 			{
+				sound.OnIsPlayHouseExplosionSound();
 				this->isExplosion = true;
 			}
 		}
@@ -127,6 +133,11 @@ void Result::Update()
 		this->showScoreFrameCount++;
 	}
 	UpdateButtonAlpha();
+
+	sound.PlayHouseExplosionSound();
+	sound.PlayButtonSound();
+	sound.PlayGameClearBGM();
+	sound.PlayGameOverBGM();
 }
 
 /// <summary>
@@ -185,7 +196,7 @@ void Result::DrawGameOver()
 	stage.Draw();
 	for (int i = 0; i < this->smokePos.size(); i++)
 	{
-		DrawBillboard3D(this->smokePos[i].value, 0.5f, 0.5f, this->smokeSize[i], 0.0f, this->smokeHandle, TRUE);
+		DrawBillboard3D(this->smokePos[i].value, 0.5f, 0.5f, static_cast<float>(this->smokeSize[i]), 0.0f, this->smokeHandle, TRUE);
 	}
 	character.Draw();
 
@@ -251,19 +262,35 @@ void Result::EndProcess()
 {
 	/*インプットマネージャーのインスタンスを取得*/
 	auto& input = InputManager::GetInstance();
-
-	if (input.GetReturnKeyState() || input.GetPadState() & PAD_INPUT_3)
+	auto& sound = Sound::GetInstance();
+	bool isPush = false;
+	if (this->isGameClear)
 	{
-		if (!isShowScore)
+		if (this->explosionFrameCount != 0)
 		{
-			this->isShowScore = true;
-		}
-		else if(this->isShowTotalScore)
-		{
-			this->isEnd = true;
+			isPush = true;
 		}
 	}
+	else
+	{
+		isPush = true;
+	}
 
+	if (isPush)
+	{
+		if (input.GetReturnKeyState() || input.GetPadState() & PAD_INPUT_3)
+		{
+			sound.OnIsPlayButtonSound();
+			if (!isShowScore)
+			{
+				this->isShowScore = true;
+			}
+			else if (this->isShowTotalScore)
+			{
+				this->isEnd = true;
+			}
+		}
+	}
 	/*エンターキー（後でPAD対応させる）が押されたらシーンを切り替える*/
 	if (this->isEnd && this->transitionAlpha >= this->MAX_ALPHA)
 	{
@@ -349,18 +376,20 @@ void Result::SetText()
 	auto& timer = GameTimer::GetInstance();
 	auto& json = JsonManager::GetInstance();
 	int jsonIndex = static_cast<int>(JsonManager::FileNameType::SCENE);
-
+	auto& sound = Sound::GetInstance();
 	if (timer.GetElapsetTime() >= 120)
 	{
 		this->color = this->COLOR_WHITE;
 		this->textColor = this->COLOR_WHITE;
 		this->isGameClear = true;
+		sound.OnIsPlayGameClearBGM();
 	}
 	else if (character.GetPlayerIsHit())
 	{
 		this->color = this->COLOR_BLACK;
 		this->textColor = this->COLOR_WHITE;
 		this->isGameOver = true;
+		sound.OnIsPlayGameOverBGM();
 	}
 	vector<int> overPos = json.GetJson(jsonIndex)["RESULT_GAMEOVER_TEXT_POS"];
 	Vec2d addPos = { overPos[0] ,overPos[1] };
@@ -522,6 +551,6 @@ void Result::DrawScore()
 	{
 		this->isShowTotalScore = true;
 		Vec2d pos = Convert(json.GetJson(jsonIndex)["RESULT_TORTAL_POS"]);
-		DrawFormatStringToHandle(pos.x, pos.y, this->COLOR_WHITE, this->fontHandle[type], "トータルスコア：%d", price + 10000 * (time / 100));
+		DrawFormatStringToHandle(pos.x, pos.y, this->COLOR_WHITE, this->fontHandle[type], "トータルスコア：%d", price + price * (time / 100));
 	}
 }

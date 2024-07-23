@@ -39,6 +39,7 @@ public:
 		TITLE    = 0,//タイトル
 		GAME	 = 1,//ゲーム
 		RESULT   = 2,//リザルト
+		TUTORIAL = 3,
 	};
 
 	//シーンの同期

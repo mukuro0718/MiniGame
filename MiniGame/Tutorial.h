@@ -15,5 +15,7 @@ public:
 	void EndProcess	()override;//I—¹ˆ—
 private:
 	int fontHandle;
+	int imageHandle;
+	int movieHandle;
 };
 

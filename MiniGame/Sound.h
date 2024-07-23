@@ -33,10 +33,50 @@ public:
 		}
 	}
 
+	void Init();
+
+	const void OnIsPlayButtonSound();
+	const void OnIsPlayBGM();
+	const void OnIsPlayTitleBGM();
+	const void OnIsPlayGameOverBGM();
+	const void OnIsPlayGameClearBGM();
+	const void OnIsPlayHouseExplosionSound();
+	const void OnIsPlayPlayerExplosionSound();
+	const void OnIsPlayMoneySound();
+
+	void PlayButtonSound();
+	void PlayBGM();
+	void PlayTitleBGM();
+	void PlayGameOverBGM();
+	void PlayGameClearBGM();
+	void PlayHouseExplosionSound();
+	void PlayPlayerExplosionSound();
+	void PlayMoneySound();
+
 private:
 	/*ì‡ïîèàóùä÷êî*/
 	Sound();
 	/*ÉÅÉìÉoïœêî*/
 	static Sound* instance;
+
+	bool isPlayButtonSound;
+
+	bool isPlayBGM;
+	bool isPlayTitleBGM;
+	bool isPlayGameOverBGM;
+	bool isPlayGameClearBGM;
+
+	bool isPlayHouseExplosionSound;
+	bool isPlayPlayerExplosionSound;
+	bool isPlayMoneySound;
+
+	int buttonSound;
+	int bgm;
+	int bgm2;
+	int gameoverBGM;
+	int gameclearBGM;
+	int houseExplosionSound;
+	int playerExplosionSound;
+	int moneySound;
 };
 
