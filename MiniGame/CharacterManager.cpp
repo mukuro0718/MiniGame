@@ -77,6 +77,7 @@ void CharacterManager::Update()
 const void CharacterManager::Draw()const
 {
 	this->player->Draw();
+
 	this->player->DrawShadow();
 	for (int i = 0; i < this->nowMoveEnemy; i++)
 	{

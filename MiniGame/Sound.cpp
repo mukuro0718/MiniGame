@@ -21,6 +21,7 @@ Sound::Sound()
 	, houseExplosionSound(-1)
 	, playerExplosionSound(-1)
 	, moneySound(-1)
+	, jetSoundVolume(0)
 {
 	SetCreateSoundDataType(DX_SOUNDDATATYPE_FILE);
 	//サウンドハンドルの
@@ -32,7 +33,12 @@ Sound::Sound()
 	this->houseExplosionSound	= LoadSoundMem("Data/Sound/HouseExplosionSound.mp3");
 	this->playerExplosionSound	= LoadSoundMem("Data/Sound/PlayerExplosionSound.mp3");
 	this->moneySound			= LoadSoundMem("Data/Sound/money.mp3");
-	ChangeVolumeSoundMem(150, this->bgm);
+	this->normalEnemyShotSound	= LoadSoundMem("Data/Sound/ミサイル.mp3");
+	this->bossShotSound			= LoadSoundMem("Data/Sound/大砲2.mp3");
+	this->enemyStartMoveSound	= LoadSoundMem("Data/Sound/紙袋を割る・破裂.mp3");
+	this->playerJetSound		= LoadSoundMem("Data/Sound/きらきら輝く2.mp3");
+	ChangeVolumeSoundMem(200, this->bgm);
+	ChangeVolumeSoundMem(150, this->moneySound);
 	Init();
 }
 
@@ -50,6 +56,10 @@ Sound::~Sound()
 	DeleteSoundMem(this->houseExplosionSound);
 	DeleteSoundMem(this->playerExplosionSound);
 	DeleteSoundMem(this->moneySound);
+	DeleteSoundMem(this->normalEnemyShotSound);
+	DeleteSoundMem(this->bossShotSound);
+	DeleteSoundMem(this->enemyStartMoveSound);
+	DeleteSoundMem(this->playerJetSound);
 }
 
 void Sound::Init()
@@ -70,15 +80,24 @@ void Sound::Init()
 	{
 		StopSoundMem(this->gameclearBGM);
 	}
+	if (this->isPlayPlayerJetSound)
+	{
+		StopSoundMem(this->playerJetSound);
+	}
 	StopSoundMem(this->playerExplosionSound);
-	this->isPlayButtonSound = false;
-	this->isPlayBGM = false;
-	this->isPlayTitleBGM = false;
-	this->isPlayGameOverBGM = false;
-	this->isPlayGameClearBGM = false;
-	this->isPlayHouseExplosionSound = false;
+	this->isPlayButtonSound			 = false;
+	this->isPlayBGM					 = false;
+	this->isPlayTitleBGM			 = false;
+	this->isPlayGameOverBGM			 = false;
+	this->isPlayGameClearBGM		 = false;
+	this->isPlayHouseExplosionSound  = false;
 	this->isPlayPlayerExplosionSound = false;
-	this->isPlayMoneySound = false;
+	this->isPlayMoneySound			 = false;
+	this->isPlayNormalShotSound		 = false;
+	this->isPlayBossShotSound		 = false;
+	this->isPlayEnemyStartMoveSound  = false;
+	this->isPlayPlayerJetSound		 = false;
+	this->jetSoundVolume = 100;
 }
 
 void Sound::PlayButtonSound()
@@ -240,4 +259,102 @@ const void Sound::OnIsPlayMoneySound()
 		this->isPlayMoneySound = true;
 		PlaySoundMem(this->moneySound, DX_PLAYTYPE_BACK, TRUE);
 	//}
+}
+
+const void Sound::OnIsNormalShot()
+{
+	if (!this->isPlayNormalShotSound)
+	{
+		this->isPlayNormalShotSound = true;
+		PlaySoundMem(this->normalEnemyShotSound, DX_PLAYTYPE_BACK, TRUE);
+	}
+}
+const void Sound::OnIsBossShot()
+{
+	if (!this->isPlayBossShotSound)
+	{
+		this->isPlayBossShotSound = true;
+		PlaySoundMem(this->bossShotSound, DX_PLAYTYPE_BACK, TRUE);
+	}
+
+}
+const void Sound::OnIsEnemyStartMove()
+{
+	if (!this->isPlayEnemyStartMoveSound)
+	{
+		this->isPlayEnemyStartMoveSound = true;
+		PlaySoundMem(this->enemyStartMoveSound, DX_PLAYTYPE_BACK, TRUE);
+	}
+}
+const void Sound::OnIsJetSound()
+{
+	if (!this->isPlayPlayerJetSound)
+	{
+		this->isPlayPlayerJetSound = true;
+		PlaySoundMem(this->playerJetSound, DX_PLAYTYPE_LOOP, TRUE);
+	}
+}
+void Sound::PlayNormalShotSound()
+{
+	if (this->isPlayNormalShotSound)
+	{
+		if (CheckSoundMem(this->normalEnemyShotSound) == 0)
+		{
+			this->isPlayNormalShotSound = false;
+			StopSoundMem(this->normalEnemyShotSound);
+		}
+	}
+}
+void Sound::PlayBossShotSound()
+{
+	if (this->isPlayBossShotSound)
+	{
+		if (CheckSoundMem(this->bossShotSound) == 0)
+		{
+			this->isPlayBossShotSound = false;
+			StopSoundMem(this->bossShotSound);
+		}
+	}
+}
+void Sound::PlayEnemyStartMoveSound()
+{
+	if (this->isPlayEnemyStartMoveSound)
+	{
+		if (CheckSoundMem(this->enemyStartMoveSound) == 0)
+		{
+			this->isPlayEnemyStartMoveSound = false;
+			StopSoundMem(this->enemyStartMoveSound);
+		}
+	}
+}
+void Sound::PlayJetSound()
+{
+	if (this->isPlayPlayerJetSound)
+	{
+		auto& character = CharacterManager::GetInstance();
+		if (character.GetPlayerInstance().GetIsInput())
+		{
+			this->jetSoundVolume += 30;
+			if (this->jetSoundVolume >= 255)
+			{
+				this->jetSoundVolume = 255;
+			}
+		}
+		else
+		{
+			this->jetSoundVolume -= 1;
+			if (this->jetSoundVolume <= 0)
+			{
+				this->jetSoundVolume = 0;
+			}
+		}
+
+
+		if (CheckSoundMem(this->playerJetSound) == 0)
+		{
+			this->isPlayPlayerJetSound = false;
+			StopSoundMem(this->playerJetSound);
+		}
+		ChangeVolumeSoundMem(jetSoundVolume, this->playerJetSound);
+	}
 }

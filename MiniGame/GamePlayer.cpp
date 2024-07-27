@@ -8,7 +8,7 @@ GamePlayer::GamePlayer(int _modelHandle, const int _breakModelHandle, const int 
 	, jumpPower(0.0f)
 	, height(0.0f)
 	, floatPower(0.0f)
-	, isStun(false)
+	, isInput(false)
 	, isOnGround(false)
 	, isStop(true)
 	//, isRide(false)
@@ -58,7 +58,7 @@ void GamePlayer::Init()
 	this->modelHandle		= this->normalModelHandle;
 	this->countStartTime	= GetNowCount();
 	
-	this->isStun			= false;
+	this->isInput			= false;
 	this->isOnGround		= false;
 	this->isHit				= false;
 	this->isStop			= true;
@@ -94,6 +94,8 @@ void GamePlayer::Update()
 	sound.PlayPlayerExplosionSound();
 	sound.PlayButtonSound();
 	sound.PlayMoneySound();
+	sound.PlayJetSound();
+
 	/*当たり判定*/
 	HitCheck();
 	/*モデルの設定*/
@@ -141,7 +143,7 @@ void GamePlayer::HitCheck()
 					if (this->hitResult->isHit)
 					{
 						sound.OnIsPlayPlayerExplosionSound();
-						//this->isHit = true;
+						this->isHit = true;
 					}
 				}
 			}
@@ -181,83 +183,87 @@ void GamePlayer::Move()
 	int pad = input.GetPadState();
 
 
-		if (timer.GetElapsetTime() >= 120)
+	if (timer.GetElapsetTime() >= 120)
+	{
+		this->transform.pos.value.x++;
+		if (this->transform.pos.value.x >= 200.0f)
 		{
-			this->transform.pos.value.x++;
-			if (this->transform.pos.value.x >= 200.0f)
-			{
-				this->transform.pos.value.x = 200.0f;
-			}
+			this->transform.pos.value.x = 200.0f;
 		}
-		else
+	}
+	else
+	{
+		isInput = false;
+		if (pad & PAD_INPUT_3 || CheckHitKey(KEY_INPUT_SPACE))
 		{
-			bool isInput = false;
-			if (pad & PAD_INPUT_3 || CheckHitKey(KEY_INPUT_SPACE))
-			{
-				this->isStop = false;
-				isInput = true;
-			}
-
 			if (!this->isStop)
 			{
-				/*上昇（もしAボタンが押されていたら）*/
-				if (isInput && !this->isHit)
-				{
-					zAngle += static_cast<float>(json.GetJson(jsonIndex)["ADD_ANGLE"]);
-					floatPower += static_cast<float>(json.GetJson(jsonIndex)["ADD_JUMP_POWER"]);
-				}
+				sound.OnIsPlayBGM();
+				sound.OnIsJetSound();
+			}
+			this->isStop = false;
+			isInput = true;
+		}
 
-				/*下降（Aボタンが押されていなかったら）*/
-				else
-				{
-					zAngle -= static_cast<float>(json.GetJson(jsonIndex)["DECREASE_ANGLE"]);
-					floatPower -= static_cast<float>(json.GetJson(jsonIndex)["DECREASE_JUMP_POWER"]);
-				}
+		if (!this->isStop)
+		{
+			/*上昇（もしAボタンが押されていたら）*/
+			if (isInput && !this->isHit)
+			{
+				zAngle += static_cast<float>(json.GetJson(jsonIndex)["ADD_ANGLE"]);
+				floatPower += static_cast<float>(json.GetJson(jsonIndex)["ADD_JUMP_POWER"]);
+			}
 
-				/*仮の座標の上限/下限値*/
-				if (floatPower >= json.GetJson(jsonIndex)["MAX_JUMP_POWER"])
-				{
-					floatPower = json.GetJson(jsonIndex)["MAX_JUMP_POWER"];
-				}
-				else if (floatPower < json.GetJson(jsonIndex)["MIN_JUMP_POWER"])
-				{
-					floatPower = json.GetJson(jsonIndex)["MIN_JUMP_POWER"];
-				}
-				if (zAngle >= json.GetJson(jsonIndex)["MAX_ANGLE"])
-				{
-					zAngle = json.GetJson(jsonIndex)["MAX_ANGLE"];
-				}
-				else if (zAngle < json.GetJson(jsonIndex)["MIN_ANGLE"])
-				{
-					zAngle = json.GetJson(jsonIndex)["MIN_ANGLE"];
-				}
+			/*下降（Aボタンが押されていなかったら）*/
+			else
+			{
+				zAngle -= static_cast<float>(json.GetJson(jsonIndex)["DECREASE_ANGLE"]);
+				floatPower -= static_cast<float>(json.GetJson(jsonIndex)["DECREASE_JUMP_POWER"]);
+			}
 
-				/*移動ベクトルの更新*/
-				this->moveVec.value.y = floatPower;
+			/*仮の座標の上限/下限値*/
+			if (floatPower >= json.GetJson(jsonIndex)["MAX_JUMP_POWER"])
+			{
+				floatPower = json.GetJson(jsonIndex)["MAX_JUMP_POWER"];
+			}
+			else if (floatPower < json.GetJson(jsonIndex)["MIN_JUMP_POWER"])
+			{
+				floatPower = json.GetJson(jsonIndex)["MIN_JUMP_POWER"];
+			}
+			if (zAngle >= json.GetJson(jsonIndex)["MAX_ANGLE"])
+			{
+				zAngle = json.GetJson(jsonIndex)["MAX_ANGLE"];
+			}
+			else if (zAngle < json.GetJson(jsonIndex)["MIN_ANGLE"])
+			{
+				zAngle = json.GetJson(jsonIndex)["MIN_ANGLE"];
+			}
 
-				/*回転率の更新*/
-				this->transform.rotate.value.z = zAngle * (DX_PI_F / 180.0f);
+			/*移動ベクトルの更新*/
+			this->moveVec.value.y = floatPower;
 
-				/*座標の更新*/
-				this->transform.pos += this->moveVec;
+			/*回転率の更新*/
+			this->transform.rotate.value.z = zAngle * (DX_PI_F / 180.0f);
 
-				/*仮の座標の上限/下限値*/
-				if (this->transform.pos.value.y >= json.GetJson(jsonIndex)["MAX_Y"])
+			/*座標の更新*/
+			this->transform.pos += this->moveVec;
+
+			/*仮の座標の上限/下限値*/
+			if (this->transform.pos.value.y >= json.GetJson(jsonIndex)["MAX_Y"])
+			{
+				this->transform.pos.value.y = json.GetJson(jsonIndex)["MAX_Y"];
+			}
+			else if (this->transform.pos.value.y <= json.GetJson(jsonIndex)["MIN_Y"])
+			{
+				if (!this->isHit)
 				{
-					this->transform.pos.value.y = json.GetJson(jsonIndex)["MAX_Y"];
+					sound.OnIsPlayPlayerExplosionSound();
 				}
-				else if (this->transform.pos.value.y <= json.GetJson(jsonIndex)["MIN_Y"])
-				{
-					/*if (!this->isHit)
-					{
-						sound.OnIsPlayPlayerExplosionSound();
-					}*/
-					//this->isHit = true;
-					this->transform.pos.value.y = json.GetJson(jsonIndex)["MIN_Y"];
-				}
+				this->isHit = true;
+				this->transform.pos.value.y = json.GetJson(jsonIndex)["MIN_Y"];
 			}
 		}
-	//}
+	}
 }
 /// <summary>
 /// フラグの状態を変更

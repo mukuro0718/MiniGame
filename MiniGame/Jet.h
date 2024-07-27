@@ -24,4 +24,5 @@ private:
     JetFlame*   flame[FLAME_NUM];
     int                 useFlame;
     int                 addCount;
+    bool isInit;
 };

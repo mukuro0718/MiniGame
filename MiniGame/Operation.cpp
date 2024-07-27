@@ -11,6 +11,7 @@ Operation::Operation(const int _fontHandle, const int _imageHandle,const int _mo
 	, moveX(0)
 	, isStop(false)
 	, stopFrameCount(0)
+	, alpha(this->MAX_ALPHA)
 {
 	this->fontHandle = _fontHandle;
 	this->imageHandle = _imageHandle;
@@ -72,79 +73,22 @@ void Operation::Init()
 /// </summary>
 void Operation::Update()
 {
-	///*シングルトンクラスのインスタンスの取得*/
-	//auto& json = JsonManager::GetInstance();
-	//auto& timer = GameTimer::GetInstance();
-	//auto& input = InputManager::GetInstance();
-	//auto& character = CharacterManager::GetInstance();
-	//int jsonIndex = json.GetFileNameType(JsonManager::FileNameType::UI);
-	//int time = timer.GetElapsetTime();
-	//int frame = timer.GetElapsetFrame();
-
-	//if (character.GetPlayerInstance().GetIsRide())
-	//{
-	//	this->transform.pos.value.x -= 2.0f;
-	//}
-
-	//if (this->isAddButtonSize)
-	//{
-	//	this->buttonSize += 0.1f;
-	//	if (this->buttonSize >= 8.0f)
-	//	{
-	//		this->buttonSize = 8.0f;
-	//		this->isAddButtonSize = false;
-	//	}
-	//}
-	//else
-	//{
-	//	this->buttonSize -= 0.1f;
-	//	if (this->buttonSize <= 5.0f)
-	//	{
-	//		this->buttonSize = 5.0f;
-	//		this->isAddButtonSize = true;
-	//	}
-	//}
-
-	//WrapVECTOR carPos = character.GetPlayerInstance().GetTransform().pos;
-	//WrapVECTOR characterPos = character.GetPlayerInstance().GetCharacterPos();
-	//float size = (carPos - characterPos).Size();
-	////乗り込みようAボタンUIの表示処理
-	//if ( size <= 12.0f)
-	//{
-	//	this->isShowRideButton = true;
-	//}
-	//else
-	//{
-	//	this->isShowRideButton = false;
-	//}
-	//size = (this->transform.pos - characterPos).Size();
-	////チュートリアル用AボタンUIの表示処理
-	//if ( size <= 12.0f)
-	//{
-	//	this->isShowTutorialButton = true;
-	//}
-	//else
-	//{
-	//	this->isShowTutorialButton = false;
-	//}
-
-
-	//if (this->isShowTutorialButton)
-	//{
-	//	if (input.GetPadState() & PAD_INPUT_3)
-	//	{
-	//		this->isShowTutorial = true;
-	//	}
-	//	else if (input.GetPadState() & PAD_INPUT_4)
-	//	{
-	//		this->isShowTutorial = false;
-	//	}
-	//}
-	//else
-	//{
-	//	this->isShowTutorial = false;
-	//}
-	//MV1SetPosition(this->modelHandle, this->transform.pos.value);
+	auto& character = CharacterManager::GetInstance();
+	if (!character.GetPlayerInstance().GetIsStop()) return;
+	if (this->isAddAlpha)
+	{
+		this->alpha += 5;
+		if (this->alpha < this->MAX_ALPHA)return;
+		this->alpha = this->MAX_ALPHA;
+		this->isAddAlpha = false;
+	}
+	else
+	{
+		this->alpha -= 5;
+		if (this->alpha > this->MIN_ALPHA)return;
+		this->alpha = this->MIN_ALPHA;
+		this->isAddAlpha = true;
+	}
 }
 
 /// <summary>
@@ -152,29 +96,9 @@ void Operation::Update()
 /// </summary>
 const void Operation::Draw()const
 {
-	//auto& character = CharacterManager::GetInstance();
-	//WrapVECTOR tutorialButtonPos = this->transform.pos;
-	//tutorialButtonPos.value.y += this->BUTTON_POS_Y_OFFSET;
-	//WrapVECTOR rideButtonPos = character.GetPlayerInstance().GetTransform().pos;
-	//rideButtonPos.value.y += this->BUTTON_POS_Y_OFFSET;
-
-	//if (!character.GetPlayerInstance().GetIsRide())
-	//{
-	//	MV1DrawModel(this->modelHandle);
-
-	//	if (this->isShowTutorialButton)
-	//	{
-	//		DrawBillboard3D(tutorialButtonPos.value, 0.5f, 0.5f, buttonSize, 0.0f, this->imageHandle, TRUE);
-	//	}
-	//	if (this->isShowRideButton)
-	//	{
-	//		DrawBillboard3D(rideButtonPos.value, 0.5f, 0.5f, buttonSize, 0.0f, this->imageHandle, TRUE);
-	//	}
-	//	if (this->isShowTutorial)
-	//	{
-	//		DrawBox(50, 50, 1870, 1030, GetColor(0, 0, 0), TRUE);
-	//		DrawBox(70, 70, 1850, 1010, GetColor(255, 255, 200), TRUE);
-	//		DrawStringToHandle(this->pos[0], this->pos[1], "Aボタンで上昇\n\n敵の攻撃や、道路などに当たるとゲームオーバーです。\n\n下のバーの車が家のマークまでたどり着くと、ゲームクリアです\n\n\n\nBボタンで閉じる", GetColor(255, 255, 255), this->fontHandle);
-	//	}
-	//}
+	auto& character = CharacterManager::GetInstance();
+	if (!character.GetPlayerInstance().GetIsStop()) return;
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, this->alpha);
+	DrawStringToHandle(this->pos[0], this->pos[1], "PUSH A / SPACE", GetColor(255, 255, 255), this->fontHandle);
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, this->MAX_ALPHA);
 }

@@ -90,7 +90,7 @@ void AmoManager::Update()
 	auto& timer = GameTimer::GetInstance();
 	auto& weapon = WeaponManager::GetInstance();
 	auto& character = CharacterManager::GetInstance();
-
+	auto& sound = Sound::GetInstance();
 	int time = timer.GetElapsetTime();
 
 	int weaponNum = 0;
@@ -134,6 +134,9 @@ void AmoManager::Update()
 			}
 		}
 	}
+
+	sound.PlayBossShotSound();
+	sound.PlayNormalShotSound();
 }
 
 /// <summary>

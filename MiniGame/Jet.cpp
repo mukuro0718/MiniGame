@@ -6,6 +6,7 @@
 Jet::Jet()
     : useFlame(0)
     , addCount(0)
+    , isInit(false)
 {
     /*シングルトンクラスのインスタンスを取得*/
     auto&   asset       = LoadingAsset::GetInstance();
@@ -17,8 +18,6 @@ Jet::Jet()
     {
         this->flame[i] = new JetFlame(asset.GetImage(asset.GetImageType(LoadingAsset::ImageType::STAR_YELLOW)));
     }
-
-    Init();
 }
 
 /// <summary>
@@ -56,6 +55,7 @@ void Jet::Init()
         );
     }
     this->useFlame = 0;
+    this->isInit = true;
 }
 
 /// <summary>
@@ -67,6 +67,22 @@ void Jet::Update()
     auto& json = JsonManager::GetInstance();
     int     jsonIndex = json.GetFileNameType(JsonManager::FileNameType::EFFECT);
     auto& character = CharacterManager::GetInstance();
+
+    if (character.GetPlayerInstance().GetIsStop()) return;
+    
+    if (!this->isInit)
+    {
+        for (int i = 0; i < this->FLAME_NUM; i++)
+        {
+            this->flame[i]->Init
+            (
+                json.GetJson(jsonIndex)["JET_FLAME_SIZE"],
+                character.GetPlayerTransform().pos,
+                GetRandomMoveVec(json.GetJson(jsonIndex)["JET_FLAME_MOVE_X"], json.GetJson(jsonIndex)["JET_FLAME_MOVE_Y"]),
+                GetRandomVelocity(json.GetJson(jsonIndex)["JET_FLAME_VELOCITY"])
+            );
+        }
+    }
 
     for (int i = 0; i < this->useFlame; i++)
     {

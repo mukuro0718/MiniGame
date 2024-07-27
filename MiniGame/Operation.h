@@ -23,7 +23,8 @@ private:
 	static constexpr int POS_Y_OFFSET = 100;
 	static const int TEXT_COLOR_GREEN;
 	static constexpr float BUTTON_POS_Y_OFFSET = 10.0f;
-
+	static constexpr int MAX_ALPHA = 255;
+	static constexpr int MIN_ALPHA = 0;
 	/*“à•”ˆ—ŠÖ”*/
 
 	/*ƒƒ“ƒo•Ï”*/
@@ -48,5 +49,7 @@ private:
 	int modelHandle;
 	int stopFrameCount;
 	float buttonSize;
+	int alpha;
+	bool isAddAlpha;
 };
 

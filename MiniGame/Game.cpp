@@ -38,7 +38,6 @@ void Game::Init()
 
 	/*‰Šú‰»ˆ—*/
 	sound.Init();
-	sound.OnIsPlayBGM();
 	timer.Init();
 	backGround.Init();
 	effect.Init();

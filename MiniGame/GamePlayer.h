@@ -24,17 +24,13 @@ public:
 	void CountTime();//時間の計測
 	void DrawShadow();
 	/*getter*/
-	const bool	GetIsStan	()const { return this->isStun;	 }//気絶フラグのgetter
+	const bool	GetIsInput	()const { return this->isInput;	 }//Aボタン入力のgetter
 	const float	GetHeight	()const { return this->height;	 }//高さのgetter
 	const int	GetAliveTime()const { return this->aliveTime;}//生存時間のgetter
 	const bool	GetIsHit	()const { return this->isHit;	 }//当たり判定フラグのgetter
 	const bool	GetIsStop	()const { return this->isStop;	 }
-	//const bool GetIsRide()const { return this->isRide; }
 	/*フラグを立てる*/
-	const void OnIsStun() { this->isStun = true; }//気絶フラグを立てる
-	//const void OnIsRide() { this->isRide = true; }
 	const int GetPrice()const { return this->price; }
-	//const WrapVECTOR& GetCharacterPos()const { return this->characterTransform.pos; }
 
 private:
 	/*構造体・列挙体*/
@@ -52,7 +48,7 @@ private:
 	float floatPower;		//浮力
 	float zAngle;			//Z軸をもとにしたアングル
 	
-	bool isStun;			//気絶したか
+	bool isInput;			//Aボタン入力
 	bool isOnGround;		//地面にいるか
 	bool isHit;				//弾や地面に当たったか
 	bool isStop;			//停止フラグ（ボタン入力があったらfalseにする）

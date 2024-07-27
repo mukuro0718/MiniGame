@@ -1,5 +1,5 @@
 {
-  "OPERATION_TEXT_POS": [ 100, 300 ],
+  "OPERATION_TEXT_POS": [ 300, 800 ],
   "OPERATION_END_POS": [ -4000, -4000, -4000 ],
   "MODEL_POS": [ -75.0, 0.0, 5.0 ],
   "MODEL_SCALE": [ 0.03, 0.03, 0.03 ],

@@ -53,6 +53,15 @@ public:
 	void PlayPlayerExplosionSound();
 	void PlayMoneySound();
 
+	void PlayNormalShotSound();
+	void PlayBossShotSound();
+	void PlayEnemyStartMoveSound();
+	void PlayJetSound();
+
+	const void OnIsNormalShot();
+	const void OnIsBossShot();
+	const void OnIsEnemyStartMove();
+	const void OnIsJetSound();
 private:
 	/*ì‡ïîèàóùä÷êî*/
 	Sound();
@@ -78,5 +87,15 @@ private:
 	int houseExplosionSound;
 	int playerExplosionSound;
 	int moneySound;
+
+	bool isPlayNormalShotSound;
+	bool isPlayBossShotSound;
+	bool isPlayEnemyStartMoveSound;
+	bool isPlayPlayerJetSound;
+	int normalEnemyShotSound;
+	int bossShotSound;
+	int enemyStartMoveSound;
+	int playerJetSound;
+	int jetSoundVolume;
 };
 

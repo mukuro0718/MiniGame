@@ -41,6 +41,7 @@ void Fish1::Init()
 	MV1SetScale(this->modelHandle, this->transform.scale.value);
 	MV1SetRotationXYZ(this->modelHandle, this->transform.rotate.value);
 	MV1SetPosition(this->modelHandle, this->transform.pos.value);
+
 }
 
 /// <summary>
@@ -48,6 +49,8 @@ void Fish1::Init()
 /// </summary>
 void Fish1::Update()
 {
+	auto& sound = Sound::GetInstance();
+
 	HitCheck();
 
 	Move();
@@ -59,6 +62,9 @@ void Fish1::Update()
 	MV1SetScale(this->modelHandle, this->transform.scale.value);
 	MV1SetRotationXYZ(this->modelHandle, this->transform.rotate.value);
 	MV1SetPosition(this->modelHandle, this->transform.pos.value);
+
+	sound.PlayEnemyStartMoveSound();
+	sound.PlayNormalShotSound();
 }
 
 /// <summary>
@@ -68,6 +74,8 @@ void Fish1::Move()
 {
 	/*シングルトンクラスのインスタンスの取得*/
 	auto& json = JsonManager::GetInstance();
+	auto& sound = Sound::GetInstance();
+
 	int		jsonIndex = json.GetFileNameType(JsonManager::FileNameType::AMO);
 
 	if (!this->isOut)
@@ -75,6 +83,7 @@ void Fish1::Move()
 		//移動目標座標を設定していなかったら設定する
 		if (!this->isSetMoveTargetPos)
 		{
+			sound.OnIsNormalShot();
 			//x,z軸は決められた位置で、y軸のみランダムにする
 			this->moveTargetPos		 = { json.GetJson(jsonIndex)["MOVE_TARGET_X_POS"],GetRandom(10),0.0 };
 			//フラグを立てる
@@ -88,6 +97,7 @@ void Fish1::Move()
 			
 			if (moveTargetToPosVecSize <= 5.0f)
 			{
+				sound.OnIsEnemyStartMove();
 				this->isOut = true;
 				this->transform.pos = this->moveTargetPos;
 			}

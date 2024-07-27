@@ -49,7 +49,7 @@ void UIManager::Init()
 void UIManager::Update()
 {
 	this->bar->Update();
-	//this->operation->Update();
+	this->operation->Update();
 }
 
 /// <summary>
@@ -58,6 +58,6 @@ void UIManager::Update()
 const void UIManager::Draw()const
 {
 	this->score->Draw();
-	//this->operation->Draw();
+	this->operation->Draw();
 	this->bar->Draw();
 }
